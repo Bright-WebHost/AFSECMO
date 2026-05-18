@@ -75,7 +75,7 @@ export default function Hero({ headline }: HeroProps) {
         duration: 4,
         repeat: Infinity,
         delay: i * 0.8,
-        ease: "easeInOut",
+        ease: easeInOutExpo,
       },
     }),
   };
