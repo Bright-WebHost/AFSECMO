@@ -41,7 +41,7 @@ const openRoles = [
   },
 ];
 
-const easing = [0.16, 1, 0.3, 1];
+const easing = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 export default function CareersPage() {
   const [expandedRole, setExpandedRole] = useState<string | null>(null);
