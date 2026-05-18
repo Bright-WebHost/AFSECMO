@@ -49,7 +49,7 @@ const projects = [
 ];
 
 const categories = ["All", "Mining", "Oil & Gas", "Construction", "Logistics"];
-const easing = [0.16, 1, 0.3, 1] as [number, number, number, number];
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -101,7 +101,7 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94 }}
-                transition={{ duration: 0.35, ease: (easing as any) }}
+                transition={{ duration: 0.35, ease: (ease as any) }}
                 className="overflow-hidden rounded-4xl border border-white/10 bg-[#0b0b0b] p-8 shadow-[0_28px_90px_rgba(0,0,0,0.24)]"
               >
                 <div className="flex items-center justify-between gap-4">
