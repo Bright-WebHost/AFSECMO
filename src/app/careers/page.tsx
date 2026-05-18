@@ -169,7 +169,7 @@ export default function CareersPage() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.35, ease: easing }}
+                      transition={{ duration: 0.35, ease: (easing as any) }}
                       className="border-t border-white/10 bg-white/5 px-8 py-6"
                     >
                       <p className="text-white/70 leading-7">
@@ -219,7 +219,7 @@ export default function CareersPage() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -24 }}
-                transition={{ duration: 0.4, ease: easing }}
+                transition={{ duration: 0.4, ease: (easing as any) }}
                 className="space-y-6"
               >
                 {applicationStep === 0 && (
