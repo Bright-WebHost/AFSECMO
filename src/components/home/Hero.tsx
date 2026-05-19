@@ -4,16 +4,16 @@ import { ReactNode, useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 
 interface HeroProps {
-  headline?: ReactNode; 
+  headline?: ReactNode;
 }
 
+// ─── REAL FACTUAL DATA ───
 const stats = [
-  { label: "Years of Excellence", value: "18+" },
-  { label: "Projects Delivered", value: "82+" },
-  { label: "Operational Reach", value: "14 Countries" },
+  { label: "Established", value: "2024" },
+  { label: "Headquarters", value: "Abidjan" },
+  { label: "Core Sectors", value: "Mining, Oil & Gas" },
 ];
 
-// Define a type for our sparks so TypeScript stays happy
 type Spark = {
   id: number;
   left: string;
@@ -23,11 +23,8 @@ type Spark = {
 };
 
 export default function Hero({ headline }: HeroProps) {
-  // NEW: Store sparks in a React state
   const [sparks, setSparks] = useState<Spark[]>([]);
 
-  // NEW: Generate the random sparks ONLY after the component mounts on the client browser.
-  // This completely eliminates the Next.js Math.random() hydration crash!
   useEffect(() => {
     setSparks(
       Array.from({ length: 15 }).map((_, i) => ({
@@ -85,8 +82,9 @@ export default function Hero({ headline }: HeroProps) {
       className="relative flex min-h-[100dvh] w-full flex-col justify-center overflow-hidden bg-[#0F1B2E] selection:bg-[#FF6B00] selection:text-white"
       style={{ perspective: "1500px", transformStyle: "preserve-3d" }}
     >
+      {/* ── Background layer ── */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.15]"
           style={{
             backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
@@ -102,7 +100,6 @@ export default function Hero({ headline }: HeroProps) {
           className="absolute left-0 right-0 h-[2px] bg-linear-to-r from-transparent via-[#FF6B00]/40 to-transparent shadow-[0_0_15px_rgba(255,107,0,0.5)] z-0"
         />
 
-        {/* The sparks are now safely rendered from the state */}
         {sparks.map((spark) => (
           <motion.div
             key={spark.id}
@@ -146,34 +143,49 @@ export default function Hero({ headline }: HeroProps) {
         />
       </div>
 
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none" style={{ transformStyle: "preserve-3d" }}>
+      {/* ── Watermark headline (background text) ── */}
+      <div
+        className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none"
+        style={{ transformStyle: "preserve-3d" }}
+      >
         <motion.div
           animate={{ rotateX: [1, -1, 1], rotateY: [-2, 2, -2] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="flex w-full flex-col items-center text-center"
           style={{ transform: "translateZ(-100px)" }}
         >
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2, ease: easeOutQuart }}
             className="text-[16vw] font-black uppercase leading-[0.8] tracking-tighter text-white/20 select-none"
-            style={{ 
-              WebkitTextStroke: "2px rgba(255,255,255,0.15)", 
-              filter: "drop-shadow(0 0 30px rgba(255, 107, 0, 0.15))" 
+            style={{
+              WebkitTextStroke: "2px rgba(255,255,255,0.15)",
+              filter: "drop-shadow(0 0 30px rgba(255, 107, 0, 0.15))",
             }}
           >
             {headline || "Afsecmo"}
           </motion.div>
-          
-          <motion.p variants={revealUp3D} initial="hidden" animate="visible" className="mt-6 max-w-2xl px-6 text-sm font-light leading-relaxed text-white/60 sm:text-lg">
-            From extraction to execution, we deliver precision engineering and seamless logistics globally.
+
+          <motion.p
+            variants={revealUp3D}
+            initial="hidden"
+            animate="visible"
+            className="mt-4 max-w-xl px-6 text-xs font-light leading-relaxed text-white/60 sm:mt-6 sm:max-w-2xl sm:text-lg"
+          >
+            Africa Services & Equipements. Delivering central purchasing, industrial maintenance,
+            and civil engineering (BTP) for demanding environments.
           </motion.p>
         </motion.div>
       </div>
 
+      {/* ── SVG decorative lines ── */}
       <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
-        <svg className="w-full h-full max-w-7xl mx-auto" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+        <svg
+          className="w-full h-full max-w-7xl mx-auto"
+          viewBox="0 0 1000 500"
+          preserveAspectRatio="xMidYMid slice"
+        >
           <motion.path
             variants={drawLine}
             initial="hidden"
@@ -203,32 +215,37 @@ export default function Hero({ headline }: HeroProps) {
         </svg>
       </div>
 
+      {/* ── Hero image — constrained so it never bleeds off screen ── */}
       <motion.div
-        initial={{ opacity: 0, y: -50, z: -200 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{
           opacity: 1,
-          y: [-15, 15, -15],
-          z: 150, 
+          y: [-8, 8, -8],
           rotateX: [2, -2, 2],
           rotateY: [-3, 3, -3],
         }}
         transition={{
           opacity: { duration: 1.5 },
           y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
-          z: { duration: 1.5, ease: easeOutQuart },
           rotateX: { duration: 9, repeat: Infinity, ease: "easeInOut" },
           rotateY: { duration: 11, repeat: Infinity, ease: "easeInOut" },
         }}
         whileHover={{
-          scale: 1.05,
-          z: 220,
-          rotateY: -8, 
+          scale: 1.04,
+          rotateY: -6,
           transition: { duration: 0.8, ease: easeOutQuart },
         }}
         className="
-          pointer-events-auto absolute left-1/2 top-1/2 z-30 
-          -translate-x-1/2 -translate-y-[55%] 
-          w-[600px] sm:w-[800px] lg:w-[1000px] xl:w-[1200px]
+          pointer-events-auto absolute z-30
+          /* Mobile: horizontally centred, vertically centred, width capped to viewport */
+          left-1/2 top-1/2
+          -translate-x-1/2 -translate-y-1/2
+          /* Width: fills most of the viewport on mobile, grows on larger screens */
+          w-[90vw] max-w-[360px]
+          sm:w-[70vw]  sm:max-w-[600px]  sm:-translate-y-[55%]
+          md:w-[65vw]  md:max-w-[800px]
+          lg:w-[55vw]  lg:max-w-[900px]
+          xl:w-[50vw]  xl:max-w-[1100px]
         "
         style={{ transformStyle: "preserve-3d" }}
       >
@@ -236,22 +253,30 @@ export default function Hero({ headline }: HeroProps) {
           src="/hero/hero1.png"
           alt="Precision Machine"
           className="object-contain w-full select-none"
-          style={{ 
-            maskImage: "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,1) 60%)",
-            WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,1) 60%)",
-            filter: "drop-shadow(30px 40px 40px rgba(0, 0, 0, 0.8))"
+          style={{
+            maskImage:
+              "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,1) 60%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,1) 60%)",
+            filter: "drop-shadow(20px 30px 30px rgba(0, 0, 0, 0.8))",
           }}
         />
       </motion.div>
 
-      <div className="absolute bottom-8 left-0 right-0 z-40 flex justify-center px-4 sm:px-6" style={{ transformStyle: "preserve-3d" }}>
+      {/* ── Stats bar ── */}
+      <div
+        className="absolute bottom-6 left-0 right-0 z-40 flex justify-center px-3 sm:bottom-8 sm:px-6"
+        style={{ transformStyle: "preserve-3d" }}
+      >
         <motion.div
-          initial={{ y: 80, opacity: 0, rotateX: 30, z: -50 }}
-          animate={{ y: 0, opacity: 1, rotateX: 0, z: 80 }}
+          initial={{ y: 80, opacity: 0, rotateX: 30 }}
+          animate={{ y: 0, opacity: 1, rotateX: 0 }}
           transition={{ duration: 1.4, delay: 0.6, ease: easeOutQuart }}
           className="
-            flex w-full max-w-5xl flex-row divide-x divide-white/10 rounded-2xl sm:rounded-full
-            border border-white/10 bg-[#060A11]/60 shadow-[0_30px_60px_rgba(0,0,0,0.8)] 
+            flex w-full max-w-5xl flex-row divide-x divide-white/10
+            rounded-2xl sm:rounded-full
+            border border-white/10 bg-[#060A11]/60
+            shadow-[0_30px_60px_rgba(0,0,0,0.8)]
             backdrop-blur-2xl overflow-hidden
           "
         >
@@ -259,24 +284,23 @@ export default function Hero({ headline }: HeroProps) {
             <motion.div
               key={index}
               whileHover={{ y: -4, backgroundColor: "rgba(255,107,0,0.05)" }}
-              className="group flex flex-1 cursor-default flex-col items-center justify-center px-2 py-4 text-center sm:px-6 sm:py-8 transition-all"
+              className="group flex flex-1 cursor-default flex-col items-center justify-center px-2 py-3 text-center sm:px-6 sm:py-8 transition-all"
             >
-              <motion.span 
+              <motion.span
                 custom={index}
                 variants={autoGlowVariants}
                 animate="animate"
-                className="text-lg font-bold tracking-tight sm:text-3xl lg:text-4xl"
+                className="text-sm font-bold tracking-tight sm:text-3xl lg:text-4xl"
               >
                 {stat.value}
               </motion.span>
-              <span className="mt-1 text-[8px] font-bold uppercase tracking-widest text-white/40 transition-colors group-hover:text-white/90 sm:mt-2 sm:text-[10px] sm:tracking-[0.25em]">
+              <span className="mt-0.5 text-[7px] font-bold uppercase tracking-widest text-white/40 transition-colors group-hover:text-white/90 sm:mt-2 sm:text-[10px] sm:tracking-[0.25em]">
                 {stat.label}
               </span>
             </motion.div>
           ))}
         </motion.div>
       </div>
-
     </section>
   );
 }

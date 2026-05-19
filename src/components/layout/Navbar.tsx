@@ -3,159 +3,245 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 const navItems = [
-  "Home",
-  "Services",
-  "Sectors",
-  "Method",
-  "Quality",
-  "About Us",
-  "Projects",
-  "Careers",
-  "Contact",
+  "Home", "Services", "Sectors", "Method", "Quality",
+  "About Us", "Projects", "Careers", "Contact",
 ];
+
+const getHref = (item: string) => {
+  switch (item) {
+    case "Home":     return "/";
+    case "Services": return "/services";
+    case "Sectors":  return "/sectors";
+    case "Contact":  return "/contact";
+    case "About Us": return "/about";
+    case "Projects": return "/projects";
+    case "Method":   return "/method";
+    case "Quality":  return "/quality";
+    case "Careers":  return "/careers";
+    default:         return "#";
+  }
+};
+
+// Typed as tuples so framer-motion accepts them as Easing
+const easeExp = [0.16, 1,    0.3, 1] as [number, number, number, number];
+const easeIn  = [0.42, 0,    1,   1] as [number, number, number, number]; // replaces "easeIn" string
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { language, toggleLanguage } = useLanguage();
   const { scrollY } = useScroll();
-  
-  const background = useTransform(
-    scrollY,
-    [0, 40],
-    ["rgba(15,27,46,0)", "rgba(15,27,46,0.96)"]
-  );
-  
-  const borderBottom = useTransform(
-    scrollY,
-    [0, 40],
-    ["rgba(255,255,255,0)", "rgba(255,255,255,0.08)"]
-  );
+  const pathname = usePathname();
 
-  // Helper function to keep desktop and mobile routing synced
-  const getHref = (item: string) => {
-    switch (item) {
-      case "Home": return "/";
-      case "Services": return "/services";
-      case "Contact": return "/contact";
-      case "About Us": return "/about";
-      case "Projects": return "/projects";
-      case "Method": return "/method";
-      case "Quality": return "/quality";
-      case "Careers": return "/careers";
-      default: return "#";
-    }
+  const isActive = (item: string) => {
+    const href = getHref(item);
+    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  };
+
+  const bgOpacity     = useTransform(scrollY, [0, 60], ["rgba(6,10,17,0)",    "rgba(6,10,17,0.97)"]);
+  const borderOpacity = useTransform(scrollY, [0, 60], ["rgba(255,255,255,0)", "rgba(255,255,255,0.07)"]);
+  const blurAmount    = useTransform(scrollY, [0, 60], ["blur(0px)",           "blur(20px)"]);
+
+  const menuVariants: Variants = {
+    hidden:  {},
+    visible: { transition: { staggerChildren: 0.055, delayChildren: 0.15 } },
+    exit:    { transition: { staggerChildren: 0.03,  staggerDirection: -1 } },
+  };
+
+  const itemVariants: Variants = {
+    hidden:  { x: 40, opacity: 0 },
+    visible: { x: 0,  opacity: 1, transition: { duration: 0.5,  ease: easeExp } },
+    exit:    { x: 40, opacity: 0, transition: { duration: 0.25, ease: easeIn  } },
   };
 
   return (
     <>
+      {/* ── Scroll-aware header ── */}
       <motion.header
-        style={{ background, borderBottomColor: borderBottom }}
-        className="fixed inset-x-0 top-0 z-50 border-b border-transparent backdrop-blur-md"
+        style={{ background: bgOpacity, borderBottomColor: borderOpacity, backdropFilter: blurAmount }}
+        className="fixed inset-x-0 top-0 z-50 border-b border-transparent"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <Link href="/" className="inline-flex items-center" aria-label="AFSECMO home">
-            <Image src="/logo.svg" alt="AFSECMO Group logo" width={110} height={22} className="h-6 sm:h-7 w-auto" priority />
-            <span className="sr-only">AFSECMO Group</span>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 lg:px-8">
+
+          {/* Logo */}
+          <Link href="/" aria-label="AFSECMO home" className="relative z-10 shrink-0">
+            <Image
+              src="/logo.svg"
+              alt="AFSECMO Group"
+              width={110} height={22}
+              className="h-6 w-auto sm:h-7"
+              priority
+            />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item}
-                href={getHref(item)}
-                className="text-sm font-medium text-white transition duration-200 hover:text-[#FF8C00]"
-              >
-                {item}
-              </Link>
-            ))}
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-1 lg:flex">
+            {navItems.map((item) => {
+              const active = isActive(item);
+              return (
+                <Link
+                  key={item}
+                  href={getHref(item)}
+                  className="relative px-3 py-2 text-[13px] font-medium transition-colors duration-200"
+                  style={{ color: active ? "#FF6B00" : "rgba(255,255,255,0.75)" }}
+                  onMouseEnter={(e) => { if (!active) (e.currentTarget as HTMLAnchorElement).style.color = "#ffffff"; }}
+                  onMouseLeave={(e) => { if (!active) (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.75)"; }}
+                >
+                  {item}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute bottom-0 left-3 right-3 h-px bg-[#FF6B00]"
+                      style={{ boxShadow: "0 0 6px rgba(255,107,0,0.8)" }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
-          <div className="flex items-center gap-4">
+          {/* Right controls */}
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={toggleLanguage}
-              className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-white transition duration-200 hover:border-white/20 hover:text-[#FF8C00]"
+              className="hidden rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white/70 transition-all duration-200 hover:border-[#FF6B00]/40 hover:text-[#FF6B00] sm:inline-flex"
             >
               {language}
             </button>
 
+            {/* Hamburger — fixed line thickness & alignment */}
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition duration-200 hover:border-white/20 hover:text-[#FF8C00] lg:hidden"
               aria-label="Open mobile menu"
+              className="relative flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/5 transition-all duration-200 hover:border-[#FF6B00]/40 lg:hidden"
             >
-              <span className="block h-0.5 w-5 bg-current" />
-              <span className="my-1 block h-0.5 w-5 bg-current" />
-              <span className="block h-0.5 w-5 bg-current" />
+              <span className="block h-[1.5px] w-5.5 rounded-full bg-white" />
+              <span className="block h-[1.5px] w-3.5 self-start ml-2.5 rounded-full bg-white/60" />
             </button>
           </div>
         </div>
       </motion.header>
 
+      {/* ── Mobile drawer ── */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="fixed inset-0 z-50 overflow-y-auto bg-primary/98 px-6 py-8"
-          >
-            <div className="flex items-center justify-between">
-              <Link href="/" onClick={() => setMobileOpen(false)} className="inline-flex items-center" aria-label="AFSECMO home">
-                <Image src="/logo.svg" alt="AFSECMO Group logo" width={110} height={22} className="h-6 sm:h-7 w-auto" priority />
-                <span className="sr-only">AFSECMO Group</span>
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition duration-200 hover:border-white/20 hover:text-[#FF8C00]"
-                aria-label="Close mobile menu"
-              >
-                <span className="block h-0.5 w-5 rotate-45 bg-current" />
-                <span className="block h-0.5 w-5 -rotate-45 bg-current" />
-              </button>
-            </div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 z-60 bg-black/50 backdrop-blur-sm"
+            />
 
-            <div className="mt-12 space-y-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item}
-                  href={getHref(item)}
-                  onClick={() => setMobileOpen(false)}
-                  className="block text-3xl font-semibold uppercase tracking-[0.2em] text-white transition duration-200 hover:text-[#FF8C00]"
-                >
-                  {item}
+            {/* Drawer panel */}
+            <motion.div
+              key="drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.45, ease: easeExp }}
+              className="fixed inset-y-0 right-0 z-70 flex w-[min(340px,90vw)] flex-col bg-[#060A11] shadow-[-20px_0_60px_rgba(0,0,0,0.8)]"
+            >
+              {/* Dot texture */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-40"
+                style={{
+                  backgroundImage: "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+
+              {/* Left orange accent */}
+              <div className="absolute left-0 top-0 h-full w-px bg-linear-to-b from-transparent via-[#FF6B00]/50 to-transparent" />
+
+              {/* Drawer header */}
+              <div className="relative flex items-center justify-between border-b border-white/[0.07] px-6 py-5">
+                <Link href="/" onClick={() => setMobileOpen(false)} aria-label="AFSECMO home">
+                  <Image src="/logo.svg" alt="AFSECMO Group" width={100} height={20} className="h-6 w-auto" priority />
                 </Link>
-              ))}
-            </div>
 
-            <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-2">
-                <p className="text-sm uppercase tracking-[0.28em] text-white/70">Language</p>
                 <button
                   type="button"
-                  onClick={toggleLanguage}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-white transition duration-200 hover:border-white/20 hover:text-[#FF8C00]"
+                  onClick={() => setMobileOpen(false)}
+                  aria-label="Close menu"
+                  className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors duration-200 hover:border-[#FF6B00]/40 hover:text-[#FF6B00]"
                 >
-                  {language}
+                  <span className="absolute h-[1.5px] w-5 rotate-45 rounded-full bg-current" />
+                  <span className="absolute h-[1.5px] w-5 -rotate-45 rounded-full bg-current" />
                 </button>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                className="inline-flex max-w-max items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:border-white/20 hover:text-[#FF8C00]"
+              {/* Nav links */}
+              <motion.nav
+                variants={menuVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="relative flex flex-1 flex-col justify-center gap-1 px-6 py-4"
               >
-                Close
-              </button>
-            </div>
-          </motion.div>
+                {navItems.map((item) => {
+                  const active = isActive(item);
+                  return (
+                    <motion.div key={item} variants={itemVariants}>
+                      <Link
+                        href={getHref(item)}
+                        onClick={() => setMobileOpen(false)}
+                        className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-colors duration-200"
+                        style={{ backgroundColor: active ? "rgba(255,107,0,0.08)" : "transparent" }}
+                      >
+                        <span
+                          className="h-1 w-1 shrink-0 rounded-full transition-all duration-300"
+                          style={{
+                            backgroundColor: active ? "#FF6B00" : "rgba(255,255,255,0.2)",
+                            boxShadow: active ? "0 0 6px rgba(255,107,0,0.8)" : "none",
+                          }}
+                        />
+                        <span
+                          className="text-xl font-semibold uppercase tracking-[0.12em] transition-colors duration-200"
+                          style={{ color: active ? "#FF6B00" : "rgba(255,255,255,0.85)" }}
+                        >
+                          {item}
+                        </span>
+                        <span className="ml-auto translate-x-0 text-[#FF6B00]/0 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF6B00]/70">
+                          →
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </motion.nav>
+
+              {/* Drawer footer */}
+              <div className="relative border-t border-white/[0.07] px-6 py-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.3em] text-white/30">Language</p>
+                    <button
+                      type="button"
+                      onClick={toggleLanguage}
+                      className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white/70 transition-all duration-200 hover:border-[#FF6B00]/40 hover:text-[#FF6B00]"
+                    >
+                      {language}
+                    </button>
+                  </div>
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/20">
+                    Est. 2024 · Abidjan
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

@@ -2,92 +2,177 @@
 
 import { motion } from "framer-motion";
 
-const standards = [
+const STANDARDS = [
   {
-    category: "Safety",
-    title: "ISO 45001 Certified",
-    description: "Comprehensive occupational health and safety management systems across all operations.",
+    title: "Site & Field Safety",
+    category: "Safety awareness",
+    copy: "Work planning aligned with safe site access, protective equipment and field procedures. We do not compromise on crew security.",
   },
   {
-    category: "Quality",
-    title: "ISO 9001 Registered",
-    description: "Quality management protocols ensuring consistency, traceability, and continuous improvement.",
+    title: "Vetted Sourcing",
+    category: "Supplier reliability",
+    copy: "Selection of suppliers and contractors based on capability, availability, and traceability. Every vendor must meet our stringent compliance baseline.",
   },
   {
-    category: "Environmental",
-    title: "ISO 14001 Compliance",
-    description: "Environmental management systems integrating sustainability into every project phase.",
+    title: "Clear Reporting",
+    category: "Documentation",
+    copy: "Clear quotes, delivery notes, service records, technical references, and follow-up reports. Full auditability across the project lifecycle.",
   },
   {
-    category: "Supply Chain",
-    title: "Vetted Supplier Network",
-    description: "Rigorous vendor assessment and on-going performance monitoring for resilient delivery.",
-  },
-  {
-    category: "Risk Management",
-    title: "Enterprise Risk Framework",
-    description: "Structured risk identification, mitigation, and contingency planning across industrial domains.",
-  },
-  {
-    category: "Governance",
-    title: "Audited HSE Reporting",
-    description: "Transparent safety metrics, incident reporting, and quarterly stakeholder assurance reviews.",
+    title: "Project Milestones",
+    category: "Operational transparency",
+    copy: "Regular communication on timelines, constraints, delivery status, and project milestones. You always know your operational standing.",
   },
 ];
 
+// Animation Variants - Works on Mobile & Desktop
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
 export default function QualityPage() {
   return (
-    <main className="bg-primary text-white">
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="mb-16 max-w-3xl">
-          <p className="text-sm uppercase tracking-[0.35em] text-white/50">Quality & HSE</p>
-          <h1 className="mt-4 text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Trust built on rigorous standards.
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-white/70 sm:text-xl">
-            Our commitment to safety, quality, and reliability is backed by industry certifications and continuous auditing.
-          </p>
-        </div>
-      </section>
-
-      <section className="px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {standards.map((standard, index) => (
-              <motion.article
-                key={standard.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="group overflow-hidden rounded-3xl border border-tertiary bg-secondary p-8 shadow-[0_28px_90px_rgba(0,0,0,0.24)] transition duration-300 hover:border-[#FF8C00]/50"
+    <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-20 pt-16 sm:pb-32 sm:pt-24 lg:pb-40 lg:pt-56">
+      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-12">
+        <div className="grid gap-8 sm:gap-12 lg:gap-16 lg:grid-cols-12 relative">
+          
+          {/* Left Column - Header with Animations */}
+          <motion.div 
+            className="lg:col-span-5 relative"
+            initial="hidden"
+            animate="visible"
+            variants={headerVariants}
+          >
+            <div className="lg:sticky lg:top-32 xl:top-40">
+              {/* Animated Line */}
+              <motion.span 
+                className="mb-4 sm:mb-6 block h-px w-8 sm:w-12 bg-[#FF6B00] origin-left"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              />
+              
+              {/* Label */}
+              <motion.p 
+                className="mb-3 sm:mb-4 text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#FF6B00]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <motion.div
-                  className="absolute inset-0 rounded-3xl"
-                  initial={{ boxShadow: "inset 0 0 0 1px rgba(255,107,0,0)" }}
-                  whileHover={{ boxShadow: "inset 0 0 20px 2px rgba(255,107,0,0.15)" }}
-                  transition={{ duration: 0.3 }}
-                />
+                Quality & HSE
+              </motion.p>
+              
+              {/* Main Heading */}
+              <motion.h1 
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-light tracking-tight text-white leading-[1.1] sm:leading-[1.1] mb-4 sm:mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Professional <br />
+                <span className="font-medium">standards.</span>
+              </motion.h1>
+              
+              {/* Description */}
+              <motion.p 
+                className="max-w-sm text-sm sm:text-base lg:text-lg font-light text-white/60 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                Rigorous operational coordination and compliance enforced across every site.
+              </motion.p>
+            </div>
+          </motion.div>
 
-                <div className="relative z-10 space-y-4">
-                  <span className="text-xs uppercase tracking-[0.35em] text-white/50">
-                    {standard.category}
-                  </span>
-                  <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+          {/* Right Column - Scrolling Cards with Staggered Animation */}
+          <motion.div 
+            className="lg:col-span-7 flex flex-col gap-8 sm:gap-12 lg:gap-20 xl:gap-32"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            {STANDARDS.map((standard, idx) => (
+              <motion.div 
+                key={standard.title}
+                variants={itemVariants}
+                className="flex flex-col gap-4 sm:gap-6 group cursor-pointer"
+              >
+                {/* Index Number */}
+                <motion.div 
+                  className="text-xs sm:text-sm font-mono text-white/30 transition-colors duration-300 group-hover:text-[#FF6B00]"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  0{idx + 1}
+                </motion.div>
+                
+                {/* Content Block */}
+                <div className="pr-2">
+                  <motion.h2 
+                    className="mb-2 sm:mb-3 text-xl sm:text-2xl lg:text-3xl font-medium text-white uppercase tracking-tight leading-snug transition-colors duration-300 group-hover:text-white/90"
+                    whileHover={{ x: 5 }}
+                  >
                     {standard.title}
-                  </h2>
-                  <p className="text-white/70 leading-7">{standard.description}</p>
+                  </motion.h2>
+                  
+                  <motion.p 
+                    className="mb-3 sm:mb-5 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#FF6B00]"
+                    initial={{ opacity: 0.7 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    // {standard.category}
+                  </motion.p>
+                  
+                  <motion.p 
+                    className="max-w-md text-sm sm:text-base font-light leading-relaxed text-white/50 transition-colors duration-300 group-hover:text-white/80"
+                    initial={{ opacity: 0.5 }}
+                    whileHover={{ opacity: 0.8 }}
+                  >
+                    {standard.copy}
+                  </motion.p>
                 </div>
 
-                <motion.div
-                  className="absolute top-0 right-0 h-12 w-12 rounded-full bg-[#FF8C00]/0 blur-2xl"
-                    whileHover={{ background: "#FF8C0020" }}
-                  transition={{ duration: 0.3 }}
+                {/* Divider Line - Mobile Only */}
+                <motion.div 
+                  className="mt-2 h-px w-12 bg-white/10 lg:hidden origin-left"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 + idx * 0.15 }}
                 />
-              </motion.article>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
+
         </div>
       </section>
     </main>
