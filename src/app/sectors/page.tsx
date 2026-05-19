@@ -1,15 +1,19 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
-const SECTORS = [
-  { id: "01", prefix: "(I)", title: "MINING &", subtitle: "QUARRYING", desc: "Heavy equipment, quarry materials, field logistics and technical supply solutions for extraction environments.", tag: "Extraction", image: "/01.png" },
-  { id: "02", prefix: "(II)", title: "OIL, GAS &", subtitle: "ENERGY", desc: "Industrial support for refinery, upstream, downstream and energy infrastructure requirements.", tag: "Infrastructure", image: "/02.jpg" },
-  { id: "03", prefix: "(III)", title: "CONSTRUCTION &", subtitle: "INFRASTRUCTURE", desc: "Civil works, utilities, site preparation, BTP support and project mobilisation.", tag: "Civil Works", image: "/03.png" },
-  { id: "04", prefix: "(IV)", title: "INDUSTRIAL", subtitle: "OPERATIONS", desc: "Maintenance, mechanical, electrical and utility services for productive industrial facilities.", tag: "Facility Ops", image: "/04.jpg" },
-  { id: "05", prefix: "(V)", title: "TRADE &", subtitle: "LOGISTICS", desc: "Import-export, procurement, freight coordination and supply chain management.", tag: "Supply Chain", image: "/08.png" },
-  { id: "06", prefix: "(VI)", title: "FACILITIES &", subtitle: "REAL ESTATE", desc: "Operational property support, site services, camps, yards and commercial facility management.", tag: "Asset Upkeep", image: "/09.png" },
-];
+type SectorItem = {
+  id: string;
+  prefix: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  tag: string;
+  image: string;
+};
 
 // FIXED: Explicitly typed the array as a 4-number tuple to fix the TypeScript compilation error
 const awwwardsEase = [0.76, 0, 0.24, 1] as [number, number, number, number];
@@ -43,7 +47,12 @@ const maskVariants: Variants = {
   },
 };
 
-export default function SectorsPage() {
+export function SectorsContent() {
+  const { t } = useTranslation("content");
+  const sectors = t("sectors.items", { returnObjects: true }) as SectorItem[];
+  const hero = t("sectors.hero", { returnObjects: true }) as { titleLead: string; titleAccent: string };
+  const cta = t("sectors.cta") as string;
+
   return (
     <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-32">
       
@@ -63,13 +72,13 @@ export default function SectorsPage() {
             {/* First masked line */}
             <span className="relative block overflow-hidden py-1">
               <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block">
-                One operational partner
+                {hero.titleLead}
               </motion.span>
             </span>
             {/* Second masked line */}
             <span className="relative block overflow-hidden py-1">
               <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block text-[#FF6B00]">
-                multiple strategic industries.
+                {hero.titleAccent}
               </motion.span>
             </span>
           </h1>
@@ -85,7 +94,7 @@ export default function SectorsPage() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {SECTORS.map((sector) => (
+          {sectors.map((sector) => (
             <motion.div 
               key={sector.id} 
               variants={cardVariants}
@@ -130,7 +139,7 @@ export default function SectorsPage() {
                   href="/contact" 
                   className="inline-flex w-max items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white transition-colors group-hover:text-[#FF6B00]"
                 >
-                  Explore Operations 
+                  {cta} 
                   <svg className="h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -143,4 +152,14 @@ export default function SectorsPage() {
 
     </main>
   );
+}
+
+export default function SectorsPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/sectors");
+  }, [router]);
+
+  return null;
 }

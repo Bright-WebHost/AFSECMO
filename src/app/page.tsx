@@ -1,7 +1,4 @@
-import Hero from "@/components/home/Hero";
-import ServicesGrid from "@/components/home/ServicesGrid";
-import SectorsGrid from "@/components/home/SectorsGrid";
-import ContactSection from "@/components/home/contactsection";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "AFSECMO Group | Industrial Services & Logistics",
@@ -10,20 +7,5 @@ export const metadata = {
 };
 
 export default function Home() {
-  return (
-    <main className="relative min-h-screen bg-[#0F1B2E]">
-      {/* Your sections, which all contain their own internal scroll animations */}
-      <Hero
-        headline={
-          <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
-            AFSECMO Group
-          </h1>
-        }
-      />
-      <SectorsGrid />
-      <ServicesGrid />
-      <ContactSection/>
-      
-    </main>
-  );
+  redirect("/en");
 }

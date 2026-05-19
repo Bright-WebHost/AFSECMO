@@ -1,29 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
-const STANDARDS = [
-  {
-    title: "Site & Field Safety",
-    category: "Safety awareness",
-    copy: "Work planning aligned with safe site access, protective equipment and field procedures. We do not compromise on crew security.",
-  },
-  {
-    title: "Vetted Sourcing",
-    category: "Supplier reliability",
-    copy: "Selection of suppliers and contractors based on capability, availability, and traceability. Every vendor must meet our stringent compliance baseline.",
-  },
-  {
-    title: "Clear Reporting",
-    category: "Documentation",
-    copy: "Clear quotes, delivery notes, service records, technical references, and follow-up reports. Full auditability across the project lifecycle.",
-  },
-  {
-    title: "Project Milestones",
-    category: "Operational transparency",
-    copy: "Regular communication on timelines, constraints, delivery status, and project milestones. You always know your operational standing.",
-  },
-];
+type Standard = { title: string; category: string; copy: string };
 
 // Animation Variants - Works on Mobile & Desktop
 const containerVariants = {
@@ -59,7 +41,11 @@ const headerVariants = {
   },
 };
 
-export default function QualityPage() {
+export function QualityContent() {
+  const { t } = useTranslation("content");
+  const standards = t("quality.standards", { returnObjects: true }) as Standard[];
+  const hero = t("quality.hero", { returnObjects: true }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
+
   return (
     <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-20 pt-16 sm:pb-32 sm:pt-24 lg:pb-40 lg:pt-56">
       <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-12">
@@ -88,7 +74,7 @@ export default function QualityPage() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Quality & HSE
+                {hero.eyebrow}
               </motion.p>
               
               {/* Main Heading */}
@@ -98,8 +84,8 @@ export default function QualityPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Professional <br />
-                <span className="font-medium">standards.</span>
+                {hero.titleLead} <br />
+                <span className="font-medium">{hero.titleAccent}</span>
               </motion.h1>
               
               {/* Description */}
@@ -109,7 +95,7 @@ export default function QualityPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                Rigorous operational coordination and compliance enforced across every site.
+                {hero.description}
               </motion.p>
             </div>
           </motion.div>
@@ -121,7 +107,7 @@ export default function QualityPage() {
             animate="visible"
             variants={containerVariants}
           >
-            {STANDARDS.map((standard, idx) => (
+            {standards.map((standard, idx) => (
               <motion.div 
                 key={standard.title}
                 variants={itemVariants}
@@ -177,4 +163,14 @@ export default function QualityPage() {
       </section>
     </main>
   );
+}
+
+export default function QualityPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/quality");
+  }, [router]);
+
+  return null;
 }

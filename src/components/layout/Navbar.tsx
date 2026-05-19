@@ -3,30 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext";
+import { useParams, usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import type { Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "@/components/i18n/LanguageSwitcher";
+import { type Locale } from "@/i18n/locales";
+import { withLocalePath } from "@/i18n/routing";
 
 const navItems = [
-  "Home", "Services", "Sectors", "Method", "Quality",
-  "About Us", "Projects", "Careers", "Contact",
+  { key: "home", href: "/" },
+  { key: "services", href: "/services" },
+  { key: "sectors", href: "/sectors" },
+  { key: "method", href: "/method" },
+  { key: "quality", href: "/quality" },
+  { key: "about", href: "/about" },
+  { key: "projects", href: "/projects" },
+  { key: "careers", href: "/careers" },
+  { key: "contact", href: "/contact" },
 ];
-
-const getHref = (item: string) => {
-  switch (item) {
-    case "Home":     return "/";
-    case "Services": return "/services";
-    case "Sectors":  return "/sectors";
-    case "Contact":  return "/contact";
-    case "About Us": return "/about";
-    case "Projects": return "/projects";
-    case "Method":   return "/method";
-    case "Quality":  return "/quality";
-    case "Careers":  return "/careers";
-    default:         return "#";
-  }
-};
 
 // Typed as tuples so framer-motion accepts them as Easing
 const easeExp = [0.16, 1,    0.3, 1] as [number, number, number, number];
@@ -34,13 +29,15 @@ const easeIn  = [0.42, 0,    1,   1] as [number, number, number, number]; // rep
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { language, toggleLanguage } = useLanguage();
   const { scrollY } = useScroll();
   const pathname = usePathname();
+  const params = useParams<{ locale?: Locale }>();
+  const { t } = useTranslation("common");
+  const locale = params?.locale === "fr" ? "fr" : "en";
 
-  const isActive = (item: string) => {
-    const href = getHref(item);
-    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => {
+    const localizedHref = withLocalePath(locale, href);
+    return localizedHref === `/${locale}` ? pathname === localizedHref : pathname.startsWith(localizedHref);
   };
 
   const bgOpacity     = useTransform(scrollY, [0, 60], ["rgba(6,10,17,0)",    "rgba(6,10,17,0.97)"]);
@@ -69,7 +66,7 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 lg:px-8">
 
           {/* Logo */}
-          <Link href="/" aria-label="AFSECMO home" className="relative z-10 shrink-0">
+          <Link href={withLocalePath(locale, "/")} aria-label="AFSECMO home" className="relative z-10 shrink-0">
             <Image
               src="/logo.svg"
               alt="AFSECMO Group"
@@ -82,17 +79,17 @@ export default function Navbar() {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex">
             {navItems.map((item) => {
-              const active = isActive(item);
+              const active = isActive(item.href);
               return (
                 <Link
-                  key={item}
-                  href={getHref(item)}
+                  key={item.key}
+                  href={withLocalePath(locale, item.href)}
                   className="relative px-3 py-2 text-[13px] font-medium transition-colors duration-200"
                   style={{ color: active ? "#FF6B00" : "rgba(255,255,255,0.75)" }}
                   onMouseEnter={(e) => { if (!active) (e.currentTarget as HTMLAnchorElement).style.color = "#ffffff"; }}
                   onMouseLeave={(e) => { if (!active) (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.75)"; }}
                 >
-                  {item}
+                  {t(`nav.${item.key}`)}
                   {active && (
                     <motion.span
                       layoutId="nav-active"
@@ -107,13 +104,7 @@ export default function Navbar() {
 
           {/* Right controls */}
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={toggleLanguage}
-              className="hidden rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white/70 transition-all duration-200 hover:border-[#FF6B00]/40 hover:text-[#FF6B00] sm:inline-flex"
-            >
-              {language}
-            </button>
+            <LanguageSwitcher className="hidden sm:inline-flex" />
 
             {/* Hamburger — fixed line thickness & alignment */}
             <button
@@ -191,11 +182,11 @@ export default function Navbar() {
                 className="relative flex flex-1 flex-col justify-center gap-1 px-6 py-4"
               >
                 {navItems.map((item) => {
-                  const active = isActive(item);
+                  const active = isActive(item.href);
                   return (
-                    <motion.div key={item} variants={itemVariants}>
+                    <motion.div key={item.key} variants={itemVariants}>
                       <Link
-                        href={getHref(item)}
+                        href={withLocalePath(locale, item.href)}
                         onClick={() => setMobileOpen(false)}
                         className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-colors duration-200"
                         style={{ backgroundColor: active ? "rgba(255,107,0,0.08)" : "transparent" }}
@@ -211,7 +202,7 @@ export default function Navbar() {
                           className="text-xl font-semibold uppercase tracking-[0.12em] transition-colors duration-200"
                           style={{ color: active ? "#FF6B00" : "rgba(255,255,255,0.85)" }}
                         >
-                          {item}
+                          {t(`nav.${item.key}`)}
                         </span>
                         <span className="ml-auto translate-x-0 text-[#FF6B00]/0 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#FF6B00]/70">
                           →
@@ -226,14 +217,8 @@ export default function Navbar() {
               <div className="relative border-t border-white/[0.07] px-6 py-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.3em] text-white/30">Language</p>
-                    <button
-                      type="button"
-                      onClick={toggleLanguage}
-                      className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white/70 transition-all duration-200 hover:border-[#FF6B00]/40 hover:text-[#FF6B00]"
-                    >
-                      {language}
-                    </button>
+                    <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.3em] text-white/30">{t("language.label")}</p>
+                    <LanguageSwitcher compact />
                   </div>
                   <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/20">
                     Est. 2024 · Abidjan

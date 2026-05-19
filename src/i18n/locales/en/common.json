@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "AFSECMO Group",
+    "description": "Premium industrial brand experience built with AFSECMO Group."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "sectors": "Sectors",
+    "method": "Method",
+    "quality": "Quality",
+    "about": "About Us",
+    "projects": "Projects",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "footer": {
+    "title": "AFSECMO Group",
+    "description": "Industrial services, mining support, oil & gas solutions, construction coordination, procurement, import-export and logistics support from Abidjan.",
+    "location": "Abidjan, Côte d'Ivoire",
+    "franceLink": "Version française",
+    "connect": "Connect",
+    "actions": "Actions",
+    "requestConsultation": "Request a consultation",
+    "copyright": "© {{year}} AFSECMO Group. All rights reserved.",
+    "prepared": "Website prepared for professional corporate presentation."
+  },
+  "preloader": {
+    "eyebrow": "Africa Services & Equipment",
+    "subtitle": "Mining · Oil & Gas · Infrastructure",
+    "established": "Est. 2024",
+    "location": "Abidjan, CI"
+  },
+  "whatsapp": {
+    "ariaLabel": "Chat with us on WhatsApp",
+    "message": "Hello! I need assistance."
+  }
+}

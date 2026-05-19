@@ -2,17 +2,11 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface HeroProps {
   headline?: ReactNode;
 }
-
-// ─── REAL FACTUAL DATA ───
-const stats = [
-  { label: "Established", value: "2024" },
-  { label: "Headquarters", value: "Abidjan" },
-  { label: "Core Sectors", value: "Mining, Oil & Gas" },
-];
 
 type Spark = {
   id: number;
@@ -24,6 +18,8 @@ type Spark = {
 
 export default function Hero({ headline }: HeroProps) {
   const [sparks, setSparks] = useState<Spark[]>([]);
+  const { t } = useTranslation("home");
+  const stats = t("hero.stats", { returnObjects: true }) as { label: string; value: string }[];
 
   useEffect(() => {
     setSparks(
@@ -173,8 +169,7 @@ export default function Hero({ headline }: HeroProps) {
             animate="visible"
             className="mt-4 max-w-xl px-6 text-xs font-light leading-relaxed text-white/60 sm:mt-6 sm:max-w-2xl sm:text-lg"
           >
-            Africa Services & Equipements. Delivering central purchasing, industrial maintenance,
-            and civil engineering (BTP) for demanding environments.
+            {t("hero.subtitle")}
           </motion.p>
         </motion.div>
       </div>
@@ -251,7 +246,7 @@ export default function Hero({ headline }: HeroProps) {
       >
         <motion.img
           src="/hero/hero1.png"
-          alt="Precision Machine"
+          alt={t("hero.imageAlt")}
           className="object-contain w-full select-none"
           style={{
             maskImage:

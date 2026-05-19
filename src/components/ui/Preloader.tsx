@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const easeExpOut = [0.16, 1, 0.3, 1] as const;
 const easeExpInOut = [0.87, 0, 0.13, 1] as const;
@@ -9,6 +10,7 @@ const easeExpInOut = [0.87, 0, 0.13, 1] as const;
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
   const [exit, setExit] = useState(false);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -68,7 +70,7 @@ export default function Preloader() {
                 transition={{ duration: 0.9, ease: easeExpOut, delay: 0.1 }}
                 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#FF6B00]/70 sm:text-xs"
               >
-                Africa Services &amp; Équipements
+                  {t("preloader.eyebrow")}
               </motion.p>
             </div>
 
@@ -100,7 +102,7 @@ export default function Preloader() {
                 transition={{ duration: 0.9, ease: easeExpOut, delay: 0.45 }}
                 className="text-[11px] font-light uppercase tracking-[0.3em] text-white/30 sm:text-sm"
               >
-                Mining · Oil &amp; Gas · Infrastructure
+                  {t("preloader.subtitle")}
               </motion.p>
             </div>
           </div>
@@ -120,7 +122,7 @@ export default function Preloader() {
             transition={{ duration: 1, delay: 0.7 }}
             className="absolute bottom-6 left-4 z-10 text-[9px] font-bold uppercase tracking-[0.2em] text-white/20 sm:bottom-8 sm:left-8 sm:text-[10px]"
           >
-            Est. 2024
+            {t("preloader.established")}
           </motion.p>
 
           <motion.p
@@ -129,7 +131,7 @@ export default function Preloader() {
             transition={{ duration: 1, delay: 0.7 }}
             className="absolute bottom-6 right-4 z-10 text-[9px] font-bold uppercase tracking-[0.2em] text-white/20 sm:bottom-8 sm:right-8 sm:text-[10px]"
           >
-            Abidjan, CI
+            {t("preloader.location")}
           </motion.p>
 
           {/* Top-right L-bracket accent */}

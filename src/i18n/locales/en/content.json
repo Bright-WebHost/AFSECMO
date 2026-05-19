@@ -1,0 +1,139 @@
+{
+  "about": {
+    "hero": {
+      "eyebrow": "Corporate Profile",
+      "titleLead": "Corporate",
+      "titleAccent": "Profile.",
+      "description": "Société Africa Services & Equipements pour les Compagnies Minières, Oil & Gas. Dedicated to securing the supply chain and engineering infrastructure for West Africa's most demanding industrial environments.",
+      "imageAlt": "AFSECMO Industrial Operations"
+    },
+    "stats": [
+      { "label": "Established", "value": "2024" },
+      { "label": "Headquarters", "value": "Abidjan" },
+      { "label": "Legal Entity", "value": "SARL" }
+    ],
+    "section": {
+      "eyebrow": "Primary Activities",
+      "title": "Engineering and procurement for heavy industry."
+    },
+    "activities": [
+      { "title": "Central Purchasing & Trading", "copy": "Acting as a dedicated 'Centrale d'achat', we manage complex import-export logistics and global trading to secure the industrial supply chain.", "image": "/01.png" },
+      { "title": "Construction & BTP", "copy": "Comprehensive civil engineering, general construction, and building renovation services specifically tailored for demanding operational sites.", "image": "/02.jpg" },
+      { "title": "Industrial Maintenance", "copy": "Heavy mechanical and industrial maintenance protocols designed to minimize downtime and protect vital operational lifecycles.", "image": "/03.png" },
+      { "title": "General Contracting", "copy": "End-to-end site preparation and utility management, encompassing advanced electrical and plumbing engineering services.", "image": "/04.jpg" }
+    ]
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Global Industrial Services",
+      "titleLead": "Engineered for",
+      "titleAccent": "Excellence.",
+      "description": "From strategic planning to heavy equipment mobilisation, AFSECMO delivers precision across the full industrial project lifecycle."
+    },
+    "items": [
+      { "id": "mining", "num": "01", "category": "MINING", "tag": "Heavy Operations", "title": ["Mining & Quarry", "Support"], "desc": "Operational support for mining and quarry environments, from field mobilisation and heavy equipment coordination to materials supply.", "features": ["Heavy equipment & fleet coordination", "Spare parts, tools & consumables", "Preventive maintenance planning"], "image": "/01.png" },
+      { "id": "energy", "num": "02", "category": "ENERGY", "tag": "Field Support", "title": ["Oil & Gas", "Services"], "desc": "Industrial services for energy and hydrocarbons projects, supporting field teams with technical procurement and utilities.", "features": ["Valves, fittings & process equipment", "Shutdown and turnaround assistance", "Industrial safety materials"], "image": "/02.jpg" },
+      { "id": "infrastructure", "num": "03", "category": "INFRASTRUCTURE", "tag": "Civil Works", "title": ["Engineering &", "Construction"], "desc": "Structured support for civil works, infrastructure delivery, industrial construction and site preparation requirements.", "features": ["Earthworks, drainage & road support", "Concrete, steel & building materials", "Subcontractor mobilisation"], "image": "/03.png" },
+      { "id": "maintenance", "num": "04", "category": "MAINTENANCE", "tag": "Site Operations", "title": ["Mechanical &", "Industrial"], "desc": "Practical mechanical support designed to keep industrial sites operational, productive and critically safe.", "features": ["Mechanical assemblies & repairs", "Welding, fabrication & fitting", "Conveyors & rotating equipment"], "image": "/04.jpg" },
+      { "id": "utilities", "num": "05", "category": "UTILITIES", "tag": "Facility Ops", "title": ["Electrical &", "Plumbing"], "desc": "Technical installation and maintenance support for industrial facilities, camps, warehouses and operational buildings.", "features": ["Industrial electrical distribution", "Generator, lighting & cable solutions", "Facility troubleshooting"], "image": "/05.png" },
+      { "id": "procurement", "num": "06", "category": "PROCUREMENT", "tag": "Global Supply", "title": ["Central", "Purchasing"], "desc": "Professional sourcing and procurement coordination for companies that need reliable access to equipment and materials.", "features": ["International supplier identification", "Commercial comparison & negotiation", "Customs & delivery follow-up"], "image": "/06.png" },
+      { "id": "fleet", "num": "07", "category": "FLEET", "tag": "Mobilisation", "title": ["Equipment Rental", "& Fleet"], "desc": "Equipment solutions for sites that require fast mobilisation, flexible rental arrangements and reliable field support.", "features": ["Heavy machinery rental coordination", "Truck, vehicle & fleet support", "Equipment inspection & readiness"], "image": "/07.png" },
+      { "id": "logistics", "num": "08", "category": "LOGISTICS", "tag": "Transport", "title": ["Logistics &", "Mobilisation"], "desc": "End-to-end coordination for moving equipment, materials and teams from suppliers to operational sites.", "features": ["Freight & local transport coordination", "Warehousing & staging support", "Last-mile site delivery"], "image": "/08.png" },
+      { "id": "asset", "num": "09", "category": "ASSET MGT", "tag": "Upkeep", "title": ["Facility &", "Asset Support"], "desc": "Support for operational properties, camps, workshops and industrial facilities that require professional service management.", "features": ["Facility maintenance & repairs", "Commercial site setup assistance", "Asset handover & reporting"], "image": "/09.png" }
+    ],
+    "cta": {
+      "titleLead": "Ready to",
+      "titleAccent": "Mobilise?",
+      "button": "Launch Inquiry Deck"
+    }
+  },
+  "sectors": {
+    "hero": {
+      "titleLead": "One operational partner",
+      "titleAccent": "multiple strategic industries."
+    },
+    "items": [
+      { "id": "01", "prefix": "(I)", "title": "MINING &", "subtitle": "QUARRYING", "desc": "Heavy equipment, quarry materials, field logistics and technical supply solutions for extraction environments.", "tag": "Extraction", "image": "/01.png" },
+      { "id": "02", "prefix": "(II)", "title": "OIL, GAS &", "subtitle": "ENERGY", "desc": "Industrial support for refinery, upstream, downstream and energy infrastructure requirements.", "tag": "Infrastructure", "image": "/02.jpg" },
+      { "id": "03", "prefix": "(III)", "title": "CONSTRUCTION &", "subtitle": "INFRASTRUCTURE", "desc": "Civil works, utilities, site preparation, BTP support and project mobilisation.", "tag": "Civil Works", "image": "/03.png" },
+      { "id": "04", "prefix": "(IV)", "title": "INDUSTRIAL", "subtitle": "OPERATIONS", "desc": "Maintenance, mechanical, electrical and utility services for productive industrial facilities.", "tag": "Facility Ops", "image": "/04.jpg" },
+      { "id": "05", "prefix": "(V)", "title": "TRADE &", "subtitle": "LOGISTICS", "desc": "Import-export, procurement, freight coordination and supply chain management.", "tag": "Supply Chain", "image": "/08.png" },
+      { "id": "06", "prefix": "(VI)", "title": "FACILITIES &", "subtitle": "REAL ESTATE", "desc": "Operational property support, site services, camps, yards and commercial facility management.", "tag": "Asset Upkeep", "image": "/09.png" }
+    ],
+    "cta": "Explore Operations"
+  },
+  "method": {
+    "hero": {
+      "eyebrow": "Animated Scroll Flow",
+      "titleLead": "How we",
+      "titleAccent": "deliver.",
+      "subtitle": "// A clear process from request to site execution",
+      "description": "For each project, AFSECMO follows a disciplined workflow to reduce delays, clarify responsibilities and keep stakeholders informed."
+    },
+    "phases": [
+      { "num": "01", "tag": "Requirement Review", "title": "Requirement review", "desc": "We define the client need, operating context, timeframe, specifications and required documentation through rigorous collaborative assessment.", "image": "/method1.jpg" },
+      { "num": "02", "tag": "Technical Sourcing", "title": "Sourcing & technical validation", "desc": "We compare suppliers, equipment options, delivery constraints, quality requirements and commercial conditions to minimize risk.", "image": "/method2.jpg" },
+      { "num": "03", "tag": "Logistics Readiness", "title": "Mobilisation planning", "desc": "We coordinate personnel, equipment, transport, site access, safety preparation and logistics readiness for seamless deployments.", "image": "/method3.jpg" },
+      { "num": "04", "tag": "Field Operations", "title": "Execution & reporting", "desc": "We support field delivery with proactive follow-up, issue resolution, documentation and continuous status communication.", "image": "/method4.jpeg" },
+      { "num": "05", "tag": "Lifecycle Operations", "title": "After-service support", "desc": "We assist with long-term maintenance needs, reorders, supplier warranties and recurring operational requirements post-completion.", "image": "/method5.jpeg" }
+    ]
+  },
+  "quality": {
+    "hero": {
+      "eyebrow": "Quality & HSE",
+      "titleLead": "Professional",
+      "titleAccent": "standards.",
+      "description": "Rigorous operational coordination and compliance enforced across every site."
+    },
+    "standards": [
+      { "title": "Site & Field Safety", "category": "Safety awareness", "copy": "Work planning aligned with safe site access, protective equipment and field procedures. We do not compromise on crew security." },
+      { "title": "Vetted Sourcing", "category": "Supplier reliability", "copy": "Selection of suppliers and contractors based on capability, availability, and traceability. Every vendor must meet our stringent compliance baseline." },
+      { "title": "Clear Reporting", "category": "Documentation", "copy": "Clear quotes, delivery notes, service records, technical references, and follow-up reports. Full auditability across the project lifecycle." },
+      { "title": "Project Milestones", "category": "Operational transparency", "copy": "Regular communication on timelines, constraints, delivery status, and project milestones. You always know your operational standing." }
+    ]
+  },
+  "contact": {
+    "details": {
+      "label": "Contact Details",
+      "title": "Reach the AFSECMO team.",
+      "officeLabel": "Office",
+      "office": "21 Industrial Drive, London, UK",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "findUs": "Find us",
+      "whatsapp": "Message us on WhatsApp"
+    },
+    "formFields": [
+      { "label": "Company/Organization", "name": "company", "placeholder": "AFSECMO Group", "type": "text" },
+      { "label": "Full name", "name": "name", "placeholder": "Jordan Smith", "type": "text" },
+      { "label": "Business email", "name": "email", "placeholder": "hello@afsecmo.com", "type": "email" }
+    ],
+    "projectFields": [
+      { "label": "Project type", "name": "projectType", "placeholder": "Industrial expansion, site optimisation, digital integration...", "type": "text" },
+      { "label": "Estimated timeline", "name": "timeline", "placeholder": "Q3 2026 / 6–12 months", "type": "text" },
+      { "label": "Budget range", "name": "budget", "placeholder": "$2M - $10M", "type": "text" }
+    ],
+    "form": {
+      "label": "Inquiry form",
+      "title": "Multi-step project inquiry.",
+      "step": "Step {{step}} of 3",
+      "company": "Company/Organization",
+      "companyPlaceholder": "AFSECMO Group",
+      "name": "Full name",
+      "namePlaceholder": "Jordan Smith",
+      "email": "Business email",
+      "emailPlaceholder": "hello@afsecmo.com",
+      "projectType": "Project type",
+      "projectTypePlaceholder": "Industrial expansion, site optimisation, digital integration...",
+      "timeline": "Estimated timeline",
+      "timelinePlaceholder": "Q3 2026 / 6–12 months",
+      "budget": "Budget range",
+      "budgetPlaceholder": "$2M - $10M",
+      "message": "Project brief",
+      "messagePlaceholder": "Briefly describe the scope, objectives, and any key requirements.",
+      "back": "Back",
+      "continue": "Continue",
+      "submit": "Submit inquiry"
+    }
+  }
+}

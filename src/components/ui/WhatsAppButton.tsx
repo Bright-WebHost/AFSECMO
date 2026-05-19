@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function WhatsAppButton() {
-  const phoneNumber = "919876543210";
-  const message = "Hello! I need assistance.";
+  const phoneNumber = "22507000700077";
+  const { t } = useTranslation("common");
+  const message = t("whatsapp.message");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
@@ -13,7 +15,7 @@ export default function WhatsAppButton() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
+        aria-label={t("whatsapp.ariaLabel")}
         className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-[0_4px_12px_rgba(37,211,102,0.4)] transition duration-200 hover:bg-[#20ba5a] hover:shadow-[0_8px_20px_rgba(37,211,102,0.6)] active:scale-95"
       >
         <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

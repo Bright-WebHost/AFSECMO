@@ -1,0 +1,139 @@
+{
+  "about": {
+    "hero": {
+      "eyebrow": "Profil corporate",
+      "titleLead": "Profil",
+      "titleAccent": "corporate.",
+      "description": "Société Africa Services & Equipements pour les Compagnies Minières, Oil & Gas. Notre mission est de sécuriser la chaîne d’approvisionnement et les infrastructures d’ingénierie pour les environnements industriels les plus exigeants d’Afrique de l’Ouest.",
+      "imageAlt": "Opérations industrielles AFSECMO"
+    },
+    "stats": [
+      { "label": "Créé en", "value": "2024" },
+      { "label": "Siège", "value": "Abidjan" },
+      { "label": "Entité juridique", "value": "SARL" }
+    ],
+    "section": {
+      "eyebrow": "Activités principales",
+      "title": "Ingénierie et achats pour l’industrie lourde."
+    },
+    "activities": [
+      { "title": "Achat centralisé & négoce", "copy": "En tant que centrale d'achat dédiée, nous gérons des flux import-export complexes et le négoce international afin de sécuriser la chaîne d’approvisionnement industrielle.", "image": "/01.png" },
+      { "title": "Construction & BTP", "copy": "Des services complets de génie civil, de construction générale et de rénovation, conçus pour les sites opérationnels exigeants.", "image": "/02.jpg" },
+      { "title": "Maintenance industrielle", "copy": "Des protocoles de maintenance mécanique et industrielle lourde pour réduire les arrêts et protéger les cycles de production.", "image": "/03.png" },
+      { "title": "Contracting général", "copy": "De la préparation de site à la gestion des utilités, avec des services avancés en électricité et plomberie.", "image": "/04.jpg" }
+    ]
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services industriels mondiaux",
+      "titleLead": "Conçu pour",
+      "titleAccent": "l’excellence.",
+      "description": "De la planification stratégique à la mobilisation d’équipements lourds, AFSECMO délivre de la précision sur tout le cycle de vie des projets industriels."
+    },
+    "items": [
+      { "id": "mining", "num": "01", "category": "MINING", "tag": "Opérations lourdes", "title": ["Support mine &", "carrière"], "desc": "Appui opérationnel pour les environnements miniers et de carrière, de la mobilisation terrain à la coordination des équipements lourds et à l’approvisionnement.", "features": ["Coordination d’équipements lourds et de flotte", "Pièces, outils et consommables", "Planification de maintenance préventive"], "image": "/01.png" },
+      { "id": "energy", "num": "02", "category": "ENERGIE", "tag": "Support terrain", "title": ["Oil & Gas", "Services"], "desc": "Services industriels pour les projets énergie et hydrocarbures, avec support des équipes terrain pour les achats techniques et les utilités.", "features": ["Vannes, raccords et équipements de process", "Assistance aux shutdowns et turnarounds", "Matériels de sécurité industrielle"], "image": "/02.jpg" },
+      { "id": "infrastructure", "num": "03", "category": "INFRASTRUCTURE", "tag": "Génie civil", "title": ["Ingénierie &", "Construction"], "desc": "Support structuré pour les travaux civils, la livraison d’infrastructures, la construction industrielle et la préparation de site.", "features": ["Terrassement, drainage et routes", "Béton, acier et matériaux de construction", "Mobilisation des sous-traitants"], "image": "/03.png" },
+      { "id": "maintenance", "num": "04", "category": "MAINTENANCE", "tag": "Opérations site", "title": ["Mécanique &", "Industrielle"], "desc": "Un support mécanique concret pour maintenir les sites industriels opérationnels, productifs et sûrs.", "features": ["Assemblages et réparations mécaniques", "Soudure, fabrication et ajustage", "Convoyeurs et équipements rotatifs"], "image": "/04.jpg" },
+      { "id": "utilities", "num": "05", "category": "UTILITÉS", "tag": "Facility ops", "title": ["Électricité &", "Plomberie"], "desc": "Installation technique et maintenance pour les installations industrielles, camps, entrepôts et bâtiments opérationnels.", "features": ["Distribution électrique industrielle", "Groupes électrogènes, éclairage et câbles", "Dépannage d’installations"], "image": "/05.png" },
+      { "id": "procurement", "num": "06", "category": "ACHATS", "tag": "Supply global", "title": ["Achats", "centralisés"], "desc": "Coordination professionnelle des achats et de l’approvisionnement pour les entreprises qui ont besoin d’un accès fiable aux équipements et matériaux.", "features": ["Identification de fournisseurs internationaux", "Comparaison commerciale et négociation", "Suivi douane et livraison"], "image": "/06.png" },
+      { "id": "fleet", "num": "07", "category": "FLOTTES", "tag": "Mobilisation", "title": ["Location d’équipements", "& flotte"], "desc": "Des solutions d’équipements pour les sites qui exigent une mobilisation rapide, des locations flexibles et un support terrain fiable.", "features": ["Coordination de location de machines lourdes", "Support véhicules, camions et flottes", "Inspection et préparation des équipements"], "image": "/07.png" },
+      { "id": "logistics", "num": "08", "category": "LOGISTIQUE", "tag": "Transport", "title": ["Logistique &", "Mobilisation"], "desc": "Coordination de bout en bout pour déplacer équipements, matériaux et équipes des fournisseurs vers les sites opérationnels.", "features": ["Coordination fret et transport local", "Soutien entreposage et staging", "Livraison finale sur site"], "image": "/08.png" },
+      { "id": "asset", "num": "09", "category": "GESTION D’ACTIFS", "tag": "Entretien", "title": ["Support des installations", "& actifs"], "desc": "Support pour les propriétés opérationnelles, camps, ateliers et installations industrielles nécessitant une gestion de service professionnelle.", "features": ["Maintenance et réparations des installations", "Aide au montage de sites commerciaux", "Handover et reporting des actifs"], "image": "/09.png" }
+    ],
+    "cta": {
+      "titleLead": "Prêt à",
+      "titleAccent": "mobiliser ?",
+      "button": "Lancer le dossier"
+    }
+  },
+  "sectors": {
+    "hero": {
+      "titleLead": "Un partenaire opérationnel",
+      "titleAccent": "pour plusieurs industries stratégiques."
+    },
+    "items": [
+      { "id": "01", "prefix": "(I)", "title": "MINING &", "subtitle": "CARRIÈRES", "desc": "Équipements lourds, matériaux de carrière, logistique terrain et solutions d’approvisionnement technique pour les environnements d’extraction.", "tag": "Extraction", "image": "/01.png" },
+      { "id": "02", "prefix": "(II)", "title": "PÉTROLE, GAZ &", "subtitle": "ÉNERGIE", "desc": "Support industriel pour les besoins de raffinerie, amont, aval et infrastructures énergétiques.", "tag": "Infrastructure", "image": "/02.jpg" },
+      { "id": "03", "prefix": "(III)", "title": "CONSTRUCTION &", "subtitle": "INFRASTRUCTURE", "desc": "Travaux civils, utilités, préparation de site, support BTP et mobilisation de projet.", "tag": "Génie civil", "image": "/03.png" },
+      { "id": "04", "prefix": "(IV)", "title": "OPÉRATIONS", "subtitle": "INDUSTRIELLES", "desc": "Maintenance, mécanique, électricité et utilités pour des installations industrielles productives.", "tag": "Facility Ops", "image": "/04.jpg" },
+      { "id": "05", "prefix": "(V)", "title": "COMMERCE &", "subtitle": "LOGISTIQUE", "desc": "Import-export, achats, coordination fret et gestion de chaîne d’approvisionnement.", "tag": "Supply Chain", "image": "/08.png" },
+      { "id": "06", "prefix": "(VI)", "title": "INSTALLATIONS &", "subtitle": "IMMOBILIER", "desc": "Support des actifs opérationnels, services de site, camps, yards et gestion d’installations commerciales.", "tag": "Asset Upkeep", "image": "/09.png" }
+    ],
+    "cta": "Découvrir les opérations"
+  },
+  "method": {
+    "hero": {
+      "eyebrow": "Flux animé",
+      "titleLead": "Comment nous",
+      "titleAccent": "livrons.",
+      "subtitle": "// Un processus clair, de la demande à l’exécution sur site",
+      "description": "Pour chaque projet, AFSECMO suit un workflow discipliné afin de réduire les délais, clarifier les responsabilités et tenir les parties prenantes informées."
+    },
+    "phases": [
+      { "num": "01", "tag": "Revue du besoin", "title": "Analyse du besoin", "desc": "Nous définissons le besoin client, le contexte opérationnel, les délais, les spécifications et les documents requis via une évaluation collaborative rigoureuse.", "image": "/method1.jpg" },
+      { "num": "02", "tag": "Sourcing technique", "title": "Sourcing & validation technique", "desc": "Nous comparons fournisseurs, options d’équipement, contraintes de livraison, exigences qualité et conditions commerciales pour minimiser les risques.", "image": "/method2.jpg" },
+      { "num": "03", "tag": "Préparation logistique", "title": "Planification de mobilisation", "desc": "Nous coordonnons le personnel, les équipements, le transport, l’accès au site, la préparation sécurité et la disponibilité logistique.", "image": "/method3.jpg" },
+      { "num": "04", "tag": "Opérations terrain", "title": "Exécution & reporting", "desc": "Nous soutenons la livraison terrain avec un suivi proactif, la résolution des incidents, la documentation et une communication continue.", "image": "/method4.jpeg" },
+      { "num": "05", "tag": "Cycle de vie", "title": "Support après-service", "desc": "Nous accompagnons les besoins de maintenance, les réapprovisionnements, les garanties fournisseurs et les besoins opérationnels récurrents.", "image": "/method5.jpeg" }
+    ]
+  },
+  "quality": {
+    "hero": {
+      "eyebrow": "Qualité & HSE",
+      "titleLead": "Des standards",
+      "titleAccent": "professionnels.",
+      "description": "Une coordination opérationnelle rigoureuse et une conformité appliquées sur chaque site."
+    },
+    "standards": [
+      { "title": "Sécurité site & terrain", "category": "Culture sécurité", "copy": "Une planification du travail alignée sur l’accès sécurisé aux sites, les équipements de protection et les procédures terrain. La sécurité des équipes n’est jamais négociable." },
+      { "title": "Sourcing validé", "category": "Fiabilité fournisseurs", "copy": "Sélection des fournisseurs et sous-traitants selon leurs capacités, leur disponibilité et leur traçabilité. Chaque partenaire doit respecter notre base de conformité." },
+      { "title": "Reporting clair", "category": "Documentation", "copy": "Devis clairs, bons de livraison, fiches de service, références techniques et rapports de suivi. Une auditabilité complète sur tout le cycle du projet." },
+      { "title": "Jalons projet", "category": "Transparence opérationnelle", "copy": "Communication régulière sur les délais, les contraintes, l’état des livraisons et les jalons projet. Vous connaissez toujours votre position opérationnelle." }
+    ]
+  },
+  "contact": {
+    "details": {
+      "label": "Coordonnées",
+      "title": "Contactez l’équipe AFSECMO.",
+      "officeLabel": "Bureau",
+      "office": "21 Industrial Drive, London, UK",
+      "emailLabel": "Email",
+      "phoneLabel": "Téléphone",
+      "findUs": "Nous trouver",
+      "whatsapp": "Nous écrire sur WhatsApp"
+    },
+    "formFields": [
+      { "label": "Entreprise/Organisation", "name": "company", "placeholder": "AFSECMO Group", "type": "text" },
+      { "label": "Nom complet", "name": "name", "placeholder": "Jordan Smith", "type": "text" },
+      { "label": "Email professionnel", "name": "email", "placeholder": "hello@afsecmo.com", "type": "email" }
+    ],
+    "projectFields": [
+      { "label": "Type de projet", "name": "projectType", "placeholder": "Expansion industrielle, optimisation de site, intégration digitale...", "type": "text" },
+      { "label": "Délai estimé", "name": "timeline", "placeholder": "T3 2026 / 6–12 mois", "type": "text" },
+      { "label": "Budget", "name": "budget", "placeholder": "$2M - $10M", "type": "text" }
+    ],
+    "form": {
+      "label": "Formulaire de demande",
+      "title": "Demande projet en plusieurs étapes.",
+      "step": "Étape {{step}} sur 3",
+      "company": "Entreprise/Organisation",
+      "companyPlaceholder": "AFSECMO Group",
+      "name": "Nom complet",
+      "namePlaceholder": "Jordan Smith",
+      "email": "Email professionnel",
+      "emailPlaceholder": "hello@afsecmo.com",
+      "projectType": "Type de projet",
+      "projectTypePlaceholder": "Expansion industrielle, optimisation de site, intégration digitale...",
+      "timeline": "Délai estimé",
+      "timelinePlaceholder": "T3 2026 / 6–12 mois",
+      "budget": "Budget",
+      "budgetPlaceholder": "$2M - $10M",
+      "message": "Résumé du projet",
+      "messagePlaceholder": "Décrivez brièvement le périmètre, les objectifs et les besoins clés.",
+      "back": "Retour",
+      "continue": "Continuer",
+      "submit": "Envoyer la demande"
+    }
+  }
+}

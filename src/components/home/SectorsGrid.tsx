@@ -1,30 +1,19 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
-const pillars = [
-  {
-    id: "01",
-    title: "Field-ready service",
-    description:
-      "Solutions designed for real operating conditions: site constraints, urgent requests, equipment availability, logistics and safety standards.",
-  },
-  {
-    id: "02",
-    title: "Professional coordination",
-    description:
-      "A single point of contact for sourcing, suppliers, transport, on-site teams and project follow-up.",
-  },
-  {
-    id: "03",
-    title: "Long-term relationships",
-    description:
-      "We focus on reliable partnerships with clients, suppliers and contractors to support recurring operational needs.",
-    image: "/about.png",
-  },
-];
+type Pillar = {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+};
 
 export default function MethodologyGrid() {
+  const { t } = useTranslation("home");
+  const pillars = t("methodology.pillars", { returnObjects: true }) as Pillar[];
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -74,15 +63,15 @@ export default function MethodologyGrid() {
         >
           <div className="mb-4 lg:mb-6 flex items-center gap-4">
             <span className="h-px w-8 lg:w-10 bg-[#FF6B00]" />
-            <span className="text-xs lg:text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
-              Company Profile
+              <span className="text-xs lg:text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
+              {t("methodology.eyebrow")}
             </span>
           </div>
           <h2 className="text-3xl font-light tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight lg:leading-none">
-            Dependable execution,{" "}
+            {t("methodology.titleLead")} {" "}
             <br className="hidden md:block" />
             <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">
-              not only promises.
+              {t("methodology.titleAccent")}
             </span>
           </h2>
         </motion.div>

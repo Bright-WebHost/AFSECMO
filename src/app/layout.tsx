@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import LenisProvider from "@/components/LenisProvider";
-import { LanguageProvider } from "@/context/LanguageContext";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import GlobalScrollTracker from "@/components/ui/GlobalScrollTracker";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
-// NEW: Import the Preloader here in the layout
-import Preloader from "@/components/ui/Preloader"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,23 +27,8 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body
-        suppressHydrationWarning
-        className="min-h-screen bg-primary bg-[#0F1B2E] text-white"
-      >
-        <LanguageProvider>
-          <LenisProvider>
-            <div className="relative w-full max-w-[100vw] overflow-clip">
-              {/* NEW: Place Preloader here so it fires globally on initial site visit */}
-              <Preloader />
-              <GlobalScrollTracker />
-              <Navbar />
-              {children}
-              <Footer />
-              <WhatsAppButton />
-            </div>
-          </LenisProvider>
-        </LanguageProvider>
+      <body suppressHydrationWarning className="min-h-screen bg-primary bg-[#0F1B2E] text-white">
+        {children}
       </body>
     </html>
   );

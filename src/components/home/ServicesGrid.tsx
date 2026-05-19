@@ -3,23 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 
-const services = [
-  { id: "01", category: "Mining", title: "Mining & Quarry Support", summary: "Operational support for mining and quarry environments, from field mobilisation and heavy equipment coordination to materials supply and maintenance readiness.", tag: "Heavy Operations", image: "/01.png" },
-  { id: "02", category: "Energy", title: "Oil & Gas Services", summary: "Industrial services for energy and hydrocarbons projects, supporting field teams with technical procurement, equipment, utilities and maintenance operations.", tag: "Field Support", image: "/02.jpg" },
-  { id: "03", category: "Infrastructure", title: "Engineering & Construction", summary: "Structured support for civil works, infrastructure delivery, industrial construction and site preparation requirements.", tag: "Civil Works", image: "/03.png" },
-  { id: "04", category: "Maintenance", title: "Mechanical & Industrial Maintenance", summary: "Practical mechanical support designed to keep industrial sites operational, productive and safe.", tag: "Site Operations", image: "/04.jpg" },
-  { id: "05", category: "Utilities", title: "Electrical, Plumbing & Utilities", summary: "Technical installation and maintenance support for industrial facilities, camps, warehouses and operational buildings.", tag: "Facility Ops", image: "/05.png" },
-  { id: "06", category: "Procurement", title: "Central Purchasing & Import-Export", summary: "Professional sourcing and procurement coordination for companies that need reliable access to equipment, materials and suppliers.", tag: "Global Supply", image: "/06.png" },
-  { id: "07", category: "Fleet", title: "Equipment Rental & Fleet Support", summary: "Equipment solutions for sites that require fast mobilisation, flexible rental arrangements and reliable field support.", tag: "Mobilisation", image: "/07.png" },
-  { id: "08", category: "Logistics", title: "Logistics & Project Mobilisation", summary: "End-to-end coordination for moving equipment, materials and teams from suppliers to operational sites.", tag: "Transport", image: "/08.png" },
-  { id: "09", category: "Asset Mgt", title: "Facility & Asset Support", summary: "Support for operational properties, camps, workshops and industrial facilities that require professional service management.", tag: "Upkeep", image: "/09.png" },
-];
+type ServiceCard = {
+  id: string;
+  category: string;
+  title: string;
+  summary: string;
+  tag: string;
+  image: string;
+};
 
 export default function ServicesGallery() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [centerCardIndex, setCenterCardIndex] = useState(0);
+  const { t } = useTranslation("home");
+  const services = t("services.items", { returnObjects: true }) as ServiceCard[];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -91,23 +91,22 @@ export default function ServicesGallery() {
         <div className="relative z-20 mb-6 w-full px-4 pt-10 sm:mb-10 sm:px-8 md:px-12 lg:px-20 lg:pt-12">
           <div className="mb-3 flex items-center gap-3">
             <span className="h-px w-6 bg-[#FF6B00] sm:w-8" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#FF6B00] sm:text-xs">
-              Core Services
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#FF6B00] sm:text-xs">
+              {t("services.eyebrow")}
             </span>
           </div>
 
           {/* Headline: wraps on mobile, single line on lg+ */}
           <h2 className="text-2xl font-light tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl lg:whitespace-nowrap">
-            Detailed industrial capabilities{" "}
+            {t("services.titleLead")} {" "}
             <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">
-              for high-value projects.
+              {t("services.titleAccent")}
             </span>
           </h2>
 
           {/* Subtitle: hidden on very small screens to save vertical space */}
           <p className="mt-2 hidden max-w-2xl text-sm leading-relaxed text-white/50 sm:mt-4 sm:block sm:text-base">
-            AFSECMO brings together technical support, procurement, logistics, maintenance and
-            construction coordination under one professional service platform.
+            {t("services.description")}
           </p>
         </div>
 
@@ -186,7 +185,7 @@ export default function ServicesGallery() {
                     href="#contact"
                     className="flex w-full items-center justify-center rounded-xl bg-[#FF6B00] px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#FF8C00] sm:px-6 sm:py-3.5 sm:text-xs"
                   >
-                    Request Details
+                    {t("services.cta")}
                   </a>
                 </div>
               </div>

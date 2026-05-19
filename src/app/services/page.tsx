@@ -1,100 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
-// ─── AFSECMO Core Services Data ──────────────────────────────────────────────
-const SERVICES = [
-  {
-    id: "mining",
-    num: "01",
-    category: "MINING",
-    tag: "Heavy Operations",
-    title: ["Mining & Quarry", "Support"],
-    desc: "Operational support for mining and quarry environments, from field mobilisation and heavy equipment coordination to materials supply.",
-    features: ["Heavy equipment & fleet coordination", "Spare parts, tools & consumables", "Preventive maintenance planning"],
-    image: "/01.png",
-  },
-  {
-    id: "energy",
-    num: "02",
-    category: "ENERGY",
-    tag: "Field Support",
-    title: ["Oil & Gas", "Services"],
-    desc: "Industrial services for energy and hydrocarbons projects, supporting field teams with technical procurement and utilities.",
-    features: ["Valves, fittings & process equipment", "Shutdown and turnaround assistance", "Industrial safety materials"],
-    image: "/02.jpg",
-  },
-  {
-    id: "infrastructure",
-    num: "03",
-    category: "INFRASTRUCTURE",
-    tag: "Civil Works",
-    title: ["Engineering &", "Construction"],
-    desc: "Structured support for civil works, infrastructure delivery, industrial construction and site preparation requirements.",
-    features: ["Earthworks, drainage & road support", "Concrete, steel & building materials", "Subcontractor mobilisation"],
-    image: "/03.png",
-  },
-  {
-    id: "maintenance",
-    num: "04",
-    category: "MAINTENANCE",
-    tag: "Site Operations",
-    title: ["Mechanical &", "Industrial"],
-    desc: "Practical mechanical support designed to keep industrial sites operational, productive and critically safe.",
-    features: ["Mechanical assemblies & repairs", "Welding, fabrication & fitting", "Conveyors & rotating equipment"],
-    image: "/04.jpg",
-  },
-  {
-    id: "utilities",
-    num: "05",
-    category: "UTILITIES",
-    tag: "Facility Ops",
-    title: ["Electrical &", "Plumbing"],
-    desc: "Technical installation and maintenance support for industrial facilities, camps, warehouses and operational buildings.",
-    features: ["Industrial electrical distribution", "Generator, lighting & cable solutions", "Facility troubleshooting"],
-    image: "/05.png",
-  },
-  {
-    id: "procurement",
-    num: "06",
-    category: "PROCUREMENT",
-    tag: "Global Supply",
-    title: ["Central", "Purchasing"],
-    desc: "Professional sourcing and procurement coordination for companies that need reliable access to equipment and materials.",
-    features: ["International supplier identification", "Commercial comparison & negotiation", "Customs & delivery follow-up"],
-    image: "/06.png",
-  },
-  {
-    id: "fleet",
-    num: "07",
-    category: "FLEET",
-    tag: "Mobilisation",
-    title: ["Equipment Rental", "& Fleet"],
-    desc: "Equipment solutions for sites that require fast mobilisation, flexible rental arrangements and reliable field support.",
-    features: ["Heavy machinery rental coordination", "Truck, vehicle & fleet support", "Equipment inspection & readiness"],
-    image: "/07.png",
-  },
-  {
-    id: "logistics",
-    num: "08",
-    category: "LOGISTICS",
-    tag: "Transport",
-    title: ["Logistics &", "Mobilisation"],
-    desc: "End-to-end coordination for moving equipment, materials and teams from suppliers to operational sites.",
-    features: ["Freight & local transport coordination", "Warehousing & staging support", "Last-mile site delivery"],
-    image: "/08.png",
-  },
-  {
-    id: "asset",
-    num: "09",
-    category: "ASSET MGT",
-    tag: "Upkeep",
-    title: ["Facility &", "Asset Support"],
-    desc: "Support for operational properties, camps, workshops and industrial facilities that require professional service management.",
-    features: ["Facility maintenance & repairs", "Commercial site setup assistance", "Asset handover & reporting"],
-    image: "/09.png",
-  },
-];
+type ServiceItem = {
+  id: string;
+  num: string;
+  category: string;
+  tag: string;
+  title: [string, string];
+  desc: string;
+  features: string[];
+  image: string;
+};
 
 const Check = () => (
   <svg width="14" height="14" viewBox="0 0 13 13" fill="none">
@@ -128,7 +48,7 @@ function CinematicImage({ src, num }: { src: string; num: string }) {
 
 // ─── Component: Service Card ───────────────────────────────────────────────────
 // FIX: Always side-by-side on ALL screen sizes (mobile + desktop)
-function ServiceCard({ svc, index }: { svc: typeof SERVICES[0]; index: number }) {
+function ServiceCard({ svc, index }: { svc: ServiceItem; index: number }) {
   const isReversed = index % 2 !== 0;
 
   const TextContent = () => (
@@ -199,7 +119,12 @@ function ServiceCard({ svc, index }: { svc: typeof SERVICES[0]; index: number })
 }
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
-export default function ServicesPage() {
+export function ServicesContent() {
+  const { t } = useTranslation("content");
+  const services = t("services.items", { returnObjects: true }) as ServiceItem[];
+  const hero = t("services.hero", { returnObjects: true }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
+  const cta = t("services.cta", { returnObjects: true }) as { titleLead: string; titleAccent: string; button: string };
+
   const scrollToService = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -215,14 +140,14 @@ export default function ServicesPage() {
         <div className="max-w-4xl">
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-4 py-2 text-[9px] font-bold tracking-widest text-[#FF6B00] sm:px-5 lg:text-xs">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[#FF6B00]" />
-            GLOBAL INDUSTRIAL SERVICES
+            {hero.eyebrow}
           </div>
           <h1 className="mb-6 text-4xl font-black uppercase leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-[110px]">
-            Engineered for <br />
-            <span className="text-[#FF6B00]">Excellence.</span>
+            {hero.titleLead} <br />
+            <span className="text-[#FF6B00]">{hero.titleAccent}</span>
           </h1>
           <p className="border-l-4 border-[#FF6B00] pl-5 text-sm font-light leading-relaxed text-white/60 sm:text-base lg:max-w-2xl lg:text-lg">
-            From strategic planning to heavy equipment mobilisation, AFSECMO delivers precision across the full industrial project lifecycle.
+            {hero.description}
           </p>
         </div>
       </section>
@@ -234,12 +159,12 @@ export default function ServicesPage() {
           className="flex w-full overflow-x-auto scrollbar-none"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {SERVICES.map((s, i) => (
+          {services.map((s, i) => (
             <button
               key={s.id}
               onClick={() => scrollToService(s.id)}
               className={`group flex flex-none flex-col items-center justify-center gap-1.5 px-3 py-3 transition-all hover:bg-white/5 sm:gap-2 sm:px-4 sm:py-4 lg:py-6 lg:px-0 lg:flex-1 ${
-                i < SERVICES.length - 1 ? "border-r border-white/5" : ""
+                i < services.length - 1 ? "border-r border-white/5" : ""
               }`}
               style={{ minWidth: "clamp(64px, 11.11vw, 120px)" }}
             >
@@ -256,7 +181,7 @@ export default function ServicesPage() {
 
       {/* ── Editorial Cards List ── */}
       <div className="flex flex-col gap-4 px-3 py-10 sm:gap-8 sm:px-6 sm:py-16 lg:gap-16 lg:px-12 lg:py-32">
-        {SERVICES.map((svc, index) => (
+        {services.map((svc, index) => (
           <ServiceCard key={svc.id} svc={svc} index={index} />
         ))}
       </div>
@@ -275,11 +200,21 @@ export default function ServicesPage() {
             href="/contact"
             className="inline-block rounded-full bg-[#FF6B00] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-xl transition-colors hover:bg-[#FF8C00] sm:px-10 sm:py-5 lg:px-14 lg:py-6 lg:text-sm"
           >
-            Launch Inquiry Deck
+            {cta.button}
           </motion.a>
         </div>
       </section>
 
     </div>
   );
+}
+
+export default function ServicesPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/services");
+  }, [router]);
+
+  return null;
 }

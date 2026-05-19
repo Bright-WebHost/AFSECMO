@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function ContactCTA() {
   const easeOutQuart = [0.25, 1, 0.5, 1] as const;
+  const { t } = useTranslation("home");
 
   return (
     <section className="relative w-full overflow-hidden bg-[#0F1B2E] px-4 py-16 sm:px-6 lg:px-8 xl:py-28 selection:bg-[#FF6B00] selection:text-white">
@@ -32,19 +34,19 @@ export default function ContactCTA() {
           
           <div className="flex items-center gap-3">
             <span className="h-px w-6 bg-[#FF6B00]" />
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B00]">Next Steps</span>
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B00]">{t("contact.eyebrow")}</span>
             <span className="h-px w-6 bg-[#FF6B00]" />
           </div>
 
           <h2 className="text-3xl font-light tracking-tight text-white sm:text-4xl lg:text-5xl max-w-3xl leading-tight">
-            Ready to mobilize your <br className="hidden md:block" />
+            {t("contact.titleLead")} <br className="hidden md:block" />
             <span className="font-semibold text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40">
-              industrial operations?
+              {t("contact.titleAccent")}
             </span>
           </h2>
 
           <p className="max-w-xl text-sm leading-relaxed text-white/50 sm:text-base">
-            Connect with our engineering divisions to coordinate sourcing, suppliers, transport, and custom operational frameworks globally.
+            {t("contact.description")}
           </p>
 
           <div className="pt-4 w-full sm:w-auto">
@@ -58,7 +60,7 @@ export default function ContactCTA() {
             >
               <div className="absolute inset-0 z-10 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-in-out group-hover:translate-x-full" />
               
-              <span className="relative z-20">Launch Inquiry Deck</span>
+              <span className="relative z-20">{t("contact.cta")}</span>
               
               <svg 
                 className="relative z-20 h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" 

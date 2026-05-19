@@ -2,44 +2,11 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
-const PHASES = [
-  {
-    num: "01",
-    tag: "Requirement Review",
-    title: "Requirement review",
-    desc: "We define the client need, operating context, timeframe, specifications and required documentation through rigorous collaborative assessment.",
-    image: "/method1.jpg", 
-  },
-  {
-    num: "02",
-    tag: "Technical Sourcing",
-    title: "Sourcing & technical validation",
-    desc: "We compare suppliers, equipment options, delivery constraints, quality requirements and commercial conditions to minimize risk.",
-    image: "/method2.jpg",
-  },
-  {
-    num: "03",
-    tag: "Logistics Readiness",
-    title: "Mobilisation planning",
-    desc: "We coordinate personnel, equipment, transport, site access, safety preparation and logistics readiness for seamless deployments.",
-    image: "/method3.jpg",
-  },
-  {
-    num: "04",
-    tag: "Field Operations",
-    title: "Execution & reporting",
-    desc: "We support field delivery with proactive follow-up, issue resolution, documentation and continuous status communication.",
-    image: "/method4.jpeg",
-  },
-  {
-    num: "05",
-    tag: "Lifecycle Operations",
-    title: "After-service support",
-    desc: "We assist with long-term maintenance needs, reorders, supplier warranties and recurring operational requirements post-completion.",
-    image: "/method5.jpeg",
-  },
-];
+type Phase = { num: string; tag: string; title: string; desc: string; image: string };
 
 const awwwardsEase = [0.215, 0.61, 0.355, 1] as [number, number, number, number];
 
@@ -52,8 +19,17 @@ const rowRevealVariants: Variants = {
   },
 };
 
-export default function MethodPage() {
+export function MethodContent() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation("content");
+  const phases = t("method.phases", { returnObjects: true }) as Phase[];
+  const hero = t("method.hero", { returnObjects: true }) as {
+    eyebrow: string;
+    titleLead: string;
+    titleAccent: string;
+    subtitle: string;
+    description: string;
+  };
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -77,21 +53,21 @@ export default function MethodPage() {
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-4">
               <span className="h-px w-10 bg-[#FF6B00]" />
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B00]">Animated Scroll Flow</span>
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B00]">{hero.eyebrow}</span>
             </div>
             <h1 className="text-4xl font-light tracking-tight text-white sm:text-6xl lg:text-7xl uppercase leading-none">
-              How we <br />
+              {hero.titleLead} <br />
               <span className="font-semibold text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40">
-                deliver.
+                {hero.titleAccent}
               </span>
             </h1>
             <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/40 font-mono">
-              // A clear process from request to site execution
+              {hero.subtitle}
             </p>
           </div>
           <div>
             <p className="text-sm leading-relaxed text-white/50 sm:text-base font-light lg:max-w-md">
-              For each project, AFSECMO follows a disciplined workflow to reduce delays, clarify responsibilities and keep stakeholders informed.
+              {hero.description}
             </p>
           </div>
         </div>
@@ -112,7 +88,7 @@ export default function MethodPage() {
 
           {/* ASYMMETRIC STACKED TRACK CONTAINER ROWS */}
           <div className="space-y-8 sm:space-y-12 lg:space-y-14">
-            {PHASES.map((phase, index) => {
+            {phases.map((phase, index) => {
               const isEven = index % 2 === 0;
 
               return (
@@ -186,4 +162,14 @@ export default function MethodPage() {
 
     </main>
   );
+}
+
+export default function MethodPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/method");
+  }, [router]);
+
+  return null;
 }
