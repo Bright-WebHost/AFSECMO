@@ -19,18 +19,18 @@
   },
   "footer": {
     "title": "AFSECMO Group",
-    "description": "Services industriels, appui minier, solutions oil & gas, coordination de construction, achats, import-export et support logistique depuis Abidjan.",
+    "description": "Services industriels, appui minier, solutions pétrole & gaz, coordination de construction, achats, import-export et support logistique depuis Abidjan.",
     "location": "Abidjan, Côte d'Ivoire",
     "franceLink": "English version",
     "connect": "Nous contacter",
     "actions": "Actions",
     "requestConsultation": "Demander une consultation",
     "copyright": "© {{year}} AFSECMO Group. Tous droits réservés.",
-    "prepared": "Site préparé pour une présentation corporate professionnelle."
+    "prepared": "Site préparé pour une présentation d’entreprise professionnelle."
   },
   "preloader": {
-    "eyebrow": "Africa Services & Equipment",
-    "subtitle": "Mining · Oil & Gas · Infrastructure",
+    "eyebrow": "Services & équipements pour l’Afrique",
+    "subtitle": "Exploitation minière · Pétrole & gaz · Infrastructure",
     "established": "Créé en 2024",
     "location": "Abidjan, CI"
   },

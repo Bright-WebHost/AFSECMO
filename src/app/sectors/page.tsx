@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
@@ -15,28 +15,7 @@ type SectorItem = {
   image: string;
 };
 
-// FIXED: Explicitly typed the array as a 4-number tuple to fix the TypeScript compilation error
 const awwwardsEase = [0.76, 0, 0.24, 1] as [number, number, number, number];
-
-// Staggered reveal variants for the grid items
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
-  },
-};
-
-// Fade up with slight scale reveal variant for individual cards
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 50, scale: 0.98 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 1.2, ease: awwwardsEase },
-  },
-};
 
 // Mask reveal animation for hero text lines
 const maskVariants: Variants = {
@@ -53,29 +32,27 @@ export function SectorsContent() {
   const hero = t("sectors.hero", { returnObjects: true }) as { titleLead: string; titleAccent: string };
   const cta = t("sectors.cta") as string;
 
+  // Track which sector is currently in the center of the viewport
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-32">
       
       {/* ── Background Atmospheric Glow ── */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        {/* FIXED: Replaced h-[600px] w-[600px] with h-150 w-150 */}
-        <div className="absolute -left-40 top-0 h-150 w-150 rounded-full bg-[#FF6B00]/5 blur-[150px]" />
-        {/* FIXED: Replaced h-[500px] w-[500px] with h-125 w-125 */}
-        <div className="absolute bottom-1/4 right-0 h-125 w-125 rounded-full bg-[#1A2C4D]/40 blur-[120px]" />
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute -left-40 top-0 h-[800px] w-[800px] rounded-full bg-[#FF6B00]/5 blur-[150px]" />
+        <div className="absolute bottom-1/4 right-0 h-[600px] w-[600px] rounded-full bg-[#1A2C4D]/40 blur-[120px]" />
       </div>
 
-      {/* ── Compact Cinematic Hero Section (Just Title) ── */}
+      {/* ── Compact Cinematic Hero Section (UNCHANGED) ── */}
       <section className="relative z-10 mx-auto max-w-7xl px-6 pb-20 pt-40 lg:px-12 lg:pt-48">
         <div className="max-w-4xl">
-          {/* Animated, masked headline */}
           <h1 className="text-5xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[85px]">
-            {/* First masked line */}
             <span className="relative block overflow-hidden py-1">
               <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block">
                 {hero.titleLead}
               </motion.span>
             </span>
-            {/* Second masked line */}
             <span className="relative block overflow-hidden py-1">
               <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block text-[#FF6B00]">
                 {hero.titleAccent}
@@ -85,71 +62,113 @@ export function SectorsContent() {
         </div>
       </section>
 
-      {/* ── Staggered reveal Static Grid Layout ── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {sectors.map((sector) => (
-            <motion.div 
-              key={sector.id} 
-              variants={cardVariants}
-              // FIXED: Replaced rounded-[2rem] with rounded-4xl
-              className="group relative flex flex-col overflow-hidden rounded-4xl border border-white/10 bg-[#060A11]/60 shadow-[0_24px_64px_rgba(0,0,0,0.4)] backdrop-blur-md transition-colors duration-500 hover:border-[#FF6B00]/40"
-            >
-              
-              {/* Premium Image Container */}
-              <div className="relative h-60 overflow-hidden bg-[#020408]">
-                <img
-                  src={sector.image}
-                  alt={`${sector.title} ${sector.subtitle}`}
-                  // FIXED: Replaced duration-[1200ms] with duration-1200
-                  className="h-full w-full object-cover transition-all duration-1200 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060A11] via-transparent to-transparent opacity-90" />
-                
-                {/* Floating Tag */}
-                <div className="absolute left-6 top-6 rounded-md border border-white/10 bg-[#0F1B2E]/80 px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-[#FF6B00] backdrop-blur-md">
-                  {sector.tag}
-                </div>
-              </div>
-
-              {/* Text Content Block */}
-              <div className="flex flex-1 flex-col p-8 pt-6">
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-white/30 transition-colors group-hover:text-white/50">
-                    {sector.prefix} DIVISION {sector.id}
-                  </span>
-                </div>
-                
-                <h3 className="mb-4 text-2xl font-bold uppercase tracking-tight text-white transition-colors duration-300 group-hover:text-[#FF6B00]">
-                  {sector.title} <br /> {sector.subtitle}
-                </h3>
-                
-                <p className="mb-8 flex-1 text-sm font-light leading-relaxed text-white/50 transition-colors duration-300 group-hover:text-white/70">
-                  {sector.desc}
-                </p>
-
-                {/* Animated CTA Button */}
-                <a 
-                  href="/contact" 
-                  className="inline-flex w-max items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white transition-colors group-hover:text-[#FF6B00]"
+      {/* ── Premium Editorial Sticky Scroll Layout ── */}
+      <section className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row">
+        
+        {/* ── LEFT COLUMN: Sticky Cinematic Portal (Desktop Only) ── */}
+        <div className="hidden lg:flex w-1/2 sticky top-0 h-screen flex-col justify-center pr-16 xl:pr-24">
+          <div className="relative w-full h-[75vh] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.6)] bg-[#020408]">
+            {sectors.map((sector, idx) => {
+              const isActive = activeIndex === idx;
+              return (
+                <div 
+                  key={`image-${sector.id}`} 
+                  className={`absolute inset-0 transition-all duration-[1200ms] ease-[0.76,0,0.24,1] ${
+                    isActive ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-110'
+                  }`}
                 >
-                  {cta} 
-                  <svg className="h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
+                  <img 
+                    src={sector.image} 
+                    alt={sector.title}
+                    className="w-full h-full object-cover grayscale-[30%]" 
+                  />
+                  {/* Cinematic Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060A11] via-transparent to-transparent opacity-90" />
+                  
+                  {/* Giant Wireframe Number inside Image */}
+                  <div 
+                    className="absolute -bottom-8 -right-8 text-transparent select-none transition-transform duration-[1200ms] ease-out"
+                    style={{ 
+                      fontSize: "220px", 
+                      fontWeight: 900, 
+                      lineHeight: 1,
+                      WebkitTextStroke: "1px rgba(255,255,255,0.12)",
+                      transform: isActive ? "translateY(0)" : "translateY(20px)"
+                    }}
+                  >
+                    {sector.id}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
+        {/* ── RIGHT COLUMN: Scrolling Typography ── */}
+        <div className="w-full lg:w-1/2 flex flex-col pb-[10vh]">
+          {sectors.map((sector, idx) => {
+            const isActive = activeIndex === idx;
+
+            return (
+              <motion.div
+                key={`text-${sector.id}`}
+                // Triggers when this text block hits the vertical center of the screen
+                viewport={{ margin: "-50% 0px -50% 0px" }}
+                onViewportEnter={() => setActiveIndex(idx)}
+                className="flex flex-col justify-center min-h-screen py-16 lg:py-0"
+              >
+                {/* ── Mobile-Only Image (Hidden on Desktop) ── */}
+                <div className="block lg:hidden w-full h-[45vh] rounded-3xl overflow-hidden mb-10 relative border border-white/10 shadow-2xl">
+                  <img src={sector.image} className="w-full h-full object-cover grayscale-[20%]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060A11] via-transparent to-transparent opacity-90" />
+                  <div className="absolute -bottom-4 -right-4 text-[120px] font-black text-transparent leading-none" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.15)" }}>
+                    {sector.id}
+                  </div>
+                </div>
+
+                {/* ── Content Block ── */}
+                <div 
+                  className={`transition-all duration-[800ms] ease-out ${
+                    // Fades and slides inactive items on desktop for focus
+                    isActive ? 'opacity-100 translate-x-0' : 'lg:opacity-30 lg:translate-x-12 opacity-100'
+                  }`}
+                >
+                  {/* Meta Tags */}
+                  <div className="mb-6 flex items-center gap-4">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
+                      {sector.prefix} Division
+                    </span>
+                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[8px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                      {sector.tag}
+                    </span>
+                  </div>
+
+                  {/* Headlines */}
+                  <h2 className="mb-6 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+                    {sector.title} <br />
+                    <span className="text-white/40">{sector.subtitle}</span>
+                  </h2>
+
+                  {/* Description */}
+                  <p className="max-w-md text-sm leading-relaxed text-white/60 sm:text-base lg:text-lg mb-10">
+                    {sector.desc}
+                  </p>
+
+                  {/* Animated CTA */}
+                  <a 
+                    href="#contact" 
+                    className="group flex w-max items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FF6B00]"
+                  >
+                    {cta}
+                    <span className="h-px w-8 bg-white/30 transition-all duration-500 ease-out group-hover:w-20 group-hover:bg-[#FF6B00]" />
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+      </section>
     </main>
   );
 }

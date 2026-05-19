@@ -5,12 +5,12 @@
   },
   "hero": {
     "headline": "AFSECMO Group",
-    "subtitle": "Africa Services & Equipements. Central purchasing, maintenance industrielle et génie civil (BTP) pour les environnements exigeants.",
+    "subtitle": "Africa Services & Equipements. Approvisionnement centralisé, maintenance industrielle et génie civil (BTP) pour les environnements exigeants.",
     "imageAlt": "Machine de précision",
     "stats": [
       { "label": "Créé en", "value": "2024" },
       { "label": "Siège", "value": "Abidjan" },
-      { "label": "Secteurs clés", "value": "Mining, Oil & Gas" }
+        { "label": "Secteurs clés", "value": "Extraction minière, pétrole & gaz" }
     ]
   },
   "methodology": {
@@ -43,12 +43,12 @@
     "description": "AFSECMO réunit support technique, achats, logistique, maintenance et coordination de construction au sein d’une plateforme de services professionnelle.",
     "cta": "Demander les détails",
     "items": [
-      { "id": "01", "category": "Mining", "title": "Support minier et carrières", "summary": "Appui opérationnel pour les environnements miniers et de carrières, de la mobilisation terrain à la coordination des équipements lourds, en passant par l’approvisionnement et la maintenance.", "tag": "Opérations lourdes", "image": "/01.png" },
-      { "id": "02", "category": "Énergie", "title": "Services oil & gas", "summary": "Services industriels pour les projets énergétiques et hydrocarbures, avec support des équipes terrain pour les achats techniques, les équipements, les utilités et la maintenance.", "tag": "Support terrain", "image": "/02.jpg" },
+      { "id": "01", "category": "Mines", "title": "Support minier et carrières", "summary": "Appui opérationnel pour les environnements miniers et de carrières, de la mobilisation terrain à la coordination des équipements lourds, en passant par l’approvisionnement et la maintenance.", "tag": "Opérations lourdes", "image": "/01.png" },
+      { "id": "02", "category": "Énergie", "title": "Services pétrole & gaz", "summary": "Services industriels pour les projets énergétiques et hydrocarbures, avec support des équipes terrain pour les achats techniques, les équipements, les utilités et la maintenance.", "tag": "Support terrain", "image": "/02.jpg" },
       { "id": "03", "category": "Infrastructure", "title": "Ingénierie & construction", "summary": "Support structuré pour les travaux civils, la livraison d’infrastructures, la construction industrielle et la préparation de site.", "tag": "Génie civil", "image": "/03.png" },
       { "id": "04", "category": "Maintenance", "title": "Maintenance mécanique & industrielle", "summary": "Un support mécanique pratique pour maintenir les sites industriels opérationnels, productifs et sûrs.", "tag": "Opérations site", "image": "/04.jpg" },
-      { "id": "05", "category": "Utilités", "title": "Électricité, plomberie & utilités", "summary": "Installation technique et maintenance pour les installations industrielles, camps, entrepôts et bâtiments opérationnels.", "tag": "Facility ops", "image": "/05.png" },
-      { "id": "06", "category": "Achats", "title": "Central purchasing & import-export", "summary": "Coordination professionnelle des achats et de l’approvisionnement pour les entreprises qui ont besoin d’un accès fiable aux équipements, matériaux et fournisseurs.", "tag": "Supply global", "image": "/06.png" },
+      { "id": "05", "category": "Utilités", "title": "Électricité, plomberie & utilités", "summary": "Installation technique et maintenance pour les installations industrielles, camps, entrepôts et bâtiments opérationnels.", "tag": "Opérations des installations", "image": "/05.png" },
+      { "id": "06", "category": "Achats", "title": "Achats centralisés & import-export", "summary": "Coordination professionnelle des achats et de l’approvisionnement pour les entreprises qui ont besoin d’un accès fiable aux équipements, matériaux et fournisseurs.", "tag": "Approvisionnement mondial", "image": "/06.png" },
       { "id": "07", "category": "Flotte", "title": "Location d’équipements & support flotte", "summary": "Des solutions d’équipements pour les sites qui exigent une mobilisation rapide, des formules de location flexibles et un support terrain fiable.", "tag": "Mobilisation", "image": "/07.png" },
       { "id": "08", "category": "Logistique", "title": "Logistique & mobilisation projet", "summary": "Coordination de bout en bout pour déplacer équipements, matériaux et équipes depuis les fournisseurs vers les sites opérationnels.", "tag": "Transport", "image": "/08.png" },
       { "id": "09", "category": "Gestion d’actifs", "title": "Support des installations & actifs", "summary": "Support pour les propriétés opérationnelles, camps, ateliers et installations industrielles qui nécessitent une gestion de service professionnelle.", "tag": "Entretien", "image": "/09.png" }
