@@ -1,171 +1,146 @@
 "use client";
 
-import { ReactNode } from "react";
-import { motion, Variants } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { MouseEvent } from "react";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-type Pillar = {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
-};
+const cards = [
+  {
+    id: "mining",
+    eyebrow: "Sectors Served",
+    title: "Driving extraction efficiency through innovation in Mining.",
+    image: "/about1.png",
+  },
+  {
+    id: "oil-gas",
+    eyebrow: "What We Do",
+    title: "Powering infrastructure with reliable Oil & Gas solutions.",
+    image: "/about2.jpg",
+  },
+  {
+    id: "construction",
+    eyebrow: "Our Impact",
+    title: "Building the backbone of West African industrial construction.",
+    image: "/about3.jpg",
+  },
+  {
+    id: "logistics",
+    eyebrow: "Logistics",
+    title: "Delivering global supply chain excellence to your doorstep.",
+    image: "/about4.png",
+  },
+];
 
-export default function MethodologyGrid() {
-  const { t } = useTranslation("home");
-  const pillars = t("methodology.pillars", { returnObjects: true }) as Pillar[];
+// ─── Individual card — each tracks its own mouse position ───────────────────
+function Card({ card }: { card: (typeof cards)[0] }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
+  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 1, 0.5, 1] as const,
-      },
-    },
-  };
+  const bubbleBackground = useMotionTemplate`
+    radial-gradient(
+      420px circle at ${mouseX}px ${mouseY}px,
+      rgba(255,255,255,0.13),
+      transparent 75%
+    )
+  `;
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#0F1B2E] px-4 py-20 sm:px-6 lg:px-8 xl:py-32 selection:bg-[#FF6B00] selection:text-white">
+    <div
+      onMouseMove={handleMouseMove}
+      className="group relative h-[440px] cursor-pointer overflow-hidden rounded-2xl bg-black"
+    >
+      {/* 1 — Background image */}
+      <img
+        src={card.image}
+        alt={card.title}
+        className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.05]"
+        loading="lazy"
+      />
 
-      {/* ── Background Lighting (Kept Exactly the Same) ── */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-transparent" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/3 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#FF6B00]/10 blur-[160px]" />
-        <div className="absolute -top-20 right-0 h-[400px] w-[400px] rounded-full bg-white/[0.04] blur-[120px]" />
-        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-black/40 blur-[140px]" />
+      {/* 2 — Permanent dark gradient (top + bottom readable) */}
+      <div
+        className="absolute inset-0 z-10 transition-opacity duration-400"
+        style={{
+          background:
+            "linear-gradient(160deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.14) 45%, rgba(0,0,0,0.55) 100%)",
+        }}
+      />
+
+      {/* 3 — Cursor spotlight bubble */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-20 rounded-2xl opacity-0 transition-opacity duration-350 group-hover:opacity-100"
+        style={{ background: bubbleBackground }}
+      />
+
+      {/* 4 — Text: eyebrow + title at top-left */}
+      <div className="absolute inset-0 z-30 flex flex-col p-7">
+        <span className="mb-3 text-[10px] font-medium uppercase tracking-[0.2em] text-white/65">
+          {card.eyebrow}
+        </span>
+        <h3 className="max-w-[230px] text-xl font-light leading-[1.35] text-white">
+          {card.title}
+        </h3>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      {/* 5 — Arrow circle at bottom-right */}
+      <div className="absolute bottom-6 right-6 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-transparent transition-all duration-300 group-hover:border-white group-hover:bg-white/12">
+        <ArrowRight
+          className="h-4 w-4 stroke-white transition-transform duration-300 group-hover:translate-x-0.5"
+          strokeWidth={1.8}
+        />
+      </div>
+    </div>
+  );
+}
 
-        {/* ── Section Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12 lg:mb-16 w-full"
-        >
-          <div className="mb-4 lg:mb-6 flex items-center gap-4">
-            <span className="h-px w-8 lg:w-10 bg-[#FF6B00]" />
-            <span className="text-xs lg:text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
-              {t("methodology.eyebrow")}
+// ─── Section ─────────────────────────────────────────────────────────────────
+export default function ServicesGrid() {
+  return (
+    <section
+      className="w-full px-12 py-20 font-sans lg:px-16"
+      style={{ background: "#f4f4f4" }}
+    >
+      <div className="mx-auto max-w-[1400px]">
+
+        {/* Section header */}
+        <div className="mb-4 flex items-start justify-between gap-10">
+          <div>
+            <span className="mb-5 block text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--accent)]">
+              Discover AFSECMO
             </span>
-          </div>
-          <h2 className="text-3xl font-light tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight lg:leading-none">
-            {t("methodology.titleLead")} {" "}
-            <br className="hidden md:block" />
-            <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">
-              {t("methodology.titleAccent")}
-            </span>
-          </h2>
-        </motion.div>
-
-        {/* ── Bento Grid ── */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2"
-        >
-
-          {/* ── Cards 01 & 02 ── */}
-          {/* IMPROVEMENT: Mobile is now grid-cols-1 to breathe, sm is grid-cols-2, lg is flex-col */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:flex lg:flex-col">
-            {pillars.slice(0, 2).map((pillar) => (
-              <motion.div
-                key={pillar.id}
-                variants={itemVariants}
-                className="group relative flex flex-col justify-end overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c1522]/90 p-6 sm:p-8 lg:flex-1 lg:p-10 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:bg-[#0a1220]/95"
-                style={{ minHeight: "240px" }}
-              >
-                <div className="absolute inset-0 z-10 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 ease-in-out group-hover:translate-x-full" />
-                <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#FF6B00]/5 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-                
-                {/* IMPROVEMENT: Architectural Stroke Numbers */}
-                <div
-                  className="absolute bottom-[-10%] right-[-5%] z-0 select-none font-black leading-[1] text-transparent transition-all duration-700 group-hover:scale-105"
-                  style={{ 
-                    fontSize: "clamp(100px, 20vw, 200px)",
-                    WebkitTextStroke: "1px rgba(255,255,255,0.06)",
-                  }}
-                >
-                  {pillar.id}
-                </div>
-
-                {/* IMPROVEMENT: Content Lift on hover */}
-                <div className="relative z-20 transition-transform duration-500 ease-out group-hover:-translate-y-2">
-                  <div className="mb-2 text-xs font-bold tracking-wider text-[#FF6B00] sm:mb-4 sm:text-sm">
-                    {pillar.id} .
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold tracking-tight text-white sm:mb-3 sm:text-2xl lg:text-3xl leading-snug">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-white/55 sm:text-base">
-                    {pillar.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            <p className="max-w-[620px] text-[clamp(24px,3vw,38px)] font-light leading-[1.2] tracking-tight text-[#111]">
+              We are a leading industrial partner driving infrastructure,
+              energy, and logistics across West Africa and beyond.
+            </p>
           </div>
 
-          {/* ── Card 03 ── */}
-          <motion.div
-            variants={itemVariants}
-            className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/[0.08] transition-all duration-500 hover:border-white/20"
-            style={{ minHeight: "500px" }}
-          >
-            <div className="absolute inset-0 z-0">
-              <img
-                src={pillars[2].image}
-                alt={pillars[2].title}
-                className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+          <button className="group mt-1 flex flex-shrink-0 items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#999] transition-colors duration-250 hover:text-white">
+            View all sectors
+            <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full border border-[#ccc] transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[rgba(255,140,0,0.10)]">
+              <ArrowRight
+                className="h-[13px] w-[13px] transition-colors duration-300 group-hover:stroke-[var(--accent)]"
+                strokeWidth={2}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0F1B2E] via-[#0F1B2E]/40 to-transparent" />
-            </div>
+            </span>
+          </button>
+        </div>
 
-            {/* IMPROVEMENT: Architectural Stroke Numbers */}
-            <div
-              className="absolute top-0 right-0 z-20 select-none font-black leading-[1] text-transparent transition-all duration-700 group-hover:scale-105"
-              style={{ 
-                fontSize: "clamp(120px, 15vw, 220px)",
-                WebkitTextStroke: "1px rgba(255,255,255,0.06)",
-                transform: "translate(10%, -10%)" // Bleeds off the top right edge slightly for style
-              }}
-            >
-              {pillars[2].id}
-            </div>
+        {/* Thin divider */}
+        <div className="mb-8 h-px w-full bg-black/10" />
 
-            <div className="relative z-20 mt-auto p-4 sm:p-8">
-              {/* IMPROVEMENT: Enhanced Glass Panel with Lift */}
-              <div className="rounded-2xl border border-white/[0.08] bg-[#0F1B2E]/60 backdrop-blur-xl p-6 shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:bg-[#0F1B2E]/80 group-hover:border-white/[0.15]">
-                <div className="mb-2 text-sm font-bold tracking-wider text-[#FF6B00] sm:mb-3">
-                  {pillars[2].id} .
-                </div>
-                <h3 className="mb-3 text-xl font-semibold tracking-tight text-white sm:text-2xl lg:text-3xl">
-                  {pillars[2].title}
-                </h3>
-                <p className="text-sm leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-white/90 sm:text-base">
-                  {pillars[2].description}
-                </p>
-                <div className="mt-6 h-px w-12 bg-[#FF6B00] transition-all duration-700 ease-out group-hover:w-full" />
-              </div>
-            </div>
-          </motion.div>
+        {/* 4-column equal grid */}
+        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          {cards.map((card) => (
+            <Card key={card.id} card={card} />
+          ))}
+        </div>
 
-        </motion.div>
       </div>
     </section>
   );

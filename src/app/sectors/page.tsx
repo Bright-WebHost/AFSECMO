@@ -1,9 +1,8 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 type SectorItem = {
   id: string;
@@ -15,170 +14,124 @@ type SectorItem = {
   image: string;
 };
 
-const awwwardsEase = [0.76, 0, 0.24, 1] as [number, number, number, number];
-
-// Mask reveal animation for hero text lines
-const maskVariants: Variants = {
-  hidden: { y: "110%" },
-  visible: {
-    y: 0,
-    transition: { duration: 0.9, delay: 0.1, ease: awwwardsEase },
-  },
-};
-
 export function SectorsContent() {
   const { t } = useTranslation("content");
   const sectors = t("sectors.items", { returnObjects: true }) as SectorItem[];
   const hero = t("sectors.hero", { returnObjects: true }) as { titleLead: string; titleAccent: string };
   const cta = t("sectors.cta") as string;
 
-  // Track which sector is currently in the center of the viewport
-  const [activeIndex, setActiveIndex] = useState(0);
-
   return (
-    <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-32">
-      
-      {/* ── Background Atmospheric Glow ── */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute -left-40 top-0 h-[800px] w-[800px] rounded-full bg-[#FF6B00]/5 blur-[150px]" />
-        <div className="absolute bottom-1/4 right-0 h-[600px] w-[600px] rounded-full bg-[#1A2C4D]/40 blur-[120px]" />
-      </div>
+    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white pt-24">
 
-      {/* ── Compact Cinematic Hero Section (UNCHANGED) ── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 pb-20 pt-40 lg:px-12 lg:pt-48">
-        <div className="max-w-4xl">
-          <h1 className="text-5xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[85px]">
-            <span className="relative block overflow-hidden py-1">
-              <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block">
-                {hero.titleLead}
-              </motion.span>
-            </span>
-            <span className="relative block overflow-hidden py-1">
-              <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block text-[#FF6B00]">
-                {hero.titleAccent}
-              </motion.span>
-            </span>
-          </h1>
-        </div>
-      </section>
+      {/* ─── 1. Architectural Rounded Hero Card Banner (image_d6c58b.jpg) ─── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+          
+          <div className="absolute inset-0 z-0">
+            {/* Using the standard first asset image from your collection to stay authentic */}
+            <img
+              src={sectors?.[0]?.image || "/08.png"}
+              alt={sectors?.[0]?.title || "Hero Banner"}
+              className="h-full w-full object-cover opacity-85"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          </div>
 
-      {/* ── Premium Editorial Sticky Scroll Layout ── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row">
-        
-        {/* ── LEFT COLUMN: Sticky Cinematic Portal (Desktop Only) ── */}
-        <div className="hidden lg:flex w-1/2 sticky top-0 h-screen flex-col justify-center pr-16 xl:pr-24">
-          <div className="relative w-full h-[75vh] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.6)] bg-[#020408]">
-            {sectors.map((sector, idx) => {
-              const isActive = activeIndex === idx;
-              return (
-                <div 
-                  key={`image-${sector.id}`} 
-                  className={`absolute inset-0 transition-all duration-[1200ms] ease-[0.76,0,0.24,1] ${
-                    isActive ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-110'
-                  }`}
-                >
-                  <img 
-                    src={sector.image} 
-                    alt={sector.title}
-                    className="w-full h-full object-cover grayscale-[30%]" 
-                  />
-                  {/* Cinematic Vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060A11] via-transparent to-transparent opacity-90" />
-                  
-                  {/* Giant Wireframe Number inside Image */}
-                  <div 
-                    className="absolute -bottom-8 -right-8 text-transparent select-none transition-transform duration-[1200ms] ease-out"
-                    style={{ 
-                      fontSize: "220px", 
-                      fontWeight: 900, 
-                      lineHeight: 1,
-                      WebkitTextStroke: "1px rgba(255,255,255,0.12)",
-                      transform: isActive ? "translateY(0)" : "translateY(20px)"
-                    }}
-                  >
-                    {sector.id}
-                  </div>
-                </div>
-              );
-            })}
+          {/* Breadcrumbs & Dynamic Text Overlay */}
+          <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-12 md:p-16">
+            
+            {/* Top-Aligned Navigation Path Track */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
+              <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <span className="text-white">Sustainability & Sectors</span>
+            </div>
+
+            {/* Bottom-left Asymmetrical Main Header Display */}
+            <div className="max-w-3xl text-left">
+              <h1 className="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
+                {hero.titleLead} <span className="block text-[#FF6B00]">{hero.titleAccent}</span>
+              </h1>
+            </div>
+
           </div>
         </div>
+      </section>
 
-        {/* ── RIGHT COLUMN: Scrolling Typography ── */}
-        <div className="w-full lg:w-1/2 flex flex-col pb-[10vh]">
-          {sectors.map((sector, idx) => {
-            const isActive = activeIndex === idx;
+      {/* ─── 2. Professional Multi-Column Summary Descriptions (image_d6c590.jpg top) ─── */}
+      {/* Real layout columns populated strictly from your parsed sector items array */}
+      {Array.isArray(sectors) && sectors.length > 0 && (
+        <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-b border-gray-100">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-sm font-light leading-relaxed text-gray-600 lg:text-base lg:gap-12">
+            {sectors.slice(0, 3).map((sector) => (
+              <div key={`summary-${sector.id}`}>
+                <p>{sector.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
-            return (
-              <motion.div
-                key={`text-${sector.id}`}
-                // Triggers when this text block hits the vertical center of the screen
-                viewport={{ margin: "-50% 0px -50% 0px" }}
-                onViewportEnter={() => setActiveIndex(idx)}
-                className="flex flex-col justify-center min-h-screen py-16 lg:py-0"
-              >
-                {/* ── Mobile-Only Image (Hidden on Desktop) ── */}
-                <div className="block lg:hidden w-full h-[45vh] rounded-3xl overflow-hidden mb-10 relative border border-white/10 shadow-2xl">
-                  <img src={sector.image} className="w-full h-full object-cover grayscale-[20%]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060A11] via-transparent to-transparent opacity-90" />
-                  <div className="absolute -bottom-4 -right-4 text-[120px] font-black text-transparent leading-none" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.15)" }}>
-                    {sector.id}
-                  </div>
-                </div>
-
-                {/* ── Content Block ── */}
-                <div 
-                  className={`transition-all duration-[800ms] ease-out ${
-                    // Fades and slides inactive items on desktop for focus
-                    isActive ? 'opacity-100 translate-x-0' : 'lg:opacity-30 lg:translate-x-12 opacity-100'
-                  }`}
-                >
-                  {/* Meta Tags */}
-                  <div className="mb-6 flex items-center gap-4">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
-                      {sector.prefix} Division
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[8px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                      {sector.tag}
-                    </span>
-                  </div>
-
-                  {/* Headlines */}
-                  <h2 className="mb-6 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-                    {sector.title} <br />
-                    <span className="text-white/40">{sector.subtitle}</span>
-                  </h2>
-
-                  {/* Description */}
-                  <p className="max-w-md text-sm leading-relaxed text-white/60 sm:text-base lg:text-lg mb-10">
-                    {sector.desc}
-                  </p>
-
-                  {/* Animated CTA */}
-                  <a 
-                    href="#contact" 
-                    className="group flex w-max items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FF6B00]"
-                  >
-                    {cta}
-                    <span className="h-px w-8 bg-white/30 transition-all duration-500 ease-out group-hover:w-20 group-hover:bg-[#FF6B00]" />
-                  </a>
-                </div>
-              </motion.div>
-            );
-          })}
+      {/* ─── 3. Freestanding Content Grid Cluster (image_d6c590.jpg "In this section") ─── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        
+        <div className="mb-12">
+          <h2 className="text-2xl font-light tracking-tight text-gray-900 sm:text-3xl">
+            In this section
+          </h2>
         </div>
 
+        {/* 3-Column Naked Component Grid stream - Rerouted to Contact for functional UX */}
+        <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.isArray(sectors) && sectors.map((sector) => (
+            <Link
+              key={sector.id}
+              href="/contact"
+              className="group flex flex-col cursor-pointer text-left"
+            >
+              {/* Media Container Box */}
+              <div className="h-52 w-full overflow-hidden rounded-2xl bg-gray-100 sm:h-56 md:h-60">
+                <img
+                  src={sector.image}
+                  alt={sector.title}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                />
+              </div>
+
+              {/* Text elements resting completely bare on the off-white canvas fields */}
+              <div className="mt-5 flex flex-col">
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]">
+                    {sector.prefix}
+                  </span>
+                  <span className="text-[9px] font-medium uppercase tracking-wider text-gray-400">
+                    {sector.tag}
+                  </span>
+                </div>
+
+                <h3 className="text-lg font-medium tracking-tight text-gray-900 leading-snug transition-colors group-hover:text-gray-600">
+                  {sector.title} <span className="text-gray-400 font-light">{sector.subtitle}</span>
+                </h3>
+                
+                <p className="mt-2 text-xs font-light leading-relaxed text-gray-500 line-clamp-3">
+                  {sector.desc}
+                </p>
+
+                {/* Dynamic Action Trigger directly pulling your core 'cta' parameter string */}
+                <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold tracking-wider text-[#FF6B00] transition-colors group-hover:text-[#E65C00]">
+                  <span className="uppercase tracking-widest">{cta}</span>
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
-    </main>
+
+    </div>
   );
 }
 
 export default function SectorsPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/en/sectors");
-  }, [router]);
-
-  return null;
+  return <SectorsContent />;
 }

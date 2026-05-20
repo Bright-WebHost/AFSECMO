@@ -1,14 +1,11 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { ChevronRight } from "lucide-react";
 
 type AboutActivity = { title: string; copy: string; image: string };
 type AboutStat = { label: string; value: string };
-
-const premiumEase = [0.215, 0.61, 0.355, 1] as [number, number, number, number];
 
 export function AboutContent() {
   const { t } = useTranslation("content");
@@ -23,63 +20,81 @@ export function AboutContent() {
   };
   const section = t("about.section", { returnObjects: true }) as { eyebrow: string; title: string };
 
-  const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: premiumEase } },
-  };
-
   return (
-    <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-32">
-      <section className="relative h-[80vh] min-h-[600px] w-full flex items-end justify-center pb-20">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <motion.img
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            src="/08.png"
-            alt={hero.imageAlt}
-            className="h-full w-full object-cover opacity-40 mix-blend-luminosity grayscale"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-[#0F1B2E] via-[#0F1B2E]/60 to-transparent" />
-        </div>
+    // Clean, pure white background for the page body
+    <main className="w-full bg-white text-gray-900 font-sans selection:bg-[#FF6B00] selection:text-white pt-24">
+      
+      {/* ── Outer Layout Container (Creates the side margins) ── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        
+        {/* ── Inner Image Box with rounded corners matching the screenshot ── */}
+        <div className="relative h-[60vh] min-h-[480px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+          
+          {/* Background Image inside the rounded card */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=75&w=1920&auto=format&fit=crop"
+              alt={hero.imageAlt || "About Banner"}
+              className="h-full w-full object-cover opacity-85"
+            />
+            {/* Subtle dark overlay for text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          </div>
 
-        <div className="relative z-10 w-full max-w-7xl px-6 text-center lg:px-12">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <span className="mx-auto mb-6 flex h-px w-16 bg-[#FF6B00]" />
-            <h1 className="mb-6 text-4xl font-light uppercase leading-[0.95] tracking-tight text-white drop-shadow-xl sm:text-6xl lg:text-[80px]">
-              AFSECMO <br />
-              <span className="font-semibold text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/60">
-                {hero.titleLead} {hero.titleAccent}
-              </span>
-            </h1>
-            <p className="mx-auto max-w-3xl text-sm font-light leading-relaxed text-white/80 sm:text-base">
-              {hero.description}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+          {/* Text and Breadcrumbs Content inside the image container */}
+          <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-12 md:p-16">
+            
+            {/* Breadcrumbs matching your screenshot positioning */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
+              <span className="opacity-80 hover:underline cursor-pointer">a</span>
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <span className="text-white">About us</span>
+            </div>
 
-      <section className="relative z-20 mx-auto -mt-10 max-w-5xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 divide-y divide-white/10 rounded-3xl border border-white/10 bg-[#060A11]/80 shadow-2xl backdrop-blur-xl md:grid-cols-3 md:divide-x md:divide-y-0">
-          {stats.map((item, idx) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + idx * 0.1 }}
-              className="flex flex-col items-center justify-center py-8"
-            >
-              <p className="text-4xl font-light tracking-tight text-white md:text-5xl">{item.value}</p>
-              <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">{item.label}</p>
-            </motion.div>
-          ))}
+            {/* Title & Subtitle sitting firmly in the bottom left */}
+            <div className="max-w-2xl text-left">
+              <h1 className="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
+                About AFSECMO
+              </h1>
+              <p className="mt-4 text-base font-light leading-relaxed text-gray-200 sm:text-lg">
+                {hero.description || "Energy security for a more sustainable world."}
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto max-w-7xl overflow-hidden px-6 py-32 lg:px-12">
-        <div className="mb-24 text-center">
-          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-[#FF6B00]">{section.eyebrow}</h2>
-          <p className="mx-auto max-w-3xl text-3xl font-light leading-tight text-white sm:text-5xl">
+      {/* ── Minimalist At A Glance Section (Directly underneath) ── */}
+      <section className="w-full bg-white py-20">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <h2 className="text-2xl font-light text-gray-900 sm:text-3xl">At a glance</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-16">
+            {stats.map((item) => (
+              <div key={item.label} className="flex flex-col">
+                <span className="text-5xl font-light tracking-tight text-gray-900 lg:text-6xl">
+                  {item.value}
+                </span>
+                <span className="mt-3 text-sm text-gray-600 leading-relaxed">
+                  {item.label}
+                </span>
+                <div className="mt-6 h-px w-full bg-gray-200" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Activities Stream Section ── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mb-20 text-left max-w-3xl">
+          <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#FF6B00]">
+            {section.eyebrow || "OUR CORE ACTIVITIES"}
+          </h2>
+          <p className="text-3xl font-light leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
             {section.title}
           </p>
         </div>
@@ -89,45 +104,38 @@ export function AboutContent() {
             const isEven = idx % 2 === 0;
 
             return (
-              <div key={activity.title} className={`group flex flex-col lg:items-center ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"}`}>
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: premiumEase }}
-                  className="h-80 w-full overflow-hidden rounded-3xl sm:h-96 lg:h-[500px] lg:w-3/5"
-                >
-                  <img src={activity.image} alt={activity.title} className="h-full w-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" />
-                </motion.div>
+              <div 
+                key={activity.title} 
+                className={`flex flex-col gap-8 lg:items-center lg:gap-16 ${
+                  isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                }`}
+              >
+                <div className="h-80 w-full overflow-hidden rounded-2xl sm:h-96 lg:h-[450px] lg:w-1/2">
+                  <img 
+                    src={activity.image} 
+                    alt={activity.title} 
+                    className="h-full w-full object-cover" 
+                  />
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, delay: 0.2, ease: premiumEase }}
-                  className={`relative z-10 w-full -mt-16 lg:mt-0 lg:w-2/5 ${isEven ? "lg:-ml-20" : "lg:-mr-20"}`}
-                >
-                  <div className="rounded-3xl border border-white/10 bg-[#060A11]/85 p-8 shadow-[0_30px_60px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-12">
-                    <h3 className="mb-6 text-2xl font-light uppercase tracking-tight text-white sm:text-3xl">{activity.title}</h3>
-                    <div className="mb-6 h-px w-12 bg-[#FF6B00]" />
-                    <p className="text-sm leading-relaxed text-white/60 sm:text-base">{activity.copy}</p>
-                  </div>
-                </motion.div>
+                <div className="w-full lg:w-1/2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                    ACTIVITY 0{idx + 1}
+                  </span>
+                  <h3 className="mt-2 mb-6 text-2xl font-medium tracking-tight text-gray-900 sm:text-3xl">
+                    {activity.title}
+                  </h3>
+                  <div className="mb-6 h-px w-12 bg-[#FF6B00]" />
+                  <p className="text-base leading-relaxed text-gray-600">
+                    {activity.copy}
+                  </p>
+                </div>
               </div>
             );
           })}
         </div>
       </section>
+
     </main>
   );
-}
-
-export default function AboutPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/en/about");
-  }, [router]);
-
-  return null;
 }

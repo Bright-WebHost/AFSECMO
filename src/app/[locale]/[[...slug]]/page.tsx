@@ -10,6 +10,7 @@ import { ServicesContent } from "@/app/services/page";
 import ContactSection from "@/components/home/contactsection";
 import Hero from "@/components/home/Hero";
 import SectorsGrid from "@/components/home/SectorsGrid";
+import WhatWeBelieveSection from "@/components/home/whatwebieleve";
 import ServicesGrid from "@/components/home/ServicesGrid";
 import { getT } from "next-i18next/server";
 import type { Locale } from "@/i18n/locales";
@@ -68,8 +69,9 @@ export default async function LocaleSlugPage({
 
     return (
       <main className="relative min-h-screen bg-[#0F1B2E]">
-        <Hero headline={t("hero.headline")} />
+        <Hero />
         <SectorsGrid />
+        <WhatWeBelieveSection />
         <ServicesGrid />
         <ContactSection />
       </main>

@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 type ServiceItem = {
   id: string;
@@ -16,205 +16,111 @@ type ServiceItem = {
   image: string;
 };
 
-const Check = () => (
-  <svg width="14" height="14" viewBox="0 0 13 13" fill="none">
-    <path d="M2.5 6.5l3 3 5-5" stroke="#FF6B00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-// ─── Component: Cinematic Parallax Image ──────────────────────────────────────
-// FIX: Removed mix-blend-luminosity and grayscale that caused the blue tint
-function CinematicImage({ src, num }: { src: string; num: string }) {
-  return (
-    <div className="relative h-full w-full overflow-hidden bg-[#0F1B2E]">
-      <motion.img
-        src={src}
-        alt={`Service ${num}`}
-        initial={{ scale: 1.2 }}
-        whileInView={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="h-full w-full object-cover opacity-75 transition-all duration-700 hover:opacity-100"
-      />
-      {/* Subtle dark gradient at bottom only */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#060A11]/70 via-transparent to-transparent" />
-
-      {/* Massive Background Number */}
-      <div className="absolute -bottom-2 -right-2 select-none pointer-events-none text-[80px] sm:text-[120px] lg:text-[200px] font-black leading-none text-white/10 tracking-tighter">
-        {num}
-      </div>
-    </div>
-  );
-}
-
-// ─── Component: Service Card ───────────────────────────────────────────────────
-// FIX: Always side-by-side on ALL screen sizes (mobile + desktop)
-function ServiceCard({ svc, index }: { svc: ServiceItem; index: number }) {
-  const isReversed = index % 2 !== 0;
-
-  const TextContent = () => (
-    <div className="relative z-20 flex w-1/2 flex-col justify-center overflow-y-auto p-4 text-white sm:p-8 lg:p-12">
-      <div className="mb-2 flex flex-col gap-1 sm:mb-4 sm:gap-2">
-        <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#FF6B00] sm:text-xs sm:tracking-[0.3em]">
-          {svc.category}
-        </span>
-        <span className="text-[7px] font-bold uppercase tracking-[0.15em] text-white/40 sm:text-[10px] sm:tracking-[0.2em]">
-          {svc.tag}
-        </span>
-      </div>
-      <h2 className="mb-2 text-lg font-black uppercase leading-[0.95] tracking-tight text-white sm:mb-4 sm:text-3xl lg:text-5xl">
-        {svc.title[0]}
-        <br />
-        <span className="text-[#FF6B00]">{svc.title[1]}</span>
-      </h2>
-      <p className="mb-3 text-[9px] font-light leading-relaxed text-white/60 sm:mb-6 sm:text-sm lg:text-base">
-        {svc.desc}
-      </p>
-      <ul className="space-y-1.5 sm:space-y-3">
-        {svc.features.map((f) => (
-          <li
-            key={f}
-            className="flex items-start gap-2 text-[8px] tracking-wider text-white/80 sm:items-center sm:gap-4 sm:text-xs sm:tracking-widest lg:text-sm"
-          >
-            <span className="mt-0.5 flex-shrink-0 rounded-full bg-[#FF6B00]/10 p-1 sm:mt-0 sm:p-1.5">
-              <Check />
-            </span>
-            {f}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-
-  const ImageContent = () => (
-    <div className="relative h-full w-1/2">
-      <CinematicImage src={svc.image} num={svc.num} />
-    </div>
-  );
-
-  return (
-    <motion.div
-      id={svc.id}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-      className={`mx-auto flex w-full max-w-7xl flex-row overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.4)] lg:rounded-3xl ${
-        index % 2 === 0 ? "bg-[#060A11]" : "bg-[#020408]"
-      }`}
-      style={{ height: "clamp(200px, 30vw, 500px)" }}
-    >
-      {isReversed ? (
-        <>
-          <ImageContent />
-          <TextContent />
-        </>
-      ) : (
-        <>
-          <TextContent />
-          <ImageContent />
-        </>
-      )}
-    </motion.div>
-  );
-}
-
-// ─── Main Page ───────────────────────────────────────────────────────────────
 export function ServicesContent() {
   const { t } = useTranslation("content");
   const services = t("services.items", { returnObjects: true }) as ServiceItem[];
   const hero = t("services.hero", { returnObjects: true }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
   const cta = t("services.cta", { returnObjects: true }) as { titleLead: string; titleAccent: string; button: string };
 
-  const scrollToService = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-[#0F1B2E] font-sans selection:bg-[#FF6B00] selection:text-white">
+    // Clean off-white baseline canvas to match the screenshots
+    <div className="min-h-screen bg-[#f8f9fa] font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white pt-24">
 
-      {/* ── Hero ── */}
-      <section className="mx-auto max-w-7xl px-6 pb-10 pt-24 lg:px-12 lg:pb-16 lg:pt-40">
-        <div className="max-w-4xl">
-          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-4 py-2 text-[9px] font-bold tracking-widest text-[#FF6B00] sm:px-5 lg:text-xs">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-[#FF6B00]" />
-            {hero.eyebrow}
+      {/* ─── 1. Contained Hero Card ─── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+          <div className="absolute inset-0 z-0">
+            <img
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=75&w=1920&auto=format&fit=crop"
+              alt={hero.eyebrow || "What We Do"}
+              className="h-full w-full object-cover opacity-85"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           </div>
-          <h1 className="mb-6 text-4xl font-black uppercase leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-[110px]">
-            {hero.titleLead} <br />
-            <span className="text-[#FF6B00]">{hero.titleAccent}</span>
-          </h1>
-          <p className="border-l-4 border-[#FF6B00] pl-5 text-sm font-light leading-relaxed text-white/60 sm:text-base lg:max-w-2xl lg:text-lg">
-            {hero.description}
-          </p>
+
+          <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-12 md:p-16">
+            <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
+              <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <span className="text-white">What we do</span>
+            </div>
+
+            <div className="max-w-3xl text-left">
+              <h1 className="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
+                {hero.eyebrow || "What we do"}
+              </h1>
+              <p className="mt-4 text-base font-light leading-relaxed text-gray-200 sm:text-lg lg:text-xl">
+                {hero.description || "Investing for growth. Innovating for greater sustainability."}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── Sticky Filter Nav ── */}
-      {/* FIX: Single horizontal scrollable row on all screen sizes */}
-      <div className="sticky top-0 z-50 border-y border-white/5 bg-[#0F1B2E]/90 shadow-2xl backdrop-blur-xl">
-        <div
-          className="flex w-full overflow-x-auto scrollbar-none"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {services.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => scrollToService(s.id)}
-              className={`group flex flex-none flex-col items-center justify-center gap-1.5 px-3 py-3 transition-all hover:bg-white/5 sm:gap-2 sm:px-4 sm:py-4 lg:py-6 lg:px-0 lg:flex-1 ${
-                i < services.length - 1 ? "border-r border-white/5" : ""
-              }`}
-              style={{ minWidth: "clamp(64px, 11.11vw, 120px)" }}
+      {/* ─── 2. Corrected Borderless 3-Column Grid ─── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        {/* Strict 3-column setup. Spacing matches the clean spacing in image_d6be0f.jpg */}
+        <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((svc, index) => (
+            <Link
+              key={svc.id || index}
+              href="/contact"
+              className="group flex flex-col cursor-pointer"
             >
-              <span className="text-sm font-black text-[#FF6B00] opacity-50 transition-opacity group-hover:opacity-100 sm:text-base lg:text-lg">
-                {s.num}
-              </span>
-              <span className="whitespace-nowrap text-[7px] font-bold uppercase tracking-widest text-white/70 transition-colors group-hover:text-white sm:text-[8px] lg:text-[9px]">
-                {s.category}
-              </span>
-            </button>
+              {/* Image box only - Completely borderless, no wrapper card background */}
+              <div className="h-52 w-full overflow-hidden rounded-2xl bg-gray-200 sm:h-60 md:h-64">
+                <img
+                  src={svc.image}
+                  alt={svc.title[0]}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                />
+              </div>
+
+              {/* Text content elements sit directly on the off-white page background */}
+              <div className="mt-5 flex flex-col">
+                <h3 className="text-base font-normal tracking-tight text-gray-900 leading-snug group-hover:text-gray-600 transition-colors">
+                  {svc.title[0]} {svc.title[1]}
+                </h3>
+                
+                <p className="mt-2 text-xs font-light leading-relaxed text-gray-500 line-clamp-3">
+                  {svc.desc}
+                </p>
+
+                {/* Minimalist interactive link matching the custom request routing */}
+                <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#FF6B00] transition-colors group-hover:text-[#E65C00]">
+                  <span>{t("services.cta_label", "Inquire about sector")}</span>
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* ── Editorial Cards List ── */}
-      <div className="flex flex-col gap-4 px-3 py-10 sm:gap-8 sm:px-6 sm:py-16 lg:gap-16 lg:px-12 lg:py-32">
-        {services.map((svc, index) => (
-          <ServiceCard key={svc.id} svc={svc} index={index} />
-        ))}
-      </div>
-
-      {/* ── CTA ── */}
-      <section className="relative overflow-hidden bg-[#020408] px-6 py-20 text-center lg:py-40">
-        <div className="absolute left-1/2 top-1/2 h-[300px] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF6B00]/10 blur-[80px] lg:h-[400px] lg:blur-[150px]" />
-        <div className="relative z-10">
-          <h2 className="mb-8 text-4xl font-black uppercase leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-[120px]">
-            Ready to <br />
-            <span className="text-[#FF6B00]">Mobilise?</span>
-          </h2>
-          <motion.a
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255,107,0,0.3)" }}
-            whileTap={{ scale: 0.95 }}
-            href="/contact"
-            className="inline-block rounded-full bg-[#FF6B00] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-xl transition-colors hover:bg-[#FF8C00] sm:px-10 sm:py-5 lg:px-14 lg:py-6 lg:text-sm"
-          >
-            {cta.button}
-          </motion.a>
+      {/* ─── 3. Minimalist Footer CTA ─── */}
+      <section className="w-full bg-white border-t border-gray-200 py-16 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-light tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                {cta.titleLead || "Our mega projects"}
+              </h2>
+              <p className="mt-2 text-sm text-gray-500 font-light">
+                Discover how we are building scalable utility operations across sub-Saharan corridors.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
+              >
+                {cta.button || "Explore operations framework"}
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
     </div>
   );
-}
-
-export default function ServicesPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/en/services");
-  }, [router]);
-
-  return null;
 }

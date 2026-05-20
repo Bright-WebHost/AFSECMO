@@ -1,31 +1,11 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 type Standard = { title: string; category: string; copy: string };
-
-const awwwardsEase = [0.76, 0, 0.24, 1] as [number, number, number, number];
-
-const maskVariants: Variants = {
-  hidden: { y: "110%" },
-  visible: {
-    y: 0,
-    transition: { duration: 0.9, delay: 0.1, ease: awwwardsEase },
-  },
-};
-
-// Clean, smooth upward fading reveal for individual data rows
-const rowRevealVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: awwwardsEase },
-  },
-};
 
 export function QualityContent() {
   const { t } = useTranslation("content");
@@ -33,120 +13,123 @@ export function QualityContent() {
   const hero = t("quality.hero", { returnObjects: true }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
 
   return (
-    <main className="min-h-screen bg-[#060A11] text-white selection:bg-[#FF6B00] selection:text-white pb-32 pt-24 sm:pb-40 sm:pt-32 lg:pb-48 lg:pt-56">
+    // Pristine off-white corporate canvas foundation matching the Aramco screenshots
+    <main className="w-full bg-[#f8f9fa] text-gray-900 font-sans selection:bg-[#FF6B00] selection:text-white pt-24 pb-24">
       
-      {/* ── Background Geometric Blueprint Layer ── */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "50px 50px",
-            maskImage: "radial-gradient(ellipse at center, black 40%, transparent 90%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 90%)",
-          }}
-        />
-        <div className="absolute top-1/4 right-1/4 h-[600px] w-[600px] rounded-full bg-[#FF6B00]/5 blur-[160px]" />
-      </div>
+      {/* ─── 1. Structural Rounded Hero Card Banner (image_d89325.jpg) ─── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+          
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/08.png"
+              alt="Quality Standards Banner"
+              className="h-full w-full object-cover opacity-85"
+            />
+            {/* Crisp dynamic linear dark gradient for legible headers */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+          </div>
 
-      <section className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12">
+          {/* Breadcrumbs & Title Text Overlay Cluster */}
+          <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-12 md:p-16">
+            
+            {/* Top-Aligned Navigation Path Track */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
+              <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <span className="text-white">Quality & Compliance</span>
+            </div>
+
+            {/* Bottom-left Asymmetrical Main Header Display */}
+            <div className="max-w-3xl text-left">
+              <h1 className="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl uppercase leading-none">
+                {hero.titleLead} <span className="block text-[#FF6B00]">{hero.titleAccent}</span>
+              </h1>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 2. Introductory Summary Paragraph Row ─── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-16 pb-12 lg:pt-24 border-b border-gray-100">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:items-start lg:gap-10">
+          <div className="md:col-span-4">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-[#FF6B00]">
+              {hero.eyebrow || "OPERATIONAL METRICS"}
+            </h2>
+          </div>
+          <div className="md:col-span-8">
+            <p className="text-lg font-light leading-relaxed text-gray-600 max-w-3xl">
+              {hero.description}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 3. Borderless Content Grid cluster (image_d8932a.jpg "In this section") ─── */}
+      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         
-        {/* ── Compact Cinematic Hero Section (UNCHANGED) ── */}
-        <div className="max-w-4xl mb-20 lg:mb-32">
-          <h1 className="text-5xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[85px]">
-            <span className="relative block overflow-hidden py-1">
-              <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block">
-                {hero.titleLead}
-              </motion.span>
-            </span>
-            <span className="relative block overflow-hidden py-1">
-              <motion.span initial="hidden" animate="visible" variants={maskVariants} className="block text-[#FF6B00]">
-                {hero.titleAccent}
-              </motion.span>
-            </span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base font-light text-white/50 leading-relaxed">
-            {hero.description}
-          </p>
+        {/* Clean, minimalist section label matching reference */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-light tracking-tight text-gray-900 sm:text-3xl">
+            In this section
+          </h2>
         </div>
 
-        {/* ── Premium High-Visibility Data Grid ── */}
-        <div className="flex flex-col gap-12 sm:gap-16 lg:gap-20 border-t border-white/10 pt-12 sm:pt-16">
-          {standards.map((standard, idx) => (
-            <motion.div
-              key={standard.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={rowRevealVariants}
-              className="group relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full pb-12 lg:pb-16 border-b border-white/5 last:border-none last:pb-0"
+        {/* Strict grid mapping (3 cards wide on desktop) */}
+        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.isArray(standards) && standards.map((standard, index) => (
+            <Link
+              key={standard.title || index}
+              href="/contact" 
+              className="group flex flex-col cursor-pointer text-left"
             >
-              
-              {/* ── Left Metadata Frame (3 Columns) ── */}
-              <div className="lg:col-span-3 flex flex-row lg:flex-col items-center lg:items-start justify-between lg:justify-start gap-4">
-                <div className="flex items-center gap-4">
-                  <span className="font-mono text-sm font-bold tracking-widest text-[#FF6B00]">
-                    0{idx + 1}
+              {/* Media Element block */}
+              <div className="h-56 w-full overflow-hidden rounded-2xl bg-gray-100 sm:h-60 md:h-64 shadow-xs">
+                <img
+                  src={index % 2 === 0 ? "/13.png" : "/08.png"}
+                  alt={standard.title}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                />
+              </div>
+
+              {/* Informational Text container elements directly on page background */}
+              <div className="mt-5 flex flex-col pr-2">
+                <div className="mb-2 flex items-center gap-3">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]">
+                    SYS // REG 0{index + 1}
                   </span>
-                  <span className="h-px w-6 bg-white/10 hidden lg:block" />
-                  <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-white/30 group-hover:text-white/50 transition-colors duration-300">
-                    SYS // REG
-                  </span>
+                  {standard.category && (
+                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-gray-400">
+                      {standard.category}
+                    </span>
+                  )}
                 </div>
 
-                {standard.category && (
-                  <div className="mt-0 lg:mt-4 rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-[8px] font-bold uppercase tracking-widest text-white/60 backdrop-blur-md">
-                    {standard.category}
-                  </div>
-                )}
-              </div>
-
-              {/* ── Center Core Headline Frame (4 Columns) ── */}
-              <div className="lg:col-span-4 pr-0 lg:pr-6">
-                <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white leading-tight group-hover:text-[#FF6B00] transition-colors duration-300">
+                <h3 className="text-xl font-medium tracking-tight text-gray-900 leading-snug transition-colors group-hover:text-gray-600">
                   {standard.title}
                 </h3>
-              </div>
-
-              {/* ── Right Detailed Content Description Frame (5 Columns) ── */}
-              <div className="lg:col-span-5">
-                <p className="text-sm sm:text-base font-light leading-relaxed text-white/50 group-hover:text-white/80 transition-colors duration-500">
+                
+                <p className="mt-2 text-xs font-light leading-relaxed text-gray-500 line-clamp-3">
                   {standard.copy}
                 </p>
 
-                {/* Minimalist interactive node verification line */}
-                <div className="mt-6 flex w-max items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-white/40 group-hover:text-[#FF6B00] transition-all duration-300 cursor-pointer">
-                  Verify Node Parameters
-                  <span className="h-px w-6 bg-white/20 group-hover:w-12 group-hover:bg-[#FF6B00] transition-all duration-500" />
+                {/* Minimalist interactive link wrapper with circled arrow */}
+                <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold tracking-wider text-[#FF6B00] transition-colors group-hover:text-[#E65C00]">
+                  <span>Verify operational compliance desk</span>
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#FF6B00]/40 transition-colors group-hover:border-[#E65C00]">
+                    <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </div>
                 </div>
               </div>
-
-              {/* ── Decorative Wireframe Baseline Index Number ── */}
-              <div 
-                className="absolute right-0 bottom-6 z-0 select-none font-black leading-none text-transparent pointer-events-none transition-transform duration-700 opacity-[0.6] group-hover:translate-x-[-10px]"
-                style={{
-                  fontSize: "120px",
-                  WebkitTextStroke: "1px rgba(255,255,255,0.02)",
-                }}
-              >
-                0{idx + 1}
-              </div>
-
-            </motion.div>
+            </Link>
           ))}
         </div>
       </section>
 
-    </main>
+    </main> // FIXED closing tag to match line 18
   );
 }
 
-export default function QualityPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/en/quality");
-  }, [router]);
-
-  return null;
-}
+export default QualityContent;
