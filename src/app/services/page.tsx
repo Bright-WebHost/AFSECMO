@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -123,4 +125,14 @@ export function ServicesContent() {
 
     </div>
   );
+}
+
+export default function ServicesPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/services");
+  }, [router]);
+
+  return null;
 }

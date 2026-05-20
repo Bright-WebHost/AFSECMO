@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 
@@ -138,5 +140,11 @@ export function MethodContent() {
 }
 
 export default function MethodPage() {
-  return <MethodContent />;
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/method");
+  }, [router]);
+
+  return null;
 }

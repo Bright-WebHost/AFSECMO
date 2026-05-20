@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 
@@ -140,5 +142,12 @@ export function AboutContent() {
   );
 }
 
-// Default page export required by Next.js app router
-export default AboutContent;
+export default function AboutPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/about");
+  }, [router]);
+
+  return null;
+}

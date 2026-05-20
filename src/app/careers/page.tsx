@@ -2,6 +2,8 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { type ChangeEvent, type FormEvent, useState } from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const openRoles = [
   {
@@ -43,7 +45,7 @@ const openRoles = [
 
 const easing = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-export default function CareersPage() {
+export function CareersContent() {
   const [expandedRole, setExpandedRole] = useState<string | null>(null);
   const [applicationStep, setApplicationStep] = useState(0);
   const [formData, setFormData] = useState({
@@ -320,4 +322,14 @@ export default function CareersPage() {
       </section>
     </main>
   );
+}
+
+export default function CareersPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/careers");
+  }, [router]);
+
+  return null;
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -128,8 +130,16 @@ export function QualityContent() {
         </div>
       </section>
 
-    </main> // FIXED closing tag to match line 18
+    </main>
   );
 }
 
-export default QualityContent;
+export default function QualityPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/quality");
+  }, [router]);
+
+  return null;
+}

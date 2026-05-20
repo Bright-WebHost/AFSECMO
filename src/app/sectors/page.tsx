@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -133,5 +135,11 @@ export function SectorsContent() {
 }
 
 export default function SectorsPage() {
-  return <SectorsContent />;
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/sectors");
+  }, [router]);
+
+  return null;
 }

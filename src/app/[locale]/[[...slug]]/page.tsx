@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { AboutContent } from "@/app/about/page";
-import CareersPage from "@/app/careers/page";
+import { CareersContent } from "@/app/careers/page";
 import { ContactContent } from "@/app/contact/page";
 import { MethodContent } from "@/app/method/page";
-import ProjectsPage from "@/app/projects/page";
+import { ProjectsContent } from "@/app/projects/page";
 import { QualityContent } from "@/app/quality/page";
 import { SectorsContent } from "@/app/sectors/page";
 import { ServicesContent } from "@/app/services/page";
@@ -18,10 +18,10 @@ import { supportedLocales } from "@/i18n/locales";
 
 const routeMap: Record<string, () => React.JSX.Element> = {
   about: () => <AboutContent />,
-  careers: () => <CareersPage />,
+  careers: () => <CareersContent />,
   contact: () => <ContactContent />,
   method: () => <MethodContent />,
-  projects: () => <ProjectsPage />,
+  projects: () => <ProjectsContent />,
   quality: () => <QualityContent />,
   sectors: () => <SectorsContent />,
   services: () => <ServicesContent />,

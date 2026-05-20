@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const PROJECTS = [
   { id: "01", title: "Mining Logistics Support", sector: "Mining & Quarry", scope: "Heavy equipment mobilisation & supply chain.", location: "Ivorian Sites", image: "/01.png", span: "lg:col-span-2" },
@@ -10,11 +12,9 @@ const PROJECTS = [
   { id: "05", title: "Facility Utilities", sector: "Utilities", scope: "Electrical distribution & plumbing networks.", location: "Camp Operations", image: "/05.png", span: "lg:col-span-3" },
 ];
 
-export default function ProjectShowcase() {
+export function ProjectsContent() {
   return (
     <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-32">
-      
-      {/* ── Editorial Header ── */}
       <section className="mx-auto max-w-7xl px-6 pt-40 pb-20 lg:px-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <span className="mb-6 block h-px w-12 bg-[#FF6B00]" />
@@ -27,18 +27,16 @@ export default function ProjectShowcase() {
         </motion.div>
       </section>
 
-      {/* ── High-Impact Visual Grid ── */}
       <section className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((proj) => (
-            <motion.div 
+            <motion.div
               key={proj.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               className={`group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#060A11] h-[450px] transition-all duration-700 hover:border-[#FF6B00]/40 ${proj.span}`}
             >
-              {/* IMAGE LAYER: Now lively & interactive */}
               <div className="absolute inset-0 z-0">
                 <img
                   src={proj.image}
@@ -48,25 +46,24 @@ export default function ProjectShowcase() {
                 <div className="absolute inset-0 bg-linear-to-t from-[#060A11] via-[#060A11]/60 to-transparent" />
               </div>
 
-              {/* CONTENT LAYER */}
               <div className="relative z-10 flex h-full flex-col justify-end p-10">
                 <div className="mb-4">
-                  <div className="inline-block rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white mb-4">
+                  <div className="mb-4 inline-block rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                     {proj.sector}
                   </div>
-                  <h3 className="text-3xl font-light text-white uppercase tracking-tight mb-2">
+                  <h3 className="mb-2 text-3xl font-light uppercase tracking-tight text-white">
                     {proj.title}
                   </h3>
-                  <p className="text-sm text-white/70 leading-relaxed max-w-xs transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+                  <p className="max-w-xs text-sm leading-relaxed text-white/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                     {proj.scope}
                   </p>
                 </div>
-                
-                <div className="flex items-end justify-between pt-6 border-t border-white/10">
+
+                <div className="flex items-end justify-between border-t border-white/10 pt-6">
                   <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
                     {proj.location}
                   </span>
-                  <span className="text-4xl font-black text-white/20 group-hover:text-[#FF6B00]/40 transition-colors">
+                  <span className="text-4xl font-black text-white/20 transition-colors group-hover:text-[#FF6B00]/40">
                     {proj.id}
                   </span>
                 </div>
@@ -75,7 +72,16 @@ export default function ProjectShowcase() {
           ))}
         </div>
       </section>
-
     </main>
   );
+}
+
+export default function ProjectShowcase() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en/projects");
+  }, [router]);
+
+  return null;
 }
