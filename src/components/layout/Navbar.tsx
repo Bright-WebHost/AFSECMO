@@ -9,7 +9,7 @@ import type { Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/i18n/LanguageSwitcher";
 import { type Locale } from "@/i18n/locales";
-import { withLocalePath } from "@/i18n/routing";
+import { stripLocale, withLocalePath } from "@/i18n/routing";
 
 const navItems = [
   { key: "about", href: "/about" },
@@ -32,9 +32,10 @@ export default function Navbar() {
   const params = useParams<{ locale?: Locale }>();
   const { t } = useTranslation("common");
   const locale = params?.locale === "fr" ? "fr" : "en";
+  const currentPath = stripLocale(pathname);
 
   // Check if the current route is strictly the base Home Page root
-  const isHomePage = pathname === `/${locale}` || pathname === `/` || pathname === `/${locale}/`;
+  const isHomePage = currentPath === "/";
 
   // ─── Dynamic Scroll Transforms (Only active on Home Page) ───
   const homeBgOpacity = useTransform(scrollY, [0, 80], ["rgba(255,255,255,0)", "rgba(255,255,255,1)"]);
@@ -49,8 +50,7 @@ export default function Navbar() {
   const itemActiveColor = isHomePage ? homeActiveTextColor : "#FF6B00";
 
   const isActive = (href: string) => {
-    const localizedHref = withLocalePath(locale, href);
-    return localizedHref === `/${locale}` ? pathname === localizedHref : pathname.startsWith(localizedHref);
+    return currentPath === href || currentPath.startsWith(`${href}/`);
   };
 
   const menuVariants: Variants = {
