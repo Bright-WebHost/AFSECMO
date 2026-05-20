@@ -139,3 +139,6 @@ export function AboutContent() {
     </main>
   );
 }
+
+// Default page export required by Next.js app router
+export default AboutContent;
