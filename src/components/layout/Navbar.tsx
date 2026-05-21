@@ -147,7 +147,7 @@ export default function Navbar() {
               className="relative z-10 shrink-0"
             >
               <Image
-                src="/logo.svg"
+                src="/logo.png"
                 alt="AFSECMO Group"
                 width={160}
                 height={40}
@@ -201,7 +201,7 @@ export default function Navbar() {
               <div className="relative flex items-center justify-between border-b border-gray-200 px-6 py-6">
                 <Link href="/" onClick={() => setMobileOpen(false)}>
                   <Image 
-                    src="/logo.svg" 
+                    src="/logo.png" 
                     alt="AFSECMO Group" 
                     width={140}
                     height={32}

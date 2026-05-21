@@ -16,7 +16,7 @@ export default function Footer() {
   return (
     // Switched to full-bleed white background canvas with spacious padding block boundaries
     <footer className="w-full bg-white text-gray-900 border-t border-gray-200 pt-24 pb-12 font-sans">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-6 lg:px-10">
         
         {/* Main Clean Corporate Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-20 border-b border-gray-100">
@@ -24,7 +24,7 @@ export default function Footer() {
           {/* Brand & Corporate Identity Column */}
           <div className="md:col-span-6 lg:col-span-6">
             <Link href={withLocalePath(locale, "/")} className="inline-block mb-6">
-              <img src="/logo.svg" alt="AFSECMO" className="h-10 w-auto" />
+              <img src="/logo.png" alt="AFSECMO" className="h-10 w-auto" />
             </Link>
             <h2 className="text-base font-semibold text-gray-900 mb-6 uppercase tracking-[0.15em]">
               {t("footer.title")}

@@ -33,7 +33,7 @@ export function ServicesContent() {
         <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=75&w=1920&auto=format&fit=crop"
+              src="/service.png"
               alt={hero.eyebrow || "What We Do"}
               className="h-full w-full object-cover opacity-85"
             />
