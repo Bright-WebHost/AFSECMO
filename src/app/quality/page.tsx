@@ -9,18 +9,41 @@ import Link from "next/link";
 
 type Standard = { title: string; category: string; copy: string };
 
+// High-end Unsplash images for heavy industry & quality control
+const images = [
+  "https://images.unsplash.com/photo-1581092160607-ee22531fa799?q=80&w=1200&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=1200&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1200&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1200&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop", 
+];
+
+const easeExp = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
 export function QualityContent() {
   const { t } = useTranslation("content");
-  const standards = t("quality.standards", { returnObjects: true }) as Standard[];
-  const hero = t("quality.hero", { returnObjects: true }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
+  
+  // Data extraction with fallbacks
+  const standards = (t("quality.standards", { returnObjects: true }) || [
+    { title: "Environmental Compliance", category: "Safety", copy: "Strict adherence to global ecological preservation protocols." },
+    { title: "Supply Chain Integrity", category: "Logistics", copy: "End-to-end verification of raw material sourcing and delivery." },
+    { title: "Operational Excellence", category: "Engineering", copy: "Maximizing uptime through rigorous preventative maintenance." }
+  ]) as Standard[];
+
+  const hero = (t("quality.hero", { returnObjects: true }) || {
+    eyebrow: "OPERATIONAL METRICS",
+    titleLead: "Unyielding commitment to",
+    titleAccent: "industrial excellence.",
+    description: "Our quality assurance frameworks are designed to exceed global compliance standards, ensuring reliability and safety across all African operations."
+  }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
 
   return (
-    // Pristine off-white corporate canvas foundation matching the Aramco screenshots
-    <main className="w-full bg-[#f8f9fa] text-gray-900 font-sans selection:bg-[#FF6B00] selection:text-white pt-24 pb-24">
+    <main className="w-full bg-[#f8f9fa] pt-24 pb-24 font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white">
       
-      {/* ─── 1. Structural Rounded Hero Card Banner (image_d89325.jpg) ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+      {/* ─── 1. YOUR ORIGINAL HERO (Untouched visually, Tailwind classes optimized) ─── */}
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
+        <div className="relative min-h-115 h-[60vh] w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           
           <div className="absolute inset-0 z-0">
             <img
@@ -28,104 +51,126 @@ export function QualityContent() {
               alt="Quality Standards Banner"
               className="h-full w-full object-cover opacity-85"
             />
-            {/* Crisp dynamic linear dark gradient for legible headers */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+            {/* Updated to bg-linear-to-t per Tailwind v4 standards */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/20 to-transparent" />
           </div>
 
-          {/* Breadcrumbs & Title Text Overlay Cluster */}
           <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-12 md:p-16">
-            
-            {/* Top-Aligned Navigation Path Track */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
-              <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
-              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+            <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-white/90">
+              <span className="cursor-pointer opacity-80 hover:underline">AFSECMO</span>
+              <ChevronRight className="h-3 w-3 stroke-3 text-white/50" />
               <span className="text-white">Quality & Compliance</span>
             </div>
 
-            {/* Bottom-left Asymmetrical Main Header Display */}
             <div className="max-w-3xl text-left">
-              <h1 className="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl uppercase leading-none">
+              <h1 className="text-4xl font-medium leading-none tracking-tight text-white sm:text-5xl lg:text-6xl uppercase">
                 {hero.titleLead} <span className="block text-[#FF6B00]">{hero.titleAccent}</span>
               </h1>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ─── 2. Introductory Summary Paragraph Row ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-16 pb-12 lg:pt-24 border-b border-gray-100">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:items-start lg:gap-10">
-          <div className="md:col-span-4">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-[#FF6B00]">
+      {/* ─── 2. Introductory Summary Paragraph Row (Upgraded Typography) ─── */}
+      <section className="mx-auto max-w-350 px-4 pt-16 pb-12 sm:px-6 lg:px-8 lg:pt-24">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-start lg:gap-16">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: easeExp }}
+            className="md:col-span-4"
+          >
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#FF6B00]">
               {hero.eyebrow || "OPERATIONAL METRICS"}
             </h2>
-          </div>
-          <div className="md:col-span-8">
-            <p className="text-lg font-light leading-relaxed text-gray-600 max-w-3xl">
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: easeExp }}
+            className="md:col-span-8 lg:col-span-7"
+          >
+            <p className="text-xl font-light leading-relaxed text-[#111] md:text-2xl lg:text-[28px] lg:leading-[1.4]">
               {hero.description}
             </p>
-          </div>
+          </motion.div>
+          
         </div>
       </section>
 
-      {/* ─── 3. Borderless Content Grid cluster (image_d8932a.jpg "In this section") ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      {/* Thin architectural divider */}
+      <div className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
+        <div className="h-px w-full bg-black/10" />
+      </div>
+
+      {/* ─── 3. Borderless Corporate Grid (Aramco-style Upgrades) ─── */}
+      <section className="mx-auto max-w-350 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         
-        {/* Clean, minimalist section label matching reference */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-light tracking-tight text-gray-900 sm:text-3xl">
+        <div className="mb-12 lg:mb-16">
+          <h2 className="text-3xl font-light tracking-tight text-[#111] lg:text-4xl">
             In this section
           </h2>
         </div>
 
-        {/* Strict grid mapping (3 cards wide on desktop) */}
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
           {Array.isArray(standards) && standards.map((standard, index) => (
-            <Link
+            <motion.div
               key={standard.title || index}
-              href="/contact" 
-              className="group flex flex-col cursor-pointer text-left"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: index * 0.1, ease: easeExp }}
             >
-              {/* Media Element block */}
-              <div className="h-56 w-full overflow-hidden rounded-2xl bg-gray-100 sm:h-60 md:h-64 shadow-xs">
-                <img
-                  src={index % 2 === 0 ? "/13.png" : "/08.png"}
-                  alt={standard.title}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
-                />
-              </div>
-
-              {/* Informational Text container elements directly on page background */}
-              <div className="mt-5 flex flex-col pr-2">
-                <div className="mb-2 flex items-center gap-3">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]">
-                    SYS // REG 0{index + 1}
-                  </span>
-                  {standard.category && (
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-gray-400">
-                      {standard.category}
-                    </span>
-                  )}
+              <Link
+                href="/contact" 
+                className="group flex cursor-pointer flex-col text-left"
+              >
+                {/* Image Block: Sharp corners, grayscale hover effect */}
+                <div className="relative h-70 w-full overflow-hidden rounded-xs bg-black sm:h-80 lg:h-95">
+                  <img
+                    src={images[index % images.length]}
+                    alt={standard.title}
+                    className="h-full w-full object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-80"
+                    loading="lazy"
+                  />
                 </div>
 
-                <h3 className="text-xl font-medium tracking-tight text-gray-900 leading-snug transition-colors group-hover:text-gray-600">
-                  {standard.title}
-                </h3>
-                
-                <p className="mt-2 text-xs font-light leading-relaxed text-gray-500 line-clamp-3">
-                  {standard.copy}
-                </p>
+                {/* Text Content */}
+                <div className="mt-6 flex flex-col pr-4">
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
+                      SYS // REG 0{index + 1}
+                    </span>
+                    {standard.category && (
+                      <span className="flex items-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
+                        <span className="mr-3 h-1 w-1 rounded-full bg-[#ccc]" />
+                        {standard.category}
+                      </span>
+                    )}
+                  </div>
 
-                {/* Minimalist interactive link wrapper with circled arrow */}
-                <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold tracking-wider text-[#FF6B00] transition-colors group-hover:text-[#E65C00]">
-                  <span>Verify operational compliance desk</span>
-                  <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#FF6B00]/40 transition-colors group-hover:border-[#E65C00]">
-                    <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  <h3 className="text-2xl font-light leading-[1.3] tracking-tight text-[#111] transition-colors duration-300 group-hover:text-[#FF6B00]">
+                    {standard.title}
+                  </h3>
+                  
+                  <p className="mt-3 line-clamp-3 text-sm font-light leading-relaxed text-[#555]">
+                    {standard.copy}
+                  </p>
+
+                  {/* High-End Interactive CTA */}
+                  <div className="mt-6 flex w-fit items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#111] transition-colors duration-300 group-hover:text-[#FF6B00]">
+                    <span>Verify Standard</span>
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 transition-all duration-300 group-hover:border-[#FF6B00] group-hover:bg-[rgba(255,107,0,0.08)]">
+                      <ArrowRight className="h-3 w-3 transition-colors duration-300 group-hover:stroke-[#FF6B00]" strokeWidth={2.5} />
+                    </span>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </section>

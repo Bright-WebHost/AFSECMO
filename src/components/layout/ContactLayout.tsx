@@ -1,45 +1,19 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { type FormEvent, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ArrowRight } from "lucide-react";
 
-type FieldConfig = {
-  label: string;
-  name: string;
-  placeholder: string;
-  type: string;
-};
+const easeExp = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 export default function ContactLayout() {
-  const [step, setStep] = useState(0);
   const { t } = useTranslation("content");
-  const [formData, setFormData] = useState({
-    company: "",
-    name: "",
-    email: "",
-    projectType: "",
-    timeline: "",
-    budget: "",
-    message: "",
-  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
-
-  const handleNext = () => setStep((prev) => Math.min(prev + 1, 2));
-  const handleBack = () => setStep((prev) => Math.max(prev - 1, 0));
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // placeholder for submit integration
-    setStep(2);
-  };
-
-  const formFields = t("contact.formFields", { returnObjects: true }) as FieldConfig[];
-  const projectFields = t("contact.projectFields", { returnObjects: true }) as FieldConfig[];
-  const details = t("contact.details", { returnObjects: true }) as {
+  const details = (t("contact.details", { returnObjects: true }) || {}) as {
     label: string;
     title: string;
     officeLabel: string;
@@ -49,7 +23,8 @@ export default function ContactLayout() {
     findUs: string;
     whatsapp: string;
   };
-  const form = t("contact.form", { returnObjects: true }) as {
+
+  const form = (t("contact.form", { returnObjects: true }) || {}) as {
     label: string;
     title: string;
     step: string;
@@ -59,6 +34,8 @@ export default function ContactLayout() {
     namePlaceholder: string;
     email: string;
     emailPlaceholder: string;
+    phoneLabel: string;
+    phonePlaceholder: string;
     projectType: string;
     projectTypePlaceholder: string;
     timeline: string;
@@ -70,50 +47,111 @@ export default function ContactLayout() {
     back: string;
     continue: string;
     submit: string;
+    serviceOptions?: string[];
+    success?: string;
+    error?: string;
+  };
+
+  // Web3Forms Submit Handler
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(event.currentTarget);
+    
+    // IMPORTANT: Replace this with your actual Web3Forms Access Key
+    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        (event.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-7xl flex-col bg-primary text-white lg:min-h-screen lg:flex-row">
-      <aside
-        className="relative flex w-full flex-col bg-primary px-6 py-8 lg:w-1/2 lg:px-10 lg:py-12"
-        style={{ backgroundImage: "radial-gradient(circle at top left, rgba(255,140,0,0.08), transparent 40%)" }}
-      >
-        <div className="absolute inset-x-0 top-0 h-24 pointer-events-none" />
-        <div className="relative z-10 flex flex-1 flex-col justify-between gap-10">
-          <div className="space-y-8">
-            <div className="space-y-3">
-              <p className="text-sm uppercase tracking-[0.35em] text-white/50">{details.label}</p>
-              <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">{details.title}</h1>
-            </div>
+    <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-400 flex-col font-sans text-gray-900 lg:min-h-screen lg:flex-row">
+      
+      {/* ─── LEFT: Corporate Details (Pristine Light Theme) ─── */}
+      <aside className="relative flex w-full flex-col bg-[#f4f4f4] px-6 py-12 sm:px-12 lg:w-1/2 lg:px-16 lg:py-24">
+        
+        <div className="relative z-10 flex flex-1 flex-col justify-between gap-16">
+          <div className="space-y-12">
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: easeExp }}
+              className="space-y-4"
+            >
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#FF6B00]">
+                {details.label || "GLOBAL CONTACTS"}
+              </p>
+              <h1 className="text-4xl font-light tracking-tight text-[#111] sm:text-5xl lg:text-6xl">
+                {details.title || "Let's build together."}
+              </h1>
+            </motion.div>
 
-            <div className="grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: easeExp }}
+              className="grid gap-10 border-t border-black/10 pt-10"
+            >
               <div>
-                <p className="text-sm uppercase tracking-[0.32em] text-white/50">{details.officeLabel}</p>
-                <p className="mt-3 text-base text-white/80">{details.office}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
+                  {details.officeLabel || "HEADQUARTERS"}
+                </p>
+                <p className="mt-2 text-lg font-light text-[#111]">{details.office}</p>
               </div>
               <div>
-                <p className="text-sm uppercase tracking-[0.32em] text-white/50">{details.emailLabel}</p>
-                <a href="mailto:contact@afsecmo.com" className="mt-3 block text-base text-white/90 hover:text-[#FF8C00]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
+                  {details.emailLabel || "EMAIL"}
+                </p>
+                <a href="mailto:contact@afsecmo.com" className="mt-2 block text-lg font-light text-[#111] transition-colors hover:text-[#FF6B00]">
                   contact@afsecmo.com
                 </a>
               </div>
               <div>
-                <p className="text-sm uppercase tracking-[0.32em] text-white/50">{details.phoneLabel}</p>
-                <a href="tel:+441234567890" className="mt-3 block text-base text-white/90 hover:text-[#FF8C00]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
+                  {details.phoneLabel || "PHONE"}
+                </p>
+                <a href="tel:+441234567890" className="mt-2 block text-lg font-light text-[#111] transition-colors hover:text-[#FF6B00]">
                   +44 1234 567 890
                 </a>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="space-y-6">
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-              <p className="text-sm uppercase tracking-[0.32em] text-white/50">{details.findUs}</p>
-              <div className="mt-4 overflow-hidden rounded-3xl border border-white/10 bg-primary">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: easeExp }}
+            className="space-y-8 border-t border-black/10 pt-10"
+          >
+            <div>
+              <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
+                {details.findUs || "LOCATION"}
+              </p>
+              <div className="overflow-hidden rounded-xs border border-black/10 bg-[#e5e5e5]">
                 <iframe
-                  title={details.findUs}
+                  title={details.findUs || "Map"}
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.8816688840747!2d-0.12775868410239587!3d51.50735017963515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b34061f40e7%3A0x65abbc6bb393fa3f!2sLondon!5e0!3m2!1sen!2suk!4v1700000000000"
-                  className="h-56 w-full border-0"
+                  className="h-64 w-full border-0 grayscale contrast-125"
                   loading="lazy"
                 />
               </div>
@@ -123,120 +161,147 @@ export default function ContactLayout() {
               href="https://wa.me/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-full items-center justify-center rounded-full bg-[#FF8C00] px-6 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-[#ffb033]"
+              className="group inline-flex w-fit items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#111] transition-colors duration-300 hover:text-[#FF6B00]"
             >
-              {details.whatsapp}
+              <span>{details.whatsapp || "CONNECT ON WHATSAPP"}</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 transition-all duration-300 group-hover:border-[#FF6B00] group-hover:bg-[rgba(255,107,0,0.08)]">
+                <ArrowRight className="h-3.5 w-3.5 stroke-[#111] transition-colors duration-300 group-hover:stroke-[#FF6B00]" strokeWidth={2} />
+              </span>
             </a>
-          </div>
+          </motion.div>
         </div>
       </aside>
 
-      <main className="w-full bg-secondary px-6 py-8 lg:w-1/2 lg:px-10 lg:py-12">
-        <div className="relative mx-auto max-w-2xl">
-          <div className="mb-8 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-[0_28px_90px_rgba(0,0,0,0.18)]">
-            <div className="mb-6 flex items-center justify-between gap-4">
-              <div>
-                  <p className="text-sm uppercase tracking-[0.35em] text-white/50">{form.label}</p>
-                  <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">{form.title}</h2>
+      {/* ─── RIGHT: The Single-Page Form (Matches Screenshot Layout) ─── */}
+      <main className="w-full bg-white px-5 py-12 sm:px-12 lg:w-1/2 lg:px-20 lg:py-24">
+        
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: easeExp }}
+          className="relative mx-auto w-full max-w-2xl"
+        >
+          {/* Form Container */}
+            <div className="rounded-lg border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] sm:p-10">
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              {/* Web3Forms Subject Override (Optional, good for identifying emails) */}
+              <input type="hidden" name="subject" value="New Inquiry from AFSECMO Website" />
+              <input type="hidden" name="from_name" value="AFSECMO Website" />
+
+              {/* Row 1: Name & Company */}
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.name || "Name"}</span>
+                  <input
+                    type="text"
+                    name="name"
+                      placeholder={form.namePlaceholder || "Your name"}
+                    required
+                      className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  />
+                </label>
+
+                <label className="block">
+                    <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.company || "Company"}</span>
+                  <input
+                    type="text"
+                    name="company"
+                      placeholder={form.companyPlaceholder || "Company name"}
+                      className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  />
+                </label>
               </div>
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/70">
-                {form.step.replace("{{step}}", String(step + 1))}
-              </span>
-            </div>
 
-            <div className="mb-6 h-2 overflow-hidden rounded-full bg-white/10">
-              <div
-                className="h-full rounded-full bg-[#FF8C00]"
-                style={{ width: `${((step + 1) / 3) * 100}%` }}
-              />
-            </div>
+              {/* Row 2: Email & Phone */}
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.email || "Email"}</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder={form.emailPlaceholder || "name@company.com"}
+                    required
+                      className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  />
+                </label>
 
-            <AnimatePresence mode="wait">
-              <motion.form
-                key={step}
-                onSubmit={handleSubmit}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -24 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="space-y-6"
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.phoneLabel || "Phone / WhatsApp"}</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder={form.phonePlaceholder || "+225 07 00 07 00 77"}
+                    required
+                      className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  />
+                </label>
+              </div>
+
+              {/* Row 3: Service Dropdown */}
+              <label className="block">
+                <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.projectType || "Service needed"}</span>
+                <select
+                  name="service"
+                  required
+                  className="w-full cursor-pointer appearance-none rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  style={{ backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 1rem top 50%", backgroundSize: "0.65rem auto" }}
+                >
+                  <option value="" disabled selected hidden>{form.projectTypePlaceholder || "Select a service"}</option>
+                  {(form.serviceOptions || [
+                    "Mining support",
+                    "Oil & gas / industrial services",
+                    "Construction / BTP",
+                    "Procurement / import-export",
+                    "Equipment rental / fleet support",
+                    "Maintenance / utilities",
+                    "Other",
+                  ]).map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              {/* Row 4: Message */}
+              <label className="block">
+                <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.message || "Message"}</span>
+                <textarea
+                  name="message"
+                  placeholder={form.messagePlaceholder || "Tell us what you need, where the project is located, and the timeline."}
+                  rows={4}
+                  required
+                    className="w-full resize-none rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                />
+              </label>
+
+              {/* Submit Button (Uses the golden color from your screenshot) */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="mt-4 flex w-full items-center justify-center rounded-lg bg-[#FF6B00] px-6 py-3.5 text-[15px] font-bold text-white transition-colors hover:bg-[#E65C00] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {step === 0 && (
-                  <div className="space-y-5">
-                    {formFields.map((field) => (
-                      <label key={field.name} className="block text-sm text-white/70">
-                        <span className="mb-3 block text-sm font-semibold text-white">{field.label}</span>
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={formData[field.name as keyof typeof formData]}
-                          onChange={handleChange}
-                          placeholder={field.placeholder}
-                          className="w-full rounded-3xl border border-white/10 bg-tertiary/60 px-5 py-4 text-white outline-none transition focus:border-[#FF8C00] focus:ring-4 focus:ring-[#FF8C00]/40"
-                          required
-                        />
-                      </label>
-                    ))}
-                  </div>
-                )}
+                {isSubmitting ? (t("contact.form.sending", "Sending...") as string) : (form.submit || "Send inquiry")}
+              </button>
 
-                {step === 1 && (
-                  <div className="space-y-5">
-                    {formFields.map((field) => (
-                      <label key={field.name} className="block text-sm text-white/70">
-                        <span className="mb-3 block text-sm font-semibold text-white">{field.label}</span>
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={formData[field.name as keyof typeof formData]}
-                          onChange={handleChange}
-                          placeholder={field.placeholder}
-                          className="w-full rounded-3xl border border-white/10 bg-tertiary/60 px-5 py-4 text-white outline-none transition focus:border-[#FF8C00] focus:ring-4 focus:ring-[#FF8C00]/40"
-                          required
-                        />
-                      </label>
-                    ))}
-                  </div>
-                )}
+              {/* Status Messages */}
+              {submitStatus === "success" && (
+                <p className="mt-4 text-center text-sm font-medium text-green-600">
+                  {t("contact.form.success", "Message sent successfully! We will get back to you soon.")}
+                </p>
+              )}
+              {submitStatus === "error" && (
+                <p className="mt-4 text-center text-sm font-medium text-red-600">
+                  {t("contact.form.error", "Something went wrong. Please try again or email us directly.")}
+                </p>
+              )}
 
-                {step === 2 && (
-                  <div className="space-y-5">
-                    <label className="block text-sm text-white/70">
-                      <span className="mb-3 block text-sm font-semibold text-white">{form.message}</span>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder={form.messagePlaceholder}
-                        rows={6}
-                        className="w-full rounded-3xl border border-white/10 bg-tertiary/60 px-5 py-4 text-white outline-none transition focus:border-[#FF8C00] focus:ring-4 focus:ring-[#FF8C00]/40"
-                        required
-                      />
-                    </label>
-                  </div>
-                )}
-
-                <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:justify-between">
-                  <button
-                    type="button"
-                    onClick={handleBack}
-                    disabled={step === 0}
-                    className="inline-flex w-full items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:text-[#FF8C00] disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
-                  >
-                    {form.back}
-                  </button>
-                  <button
-                    type={step === 2 ? "submit" : "button"}
-                    onClick={step < 2 ? handleNext : undefined}
-                    className="inline-flex w-full items-center justify-center rounded-full bg-[#FF8C00] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-[#ffb033] sm:w-auto"
-                  >
-                    {step === 2 ? form.submit : form.continue}
-                  </button>
-                </div>
-              </motion.form>
-            </AnimatePresence>
+            </form>
           </div>
-        </div>
+        </motion.div>
+
       </main>
     </div>
   );

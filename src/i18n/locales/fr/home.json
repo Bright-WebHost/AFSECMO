@@ -13,6 +13,14 @@
         { "label": "Secteurs clés", "value": "Extraction minière, pétrole & gaz" }
     ]
   },
+    "stats": {
+      "title": "En un coup d'œil",
+      "items": [
+        { "value": "4", "label": "Secteurs industriels principaux servis" },
+        { "value": "2024", "label": "Année de création à Abidjan, Côte d'Ivoire" },
+        { "value": "360°", "label": "Logistique et chaîne d'approvisionnement intégrées" }
+      ]
+    },
   "methodology": {
     "eyebrow": "Profil de l’entreprise",
     "titleLead": "Une exécution fiable,",
@@ -55,10 +63,21 @@
     ]
   },
   "contact": {
-    "eyebrow": "Étapes suivantes",
-    "titleLead": "Prêt à mobiliser vos",
-    "titleAccent": "opérations industrielles ?",
-    "description": "Contactez nos divisions d’ingénierie pour coordonner l’approvisionnement, les fournisseurs, le transport et des cadres opérationnels sur mesure à l’échelle mondiale.",
-    "cta": "Lancer le dossier de demande"
+    "eyebrow": "Contacts mondiaux",
+    "titleLead": "Faites équipe avec AFSECMO pour construire",
+    "titleAccent": "un avenir meilleur pour tous.",
+    "description": "Que vous recherchiez des solutions logistiques, des partenariats dans l’énergie ou une expertise en construction industrielle en Afrique de l’Ouest, notre équipe est prête à vous accompagner.",
+    "cards": {
+      "contact": {
+        "title": "Nous contacter",
+        "description": "Contactez notre siège d’Abidjan ou nos bureaux mondiaux.",
+        "cta": "Lancer une demande"
+      },
+      "careers": {
+        "title": "Rejoindre notre équipe",
+        "description": "Découvrez des opportunités professionnelles pour avoir un impact positif.",
+        "cta": "Découvrir les carrières"
+      }
+    }
   }
 }

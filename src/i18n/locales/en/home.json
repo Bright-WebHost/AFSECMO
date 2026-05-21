@@ -13,6 +13,14 @@
       { "label": "Core Sectors", "value": "Mining, Oil & Gas" }
     ]
   },
+  "stats": {
+    "title": "At a glance",
+    "items": [
+      { "value": "4", "label": "Core industrial sectors served" },
+      { "value": "2024", "label": "Year established in Abidjan, Cote d'Ivoire" },
+      { "value": "360°", "label": "Integrated logistics and supply chain" }
+    ]
+  },
   "methodology": {
     "eyebrow": "Company Profile",
     "titleLead": "Dependable execution,",
@@ -55,10 +63,21 @@
     ]
   },
   "contact": {
-    "eyebrow": "Next Steps",
-    "titleLead": "Ready to mobilize your",
-    "titleAccent": "industrial operations?",
-    "description": "Connect with our engineering divisions to coordinate sourcing, suppliers, transport, and custom operational frameworks globally.",
-    "cta": "Launch Inquiry Deck"
+    "eyebrow": "Global contacts",
+    "titleLead": "Partner with AFSECMO to engineer",
+    "titleAccent": "a better future for everyone.",
+    "description": "Whether you are looking for logistical solutions, energy partnerships, or industrial construction expertise across West Africa, our team is ready to assist.",
+    "cards": {
+      "contact": {
+        "title": "Get in touch",
+        "description": "Reach out to our Abidjan headquarters or global offices.",
+        "cta": "Launch inquiry"
+      },
+      "careers": {
+        "title": "Join our team",
+        "description": "Explore professional opportunities to make a positive difference.",
+        "cta": "Explore careers"
+      }
+    }
   }
 }

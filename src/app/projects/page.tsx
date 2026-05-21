@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { ChevronRight, ArrowRight } from "lucide-react";
 
+// Strictly using your exact provided data and local image paths
 const PROJECTS = [
   { id: "01", title: "Mining Logistics Support", sector: "Mining & Quarry", scope: "Heavy equipment mobilisation & supply chain.", location: "Ivorian Sites", image: "/01.png", span: "lg:col-span-2" },
   { id: "02", title: "Industrial Procurement", sector: "Oil & Gas", scope: "Centralised purchasing of process equipment.", location: "Abidjan Hub", image: "/02.jpg", span: "lg:col-span-1" },
@@ -12,66 +14,115 @@ const PROJECTS = [
   { id: "05", title: "Facility Utilities", sector: "Utilities", scope: "Electrical distribution & plumbing networks.", location: "Camp Operations", image: "/05.png", span: "lg:col-span-3" },
 ];
 
+const easeExp = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
 export function ProjectsContent() {
   return (
-    <main className="min-h-screen bg-[#0F1B2E] text-white selection:bg-[#FF6B00] selection:text-white pb-32">
-      <section className="mx-auto max-w-7xl px-6 pt-40 pb-20 lg:px-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <span className="mb-6 block h-px w-12 bg-[#FF6B00]" />
-          <h1 className="text-5xl font-light tracking-tight text-white sm:text-7xl lg:text-[80px] leading-[0.95]">
-            Operational <br />
-            <span className="font-semibold text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40">
-              Portfolio.
-            </span>
-          </h1>
-        </motion.div>
+    // Replaced dark background with the pristine off-white corporate canvas
+    <main className="w-full bg-[#f8f9fa] pt-24 pb-32 font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white">
+      
+      {/* ─── 1. EXACT HERO FROM QUALITY PAGE (Adapted for Projects) ─── */}
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
+        <div className="relative min-h-115 h-[60vh] w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
+          
+          <div className="absolute inset-0 z-0">
+            {/* Using your local /01.png as the hero background */}
+            <img
+              src="/01.png"
+              alt="Operational Portfolio Banner"
+              className="h-full w-full object-cover opacity-85"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
+          </div>
+
+          <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-12 md:p-16">
+            <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-white/90">
+              <span className="cursor-pointer opacity-80 hover:underline">AFSECMO</span>
+              <ChevronRight className="h-3 w-3 stroke-3 text-white/50" />
+              <span className="text-white">Our Projects</span>
+            </div>
+
+            <div className="max-w-3xl text-left">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: easeExp }}
+                className="text-4xl font-medium leading-none tracking-tight text-white sm:text-5xl lg:text-7xl uppercase"
+              >
+                Operational <span className="block text-[#FF6B00]">Portfolio.</span>
+              </motion.h1>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((proj) => (
+      {/* ─── 2. ARCHITECTURAL PROJECT GRID ─── */}
+      <section className="mx-auto max-w-350 px-4 pt-16 sm:px-6 lg:px-8 lg:pt-24">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {PROJECTS.map((proj, index) => (
             <motion.div
               key={proj.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              className={`group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#060A11] h-[450px] transition-all duration-700 hover:border-[#FF6B00]/40 ${proj.span}`}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: easeExp }}
+              // Sharp rounded-xs corners for an industrial look, maintaining your specific spans
+              className={`group relative h-[450px] w-full cursor-pointer overflow-hidden rounded-xs bg-black ${proj.span}`}
             >
+              
+              {/* Image with Grayscale to Color hover effect */}
               <div className="absolute inset-0 z-0">
                 <img
                   src={proj.image}
                   alt={proj.title}
-                  className="h-full w-full object-cover opacity-50 transition-all duration-1000 group-hover:scale-110 group-hover:opacity-100"
+                  className="h-full w-full object-cover grayscale opacity-70 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060A11] via-[#060A11]/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
               </div>
 
-              <div className="relative z-10 flex h-full flex-col justify-end p-10">
-                <div className="mb-4">
-                  <div className="mb-4 inline-block rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
-                    {proj.sector}
-                  </div>
-                  <h3 className="mb-2 text-3xl font-light uppercase tracking-tight text-white">
-                    {proj.title}
-                  </h3>
-                  <p className="max-w-xs text-sm leading-relaxed text-white/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    {proj.scope}
-                  </p>
-                </div>
+              {/* Your original massive Number overlay in top right */}
+              <div className="absolute right-6 top-6 z-10 overflow-hidden">
+                <span className="block text-4xl font-black text-white/20 transition-colors duration-500 group-hover:text-[#FF6B00]/60">
+                  {proj.id}
+                </span>
+              </div>
 
-                <div className="flex items-end justify-between border-t border-white/10 pt-6">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
+              {/* Content anchored to the bottom */}
+              <div className="relative z-10 flex h-full flex-col justify-end p-6 lg:p-8">
+                
+                <div className="mb-4 flex items-center gap-2">
+                  <span className="flex items-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]">
+                    <span className="mr-2 h-1 w-1 rounded-full bg-[#FF6B00]" />
+                    {proj.sector}
+                  </span>
+                </div>
+                
+                <h3 className="mb-2 text-2xl font-light leading-[1.2] tracking-tight text-white sm:text-3xl lg:text-[32px]">
+                  {proj.title}
+                </h3>
+                
+                <p className="mb-6 max-w-sm text-sm font-light leading-relaxed text-white/60 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:opacity-100">
+                  {proj.scope}
+                </p>
+
+                <div className="flex items-center justify-between border-t border-white/15 pt-5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 transition-colors duration-300 group-hover:text-white/90">
                     {proj.location}
                   </span>
-                  <span className="text-4xl font-black text-white/20 transition-colors group-hover:text-[#FF6B00]/40">
-                    {proj.id}
-                  </span>
+                  
+                  {/* Subtle interactive arrow replacing the plain ID at the bottom */}
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-transparent transition-all duration-500 group-hover:border-[#FF6B00] group-hover:bg-[rgba(255,107,0,0.15)]">
+                    <ArrowRight className="h-3.5 w-3.5 stroke-white transition-transform duration-500 group-hover:-rotate-45 group-hover:stroke-[#FF6B00]" strokeWidth={2} />
+                  </div>
                 </div>
+
               </div>
             </motion.div>
           ))}
         </div>
       </section>
+
     </main>
   );
 }

@@ -62,6 +62,11 @@
     ],
     "cta": "Découvrir les opérations"
   },
+  "sectorsGrid": {
+    "eyebrow": "Découvrez AFSECMO",
+    "description": "Nous sommes un partenaire industriel de premier plan qui soutient les infrastructures, l'énergie et la logistique à travers l'Afrique de l'Ouest et au-delà.",
+    "button": "Voir tous les secteurs"
+  },
   "method": {
     "hero": {
       "eyebrow": "Flux animé",
@@ -123,8 +128,19 @@
       "namePlaceholder": "Jordan Smith",
       "email": "Email professionnel",
       "emailPlaceholder": "hello@afsecmo.com",
+      "phoneLabel": "Téléphone / WhatsApp",
+      "phonePlaceholder": "+225 07 00 07 00 77",
       "projectType": "Type de projet",
       "projectTypePlaceholder": "Expansion industrielle, optimisation de site, intégration digitale...",
+      "serviceOptions": [
+        "Appui minier",
+        "Pétrole & gaz / services industriels",
+        "Construction / BTP",
+        "Achats / import-export",
+        "Location d'équipements / support flotte",
+        "Maintenance / utilités",
+        "Autre"
+      ],
       "timeline": "Délai estimé",
       "timelinePlaceholder": "T3 2026 / 6–12 mois",
       "budget": "Budget",
@@ -133,7 +149,10 @@
       "messagePlaceholder": "Décrivez brièvement le périmètre, les objectifs et les besoins clés.",
       "back": "Retour",
       "continue": "Continuer",
-      "submit": "Envoyer la demande"
+      "submit": "Envoyer la demande",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès ! Nous vous recontacterons bientôt.",
+      "error": "Une erreur est survenue. Veuillez réessayer ou nous écrire directement."
     }
   }
 }

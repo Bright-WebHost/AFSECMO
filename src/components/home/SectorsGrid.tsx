@@ -3,6 +3,7 @@
 import { MouseEvent } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const cards = [
   {
@@ -101,6 +102,7 @@ function Card({ card }: { card: (typeof cards)[0] }) {
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 export default function ServicesGrid() {
+  const { t } = useTranslation("content");
   return (
     <section
       className="w-full px-12 py-20 font-sans lg:px-16"
@@ -112,16 +114,18 @@ export default function ServicesGrid() {
         <div className="mb-4 flex items-start justify-between gap-10">
           <div>
             <span className="mb-5 block text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--accent)]">
-              Discover AFSECMO
+              {t("sectorsGrid.eyebrow", "Discover AFSECMO")}
             </span>
             <p className="max-w-[620px] text-[clamp(24px,3vw,38px)] font-light leading-[1.2] tracking-tight text-[#111]">
-              We are a leading industrial partner driving infrastructure,
-              energy, and logistics across West Africa and beyond.
+              {t(
+                "sectorsGrid.description",
+                "We are a leading industrial partner driving infrastructure, energy, and logistics across West Africa and beyond."
+              )}
             </p>
           </div>
 
           <button className="group mt-1 flex flex-shrink-0 items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#999] transition-colors duration-250 hover:text-white">
-            View all sectors
+            {t("sectorsGrid.button", "View all sectors")}
             <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full border border-[#ccc] transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[rgba(255,140,0,0.10)]">
               <ArrowRight
                 className="h-[13px] w-[13px] transition-colors duration-300 group-hover:stroke-[var(--accent)]"

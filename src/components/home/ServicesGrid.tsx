@@ -3,6 +3,9 @@
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react"; // Ensure lucide-react is installed
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { withLocalePath } from "@/i18n/routing";
 
 // We add a 'widthClass' to control the unique size of each card
 const fallbackServices = [
@@ -34,6 +37,8 @@ const fallbackServices = [
 
 export default function ServicesGallery() {
   const { t } = useTranslation("home");
+  const params = useParams<{ locale?: string }>();
+  const locale = params?.locale === "fr" ? "fr" : "en";
   const rawServices = t("services.items", { returnObjects: true });
   
   // Map your translations to the dynamic widths, or use fallbacks
@@ -71,10 +76,11 @@ export default function ServicesGallery() {
           className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {services.map((service, index) => (
-            <div 
-              key={index} 
-              // Applies the unique width to each card while keeping shrink-0
-              className={`group flex shrink-0 snap-start flex-col cursor-pointer ${service.widthClass}`}
+            <Link
+              key={index}
+              href={withLocalePath(locale, "/services")}
+              className={`group flex shrink-0 snap-start flex-col ${service.widthClass}`}
+            
             >
               {/* Image Container */}
               <div className="h-[280px] sm:h-[350px] lg:h-[420px] w-full overflow-hidden rounded-[1.5rem]">
@@ -97,7 +103,7 @@ export default function ServicesGallery() {
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         

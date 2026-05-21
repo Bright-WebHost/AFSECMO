@@ -1,7 +1,11 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { withLocalePath } from "@/i18n/routing";
+import { useTranslation } from "react-i18next";
 
 const slides = [
   {
@@ -30,18 +34,74 @@ const slides = [
   },
 ];
 
-const DURATION = 5000; // 5 seconds per slide
+const DURATION = 5000;
+
+// Force TypeScript to recognize this as a 4-number tuple to fix the transition error
+const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+// Explicitly type the variants for Framer Motion
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+  },
+};
+
+const maskReveal: Variants = {
+  hidden: { y: "120%", opacity: 0 },
+  show: {
+    y: "0%",
+    opacity: 1,
+    transition: { duration: 1, ease: customEase },
+  },
+  exit: {
+    y: "-50%",
+    opacity: 0,
+    transition: { duration: 0.4, ease: "easeIn" },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: customEase },
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: { duration: 0.4 },
+  },
+};
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
   const [animKey, setAnimKey] = useState(0);
+  const params = useParams<{ locale?: string }>();
+  const locale = params?.locale === "fr" ? "fr" : "en";
+
+  const { t } = useTranslation("home");
+  const rawServices = t("services.items", { returnObjects: true }) as any[];
+  const localizedSlides = slides.map((s, i) => ({
+    ...s,
+    category: (Array.isArray(rawServices) && rawServices[i]?.category) || s.category,
+    title: (Array.isArray(rawServices) && rawServices[i]?.title) || s.title,
+  }));
 
   const goTo = useCallback((i: number) => {
     setIndex(i);
     setAnimKey((k) => k + 1);
   }, []);
 
-  // Eagerly preload all images before the carousel even starts
   useEffect(() => {
     const preloaded: HTMLImageElement[] = [];
     slides.forEach((s) => {
@@ -68,73 +128,97 @@ export default function HeroSection() {
       className="relative h-[90vh] w-full overflow-hidden font-sans"
       style={{ background: "var(--background)" }}
     >
-      {/*
-        ── Images: all mounted at once, crossfade via opacity ──
-        No AnimatePresence "wait" mode — that causes the black gap.
-        Both the outgoing and incoming image are visible simultaneously,
-        so the transition is a true crossfade with zero black frames.
-      */}
-      {slides.map((slide, i) => (
+      {/* ── Images with Slow Pan (Ken Burns) ── */}
+      {localizedSlides.map((slide, i) => (
         <motion.img
           key={slide.id}
           src={slide.image}
           alt={slide.category}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover origin-center"
           loading={i === 0 ? "eager" : "lazy"}
-          animate={{ opacity: i === index ? 1 : 0 }}
-          transition={{ duration: 0.9, ease: "easeInOut" }}
-          // Stack active image on top so its fade-in wins over the exiting one
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{
+            opacity: i === index ? 1 : 0,
+            scale: i === index ? 1.08 : 1, // Slow zoom while active
+          }}
+          transition={{
+            opacity: { duration: 1.2, ease: "easeInOut" },
+            scale: { duration: DURATION / 1000 + 2, ease: "linear" }, // Continuous linear scale
+          }}
           style={{ zIndex: i === index ? 1 : 0 }}
         />
       ))}
 
-      {/* Overlay — above all images, below content */}
+      {/* Overlay */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           zIndex: 2,
           background:
-            "linear-gradient(to right, rgba(15,27,46,0.82) 0%, rgba(15,27,46,0.50) 50%, rgba(15,27,46,0.20) 100%)",
+            "linear-gradient(to right, rgba(15,27,46,0.85) 0%, rgba(15,27,46,0.40) 60%, rgba(15,27,46,0.15) 100%)",
         }}
       />
 
       {/* Slide Content */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-center px-16 pb-20 md:px-24" style={{ zIndex: 3 }}>
+      <div
+        className="absolute inset-0 z-10 flex flex-col justify-center px-6 pb-24 md:px-16 md:pb-20 lg:px-24"
+        style={{ zIndex: 3 }}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
+            exit="exit"
           >
             {/* Category label */}
-            <p
-              className="mb-5 text-[11px] font-medium uppercase tracking-[0.22em]"
-              style={{ color: "var(--accent)" }}
-            >
-              {slides[index].category}
-            </p>
+            <div className="mb-5 overflow-hidden">
+              <motion.p
+                variants={maskReveal}
+                className="text-[11px] font-medium uppercase tracking-[0.22em]"
+                style={{ color: "var(--accent)" }}
+              >
+                {localizedSlides[index].category}
+              </motion.p>
+            </div>
 
-            {/* Headline */}
-            <h1 className="whitespace-pre-line text-5xl font-light leading-[1.13] tracking-tight text-white antialiased md:text-6xl lg:text-[3.5rem]">
-              {slides[index].title}
+            {/* Headline - Split by line for staggered mask reveal */}
+            <h1 className="flex flex-col text-4xl font-light leading-[1.13] tracking-tight text-white antialiased md:text-6xl lg:text-[3.5rem]">
+              {localizedSlides[index].title.split("\n").map((line: string, idx: number) => (
+                <span key={idx} className="overflow-hidden py-1">
+                  <motion.span variants={maskReveal} className="block">
+                    {line}
+                  </motion.span>
+                </span>
+              ))}
             </h1>
 
             {/* CTA */}
-            <button className="group mt-9 flex items-center gap-4">
-              <span className="text-[15px] font-normal tracking-wide text-white">
-                Learn more
-              </span>
-              <span className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-white/50 transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[rgba(255,140,0,0.08)]">
-                <ArrowRight
-                  className="h-[18px] w-[18px] stroke-white transition-colors duration-300 group-hover:stroke-[var(--accent)]"
-                  strokeWidth={1.8}
-                />
-              </span>
-            </button>
+            <motion.div variants={fadeUp}>
+              <Link
+                href={withLocalePath(locale, "/services")}
+                className="group mt-9 flex w-fit items-center gap-4"
+              >
+                <span className="text-[15px] font-normal tracking-wide text-white">
+                  Learn more
+                </span>
+                {/* Updated Tailwind sizes and var syntax */}
+                <span className="flex h-11.5 w-11.5 items-center justify-center rounded-full border border-white/50 transition-all duration-300 group-hover:border-(--accent) group-hover:bg-[rgba(255,140,0,0.08)]">
+                  <ArrowRight
+                    className="h-4.5 w-4.5 stroke-white transition-colors duration-300 group-hover:stroke-(--accent)"
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      {/* Mobile Counter (Visible only on small screens) */}
+      <div className="absolute bottom-10 left-6 z-10 text-[10px] font-medium tracking-[0.2em] text-white/70 md:hidden">
+        0{index + 1} <span className="mx-1 opacity-50">/</span> 0{slides.length}
       </div>
 
       {/* Bottom Tab Navigation */}
@@ -142,14 +226,15 @@ export default function HeroSection() {
         className="absolute bottom-0 left-0 right-0 flex"
         style={{ zIndex: 4, borderTop: "0.5px solid rgba(255,255,255,0.15)" }}
       >
-        {slides.map((slide, i) => (
+        {localizedSlides.map((slide, i) => (
           <button
             key={slide.id}
             onClick={() => goTo(i)}
-            className="flex-1 px-6 py-4 text-left transition-colors hover:bg-white/5"
+            className="flex-1 px-2 py-4 text-left transition-colors hover:bg-white/5 md:px-6 md:py-4"
           >
+            {/* Text hidden on mobile, visible on md+ */}
             <span
-              className="block text-[10.5px] font-medium uppercase tracking-[0.18em] transition-colors duration-300"
+              className="hidden text-[10.5px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 md:block"
               style={{
                 color: index === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.38)",
               }}
@@ -157,9 +242,9 @@ export default function HeroSection() {
               {slide.category}
             </span>
 
-            {/* Animated underline — accent orange */}
+            {/* Animated underline */}
             <div
-              className="mt-2 h-[2px] w-full overflow-hidden"
+              className="mt-0 h-0.5 w-full overflow-hidden md:mt-2"
               style={{ background: "rgba(255,255,255,0.10)" }}
             >
               {index === i && (

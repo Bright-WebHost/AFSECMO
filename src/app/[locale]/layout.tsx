@@ -7,7 +7,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import GlobalScrollTracker from "@/components/ui/GlobalScrollTracker";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import Preloader from "@/components/ui/Preloader";
 import i18nConfig from "../../../i18n.config";
 import { supportedLocales, type Locale } from "@/i18n/locales";
 
@@ -56,7 +55,6 @@ export default async function LocaleLayout({
     <I18nProvider language={locale} resources={resources}>
       <LenisProvider>
         <div className="relative w-full max-w-[100vw] overflow-clip">
-          <Preloader />
           <GlobalScrollTracker />
           <Navbar />
           {children}
