@@ -11,13 +11,6 @@
       { "label": "Siège", "value": "Abidjan" },
       { "label": "Entité juridique", "value": "SARL" }
     ],
-    "coreSectorsTitle": "Secteurs industriels clés",
-    "coreSectors": [
-      "Mines & Carrières",
-      "Pétrole, Gaz & Énergie",
-      "Construction & Infrastructures",
-      "Opérations industrielles"
-    ],
     "section": {
       "eyebrow": "Activités principales",
       "title": "Ingénierie et achats pour l’industrie lourde."
