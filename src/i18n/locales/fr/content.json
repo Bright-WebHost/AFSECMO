@@ -8,9 +8,15 @@
       "imageAlt": "Opérations industrielles AFSECMO"
     },
     "stats": [
-      { "label": "Créé en", "value": "2024" },
       { "label": "Siège", "value": "Abidjan" },
       { "label": "Entité juridique", "value": "SARL" }
+    ],
+    "coreSectorsTitle": "Secteurs industriels clés",
+    "coreSectors": [
+      "Mines & Carrières",
+      "Pétrole, Gaz & Énergie",
+      "Construction & Infrastructures",
+      "Opérations industrielles"
     ],
     "section": {
       "eyebrow": "Activités principales",

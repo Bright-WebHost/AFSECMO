@@ -8,9 +8,15 @@
       "imageAlt": "AFSECMO Industrial Operations"
     },
     "stats": [
-      { "label": "Established", "value": "2024" },
       { "label": "Headquarters", "value": "Abidjan" },
       { "label": "Legal Entity", "value": "SARL" }
+    ],
+    "coreSectorsTitle": "Core industrial sectors",
+    "coreSectors": [
+      "Mining & Quarrying",
+      "Oil, Gas & Energy",
+      "Construction & Infrastructure",
+      "Industrial Operations"
     ],
     "section": {
       "eyebrow": "Primary Activities",

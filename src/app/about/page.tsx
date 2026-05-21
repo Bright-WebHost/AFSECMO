@@ -13,6 +13,8 @@ export function AboutContent() {
   const { t } = useTranslation("content");
   const activities = t("about.activities", { returnObjects: true }) as AboutActivity[];
   const stats = t("about.stats", { returnObjects: true }) as AboutStat[];
+  const coreSectors = t("about.coreSectors", { returnObjects: true }) as string[];
+  const coreSectorsTitle = t("about.coreSectorsTitle");
   const hero = t("about.hero", { returnObjects: true }) as {
     eyebrow: string;
     titleLead: string;
@@ -64,6 +66,20 @@ export function AboutContent() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ── Core Industrial Sectors ── */}
+      <section className="w-full bg-white py-12">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <h3 className="mb-6 text-lg font-semibold text-gray-900">{coreSectorsTitle}</h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 list-disc pl-5">
+            {coreSectors.map((s) => (
+              <li key={s} className="text-sm text-gray-700">
+                {s}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
