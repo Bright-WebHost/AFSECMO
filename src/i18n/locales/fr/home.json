@@ -16,9 +16,18 @@
     "stats": {
       "title": "En un coup d'œil",
       "items": [
-        { "value": "4", "label": "Secteurs industriels principaux servis" },
-        { "value": "2024", "label": "Année de création à Abidjan, Côte d'Ivoire" },
-        { "value": "360°", "label": "Logistique et chaîne d'approvisionnement intégrées" }
+        {
+          "value": "Abidjan",
+          "label": "Siège stratégique basé en Côte d'Ivoire, desservant l'Afrique de l'Ouest."
+        },
+        {
+          "value": "4",
+          "label": "Secteurs industriels clés : Mines, Pétrole & Gaz, BTP et Logistique."
+        },
+        {
+          "value": "360°",
+          "label": "Opérations de bout en bout : de la centrale d'achat à la chaîne d'approvisionnement globale."
+        }
       ]
     },
   "methodology": {

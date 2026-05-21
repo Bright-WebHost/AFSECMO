@@ -12,7 +12,7 @@ const slides = [
     id: 1,
     category: "Mining Operations",
     title: "Driving extraction\nefficiency through\ninnovation.",
-    image: "/hero/hero1.jpg",
+    image: "/hero/hero1.png",
   },
   {
     id: 2,
@@ -128,40 +128,38 @@ export default function HeroSection() {
       className="relative h-[90vh] w-full overflow-hidden font-sans"
       style={{ background: "var(--background)" }}
     >
-      {/* ── Images with Slow Pan (Ken Burns) ── */}
+      {/* ── Images without zoom effect ── */}
       {localizedSlides.map((slide, i) => (
         <motion.img
           key={slide.id}
           src={slide.image}
           alt={slide.category}
-          className="absolute inset-0 h-full w-full object-cover origin-center"
+          className="absolute inset-0 h-full w-full object-cover"
           loading={i === 0 ? "eager" : "lazy"}
-          initial={{ opacity: 0, scale: 1 }}
+          initial={{ opacity: 0 }}
           animate={{
             opacity: i === index ? 1 : 0,
-            scale: i === index ? 1.08 : 1, // Slow zoom while active
           }}
           transition={{
             opacity: { duration: 1.2, ease: "easeInOut" },
-            scale: { duration: DURATION / 1000 + 2, ease: "linear" }, // Continuous linear scale
           }}
           style={{ zIndex: i === index ? 1 : 0 }}
         />
       ))}
 
-      {/* Overlay */}
+      {/* Overlay - Adjusted for better mobile visibility */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           zIndex: 2,
           background:
-            "linear-gradient(to right, rgba(15,27,46,0.85) 0%, rgba(15,27,46,0.40) 60%, rgba(15,27,46,0.15) 100%)",
+            "linear-gradient(to right, rgba(15,27,46,0.85) 0%, rgba(15,27,46,0.50) 50%, rgba(15,27,46,0.25) 100%)",
         }}
       />
 
       {/* Slide Content */}
       <div
-        className="absolute inset-0 z-10 flex flex-col justify-center px-6 pb-24 md:px-16 md:pb-20 lg:px-24"
+        className="absolute inset-0 z-10 flex flex-col justify-center px-4 pb-20 sm:px-6 sm:pb-24 md:px-16 md:pb-20 lg:px-24"
         style={{ zIndex: 3 }}
       >
         <AnimatePresence mode="wait">
@@ -173,10 +171,10 @@ export default function HeroSection() {
             exit="exit"
           >
             {/* Category label */}
-            <div className="mb-5 overflow-hidden">
+            <div className="mb-4 sm:mb-5 overflow-hidden">
               <motion.p
                 variants={maskReveal}
-                className="text-[11px] font-medium uppercase tracking-[0.22em]"
+                className="text-[9px] sm:text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.20em] md:tracking-[0.22em]"
                 style={{ color: "var(--accent)" }}
               >
                 {localizedSlides[index].category}
@@ -184,9 +182,9 @@ export default function HeroSection() {
             </div>
 
             {/* Headline - Split by line for staggered mask reveal */}
-            <h1 className="flex flex-col text-4xl font-light leading-[1.13] tracking-tight text-white antialiased md:text-6xl lg:text-[3.5rem]">
+            <h1 className="flex flex-col text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light leading-[1.15] sm:leading-[1.14] md:leading-[1.13] tracking-tight text-white antialiased">
               {localizedSlides[index].title.split("\n").map((line: string, idx: number) => (
-                <span key={idx} className="overflow-hidden py-1">
+                <span key={idx} className="overflow-hidden py-0.5 sm:py-1">
                   <motion.span variants={maskReveal} className="block">
                     {line}
                   </motion.span>
@@ -198,15 +196,15 @@ export default function HeroSection() {
             <motion.div variants={fadeUp}>
               <Link
                 href={withLocalePath(locale, "/services")}
-                className="group mt-9 flex w-fit items-center gap-4"
+                className="group mt-6 sm:mt-7 md:mt-9 flex w-fit items-center gap-3 sm:gap-4"
               >
-                <span className="text-[15px] font-normal tracking-wide text-white">
+                <span className="text-xs sm:text-sm md:text-[15px] font-normal tracking-wide text-white">
                   Learn more
                 </span>
                 {/* Updated Tailwind sizes and var syntax */}
-                <span className="flex h-11.5 w-11.5 items-center justify-center rounded-full border border-white/50 transition-all duration-300 group-hover:border-(--accent) group-hover:bg-[rgba(255,140,0,0.08)]">
+                <span className="flex h-9 w-9 sm:h-10 sm:w-10 md:h-11.5 md:w-11.5 items-center justify-center rounded-full border border-white/50 transition-all duration-300 group-hover:border-(--accent) group-hover:bg-[rgba(255,140,0,0.08)]">
                   <ArrowRight
-                    className="h-4.5 w-4.5 stroke-white transition-colors duration-300 group-hover:stroke-(--accent)"
+                    className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5 stroke-white transition-colors duration-300 group-hover:stroke-(--accent)"
                     strokeWidth={1.8}
                   />
                 </span>
@@ -217,7 +215,7 @@ export default function HeroSection() {
       </div>
 
       {/* Mobile Counter (Visible only on small screens) */}
-      <div className="absolute bottom-10 left-6 z-10 text-[10px] font-medium tracking-[0.2em] text-white/70 md:hidden">
+      <div className="absolute bottom-10 left-4 sm:left-6 z-10 text-[9px] sm:text-[10px] font-medium tracking-[0.18em] sm:tracking-[0.2em] text-white/70 md:hidden">
         0{index + 1} <span className="mx-1 opacity-50">/</span> 0{slides.length}
       </div>
 
@@ -230,11 +228,11 @@ export default function HeroSection() {
           <button
             key={slide.id}
             onClick={() => goTo(i)}
-            className="flex-1 px-2 py-4 text-left transition-colors hover:bg-white/5 md:px-6 md:py-4"
+            className="flex-1 px-2 py-3 sm:py-4 text-left transition-colors hover:bg-white/5 sm:px-4 md:px-6"
           >
-            {/* Text hidden on mobile, visible on md+ */}
+            {/* Text hidden on mobile, visible on sm+ */}
             <span
-              className="hidden text-[10.5px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 md:block"
+              className="hidden text-[8px] sm:text-[9px] md:text-[10.5px] font-medium uppercase tracking-[0.15em] sm:tracking-[0.16em] md:tracking-[0.18em] transition-colors duration-300 sm:block"
               style={{
                 color: index === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.38)",
               }}
@@ -244,7 +242,7 @@ export default function HeroSection() {
 
             {/* Animated underline */}
             <div
-              className="mt-0 h-0.5 w-full overflow-hidden md:mt-2"
+              className="mt-1.5 sm:mt-2 h-0.5 w-full overflow-hidden"
               style={{ background: "rgba(255,255,255,0.10)" }}
             >
               {index === i && (

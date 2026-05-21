@@ -24,18 +24,18 @@ export function MethodContent() {
     <main className="w-full bg-white text-gray-900 font-sans selection:bg-[#FF6B00] selection:text-white pt-24 pb-24">
       
       {/* ─── 1. Architectural Rounded Hero Card Banner ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
+        <div className="relative h-[60vh] min-h-115 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           
           <div className="absolute inset-0 z-0">
             {/* High-res operational/methodology backdrop asset image */}
             <img
-              src={phases?.[0]?.image || "https://images.unsplash.com/photo-1581092160607-ee22531fa799?q=75&w=1920&auto=format&fit=crop"}
+              src={phases?.[0]?.image || "/unsplash-1541888946425-d81bb19240f5.jpg"}
               alt={hero.eyebrow || "Our Methodology"}
               className="h-full w-full object-cover opacity-85"
             />
             {/* Linear dark gradient layer for crisp type legibility layout parameters */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
           </div>
 
           {/* Breadcrumbs & Title Text Overlay Container */}
@@ -44,7 +44,7 @@ export function MethodContent() {
             {/* Top-Aligned Navigation Path Track */}
             <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
               <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
-              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-3" />
               <span className="text-white">Our method</span>
             </div>
 
@@ -65,7 +65,7 @@ export function MethodContent() {
       </section>
 
       {/* ─── 2. Introductory Overview Row ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-16 pb-12 lg:pt-24">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 pt-16 pb-12 lg:pt-24">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:items-start">
           <div className="md:col-span-4">
             <h2 className="text-xs font-semibold uppercase tracking-widest text-[#FF6B00]">
@@ -81,7 +81,7 @@ export function MethodContent() {
       </section>
 
       {/* ─── 3. Clean Alternating Editorial Phase Stream ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col gap-24 lg:gap-32">
           {Array.isArray(phases) && phases.map((phase, index) => {
             const isEven = index % 2 === 0;
@@ -98,7 +98,7 @@ export function MethodContent() {
                 }`}
               >
                 {/* Asymmetric Media Container Block - Pure, un-tinted and vivid */}
-                <div className="h-80 w-full overflow-hidden rounded-2xl bg-gray-100 sm:h-96 lg:h-[480px] lg:w-1/2 shadow-xs">
+                <div className="h-80 w-full overflow-hidden rounded-2xl bg-gray-100 shadow-xs sm:h-96 lg:h-120 lg:w-1/2">
                   <img
                     src={phase.image}
                     alt={phase.title}

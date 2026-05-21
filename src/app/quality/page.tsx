@@ -11,12 +11,12 @@ type Standard = { title: string; category: string; copy: string };
 
 // High-end Unsplash images for heavy industry & quality control
 const images = [
-  "https://images.unsplash.com/photo-1581092160607-ee22531fa799?q=80&w=1200&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=1200&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1200&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1200&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop", 
+  "/about1.png", 
+  "/about2.jpg", 
+  "/unsplash-1541888946425-d81bb19240f5.jpg", 
+  "/unsplash-1494412574643-ff11b0a5c1c3.jpg", 
+  "/unsplash-1504328345606-18bbc8c9d7d1.jpg", 
+  "/unsplash-1518770660439-4636190af475.jpg", 
 ];
 
 const easeExp = [0.16, 1, 0.3, 1] as [number, number, number, number];

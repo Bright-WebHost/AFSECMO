@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEvent } from "react";
+import { MouseEvent, useState, UIEvent } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -8,32 +8,41 @@ import { useTranslation } from "react-i18next";
 const cards = [
   {
     id: "mining",
-    eyebrow: "Sectors Served",
-    title: "Driving extraction efficiency through innovation in Mining.",
+    eyebrowKey: "sectorsGrid.cards.mining.eyebrow",
+    defaultEyebrow: "Sectors Served",
+    titleKey: "sectorsGrid.cards.mining.title",
+    defaultTitle: "Driving extraction efficiency through innovation in Mining.",
     image: "/about1.png",
   },
   {
     id: "oil-gas",
-    eyebrow: "What We Do",
-    title: "Powering infrastructure with reliable Oil & Gas solutions.",
+    eyebrowKey: "sectorsGrid.cards.oilGas.eyebrow",
+    defaultEyebrow: "What We Do",
+    titleKey: "sectorsGrid.cards.oilGas.title",
+    defaultTitle: "Powering infrastructure with reliable Oil & Gas solutions.",
     image: "/about2.jpg",
   },
   {
     id: "construction",
-    eyebrow: "Our Impact",
-    title: "Building the backbone of West African industrial construction.",
+    eyebrowKey: "sectorsGrid.cards.construction.eyebrow",
+    defaultEyebrow: "Our Impact",
+    titleKey: "sectorsGrid.cards.construction.title",
+    defaultTitle: "Building the backbone of West African industrial construction.",
     image: "/about3.jpg",
   },
   {
     id: "logistics",
-    eyebrow: "Logistics",
-    title: "Delivering global supply chain excellence to your doorstep.",
+    eyebrowKey: "sectorsGrid.cards.logistics.eyebrow",
+    defaultEyebrow: "Logistics",
+    titleKey: "sectorsGrid.cards.logistics.title",
+    defaultTitle: "Delivering global supply chain excellence to your doorstep.",
     image: "/about4.png",
   },
 ];
 
-// ─── Individual card — each tracks its own mouse position ───────────────────
+// ─── Individual card ────────────────────────────────────────────────────────
 function Card({ card }: { card: (typeof cards)[0] }) {
+  const { t } = useTranslation("content");
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -46,7 +55,7 @@ function Card({ card }: { card: (typeof cards)[0] }) {
   const bubbleBackground = useMotionTemplate`
     radial-gradient(
       420px circle at ${mouseX}px ${mouseY}px,
-      rgba(255,255,255,0.13),
+      rgba(255,255,255,0.15),
       transparent 75%
     )
   `;
@@ -54,43 +63,44 @@ function Card({ card }: { card: (typeof cards)[0] }) {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="group relative h-[440px] cursor-pointer overflow-hidden rounded-2xl bg-black"
+      // Adjusted height to look great in a horizontal scroll format
+      className="group relative h-95 w-full cursor-pointer overflow-hidden rounded-2xl bg-black sm:h-110"
     >
       {/* 1 — Background image */}
       <img
         src={card.image}
-        alt={card.title}
+        alt={t(card.titleKey, card.defaultTitle)}
         className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.05]"
         loading="lazy"
       />
 
-      {/* 2 — Permanent dark gradient (top + bottom readable) */}
+      {/* 2 — Permanent dark gradient */}
       <div
         className="absolute inset-0 z-10 transition-opacity duration-400"
         style={{
           background:
-            "linear-gradient(160deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.14) 45%, rgba(0,0,0,0.55) 100%)",
+            "linear-gradient(160deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 45%, rgba(0,0,0,0.65) 100%)",
         }}
       />
 
       {/* 3 — Cursor spotlight bubble */}
       <motion.div
-        className="pointer-events-none absolute inset-0 z-20 rounded-2xl opacity-0 transition-opacity duration-350 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 z-20 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{ background: bubbleBackground }}
       />
 
-      {/* 4 — Text: eyebrow + title at top-left */}
-      <div className="absolute inset-0 z-30 flex flex-col p-7">
-        <span className="mb-3 text-[10px] font-medium uppercase tracking-[0.2em] text-white/65">
-          {card.eyebrow}
+      {/* 4 — Text */}
+      <div className="absolute inset-0 z-30 flex flex-col p-6 lg:p-7">
+        <span className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white/70">
+          {t(card.eyebrowKey, card.defaultEyebrow)}
         </span>
-        <h3 className="max-w-[230px] text-xl font-light leading-[1.35] text-white">
-          {card.title}
+        <h3 className="max-w-57.5 text-lg font-light leading-[1.35] text-white sm:text-xl">
+          {t(card.titleKey, card.defaultTitle)}
         </h3>
       </div>
 
-      {/* 5 — Arrow circle at bottom-right */}
-      <div className="absolute bottom-6 right-6 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-transparent transition-all duration-300 group-hover:border-white group-hover:bg-white/12">
+      {/* 5 — Arrow circle */}
+      <div className="absolute bottom-5 right-5 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-transparent transition-all duration-300 group-hover:border-white group-hover:bg-white/15">
         <ArrowRight
           className="h-4 w-4 stroke-white transition-transform duration-300 group-hover:translate-x-0.5"
           strokeWidth={1.8}
@@ -103,20 +113,34 @@ function Card({ card }: { card: (typeof cards)[0] }) {
 // ─── Section ─────────────────────────────────────────────────────────────────
 export default function ServicesGrid() {
   const { t } = useTranslation("content");
+  
+  // State to track scroll progress (from 0 to 1)
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Calculate progress when user scrolls
+  const handleScroll = (e: UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, scrollWidth, clientWidth } = e.currentTarget;
+    const maxScroll = scrollWidth - clientWidth;
+    
+    // Prevent dividing by zero if container isn't scrollable
+    const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+    setScrollProgress(progress);
+  };
+  
   return (
     <section
-      className="w-full px-12 py-20 font-sans lg:px-16"
+      className="w-full px-0 py-12 font-sans sm:px-8 lg:px-16 lg:py-20"
       style={{ background: "#f4f4f4" }}
     >
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-350">
 
-        {/* Section header */}
-        <div className="mb-4 flex items-start justify-between gap-10">
+        {/* Section header (kept padding on mobile so it aligns, while edge-to-edge scrolling happens below) */}
+        <div className="mb-6 flex flex-col items-start justify-between gap-6 px-5 md:flex-row md:items-end lg:gap-10 lg:px-0">
           <div>
-            <span className="mb-5 block text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--accent)]">
+            <span className="mb-3 block text-[11px] font-medium uppercase tracking-[0.22em] text-[#0055A4] md:mb-5">
               {t("sectorsGrid.eyebrow", "Discover AFSECMO")}
             </span>
-            <p className="max-w-[620px] text-[clamp(24px,3vw,38px)] font-light leading-[1.2] tracking-tight text-[#111]">
+            <p className="max-w-155 text-2xl font-light leading-[1.3] tracking-tight text-[#111] sm:text-3xl lg:text-[38px] lg:leading-[1.2]">
               {t(
                 "sectorsGrid.description",
                 "We are a leading industrial partner driving infrastructure, energy, and logistics across West Africa and beyond."
@@ -124,11 +148,11 @@ export default function ServicesGrid() {
             </p>
           </div>
 
-          <button className="group mt-1 flex flex-shrink-0 items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#999] transition-colors duration-250 hover:text-white">
+          <button className="group mt-2 flex shrink-0 items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#777] transition-colors duration-200 hover:text-black">
             {t("sectorsGrid.button", "View all sectors")}
-            <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full border border-[#ccc] transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[rgba(255,140,0,0.10)]">
+            <span className="flex h-8.5 w-8.5 items-center justify-center rounded-full border border-[#ccc] transition-all duration-300 group-hover:border-[#0055A4] group-hover:bg-[#0055A4]/10">
               <ArrowRight
-                className="h-[13px] w-[13px] transition-colors duration-300 group-hover:stroke-[var(--accent)]"
+                className="h-3.25 w-3.25 transition-colors duration-300 group-hover:stroke-[#0055A4]"
                 strokeWidth={2}
               />
             </span>
@@ -136,13 +160,36 @@ export default function ServicesGrid() {
         </div>
 
         {/* Thin divider */}
-        <div className="mb-8 h-px w-full bg-black/10" />
+        <div className="mb-8 hidden h-px w-full bg-black/10 lg:block" />
 
-        {/* 4-column equal grid */}
-        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* ─── Carousel Container ─── */}
+          <div 
+          className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 lg:px-0 [&::-webkit-scrollbar]:hidden"
+          onScroll={handleScroll}
+        >
           {cards.map((card) => (
-            <Card key={card.id} card={card} />
+            <div 
+              key={card.id} 
+              // 85vw on mobile gives that nice "peek" effect for the next card
+              className="min-w-[85vw] shrink-0 snap-center sm:min-w-85 lg:min-w-80"
+            >
+              <Card card={card} />
+            </div>
           ))}
+        </div>
+
+        {/* ─── Custom Scroll Indicator ─── */}
+        {/* Exactly mimicking the screenshot with brand blue and orange */}
+        <div className="mx-auto mt-2 h-1 w-full max-w-50 rounded-full bg-black/10 sm:max-w-75">
+          <div
+            className="h-full w-1/4 rounded-full bg-linear-to-r from-[#0055A4] to-[#FF8C00]"
+            style={{
+              // If width is 1/4 (25%), we need to move it across the remaining 75%. 
+              // 300% of its own width = 75% of the parent width.
+              transform: `translateX(${scrollProgress * 300}%)`,
+              transition: "transform 0.1s ease-out"
+            }}
+          />
         </div>
 
       </div>

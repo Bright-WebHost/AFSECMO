@@ -16,9 +16,18 @@
   "stats": {
     "title": "At a glance",
     "items": [
-      { "value": "4", "label": "Core industrial sectors served" },
-      { "value": "2024", "label": "Year established in Abidjan, Cote d'Ivoire" },
-      { "value": "360°", "label": "Integrated logistics and supply chain" }
+      {
+        "value": "Abidjan",
+        "label": "Strategic headquarters based in Côte d'Ivoire, serving West Africa."
+      },
+      {
+        "value": "4",
+        "label": "Core industrial sectors: Mining, Oil & Gas, Construction, and Logistics."
+      },
+      {
+        "value": "360°",
+        "label": "End-to-end operations: from central purchasing to global supply chain."
+      }
     ]
   },
   "methodology": {

@@ -65,7 +65,25 @@
   "sectorsGrid": {
     "eyebrow": "Discover AFSECMO",
     "description": "We are a leading industrial partner driving infrastructure, energy, and logistics across West Africa and beyond.",
-    "button": "View all sectors"
+    "button": "View all sectors",
+    "cards": {
+      "mining": {
+        "eyebrow": "Sectors Served",
+        "title": "Driving extraction efficiency through innovation in Mining."
+      },
+      "oilGas": {
+        "eyebrow": "What We Do",
+        "title": "Powering infrastructure with reliable Oil & Gas solutions."
+      },
+      "construction": {
+        "eyebrow": "Our Impact",
+        "title": "Building the backbone of West African industrial construction."
+      },
+      "logistics": {
+        "eyebrow": "Logistics",
+        "title": "Delivering global supply chain excellence to your doorstep."
+      }
+    }
   },
   "method": {
     "hero": {
@@ -102,7 +120,7 @@
       "label": "Contact Details",
       "title": "Reach the AFSECMO team.",
       "officeLabel": "Office",
-      "office": "21 Industrial Drive, London, UK",
+      "office": "Centre clarice, Zone 4, Abidjan, Côte D’ivoire.",
       "emailLabel": "Email",
       "phoneLabel": "Phone",
       "findUs": "Find us",

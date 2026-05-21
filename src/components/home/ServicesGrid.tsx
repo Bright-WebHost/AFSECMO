@@ -7,29 +7,35 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { withLocalePath } from "@/i18n/routing";
 
+type ServiceItem = {
+  title: string;
+  image: string;
+  widthClass: string;
+};
+
 // We add a 'widthClass' to control the unique size of each card
-const fallbackServices = [
+const fallbackServices: ServiceItem[] = [
   {
     title: "Managing our emissions",
-    image: "https://images.unsplash.com/photo-1581092160607-ee22531fa799?q=80&w=600&auto=format&fit=crop",
+    image: "/about1.png",
     // Narrow / Portrait
     widthClass: "w-[240px] sm:w-[280px] lg:w-[320px]", 
   },
   {
     title: "The Manifa Story",
-    image: "https://images.unsplash.com/photo-1549421263-503525164478?q=80&w=1200&auto=format&fit=crop",
+    image: "/about2.jpg",
     // Wide / Landscape
     widthClass: "w-[320px] sm:w-[480px] lg:w-[650px]", 
   },
   {
     title: "Serving society",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop",
+    image: "/unsplash-1541888946425-d81bb19240f5.jpg",
     // Square-ish
     widthClass: "w-[280px] sm:w-[360px] lg:w-[400px]", 
   },
   {
     title: "Driving Logistics Forward", // Updated title for your context
-    image: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1000&auto=format&fit=crop",
+    image: "/unsplash-1494412574643-ff11b0a5c1c3.jpg",
     // Medium Wide
     widthClass: "w-[300px] sm:w-[420px] lg:w-[500px]", 
   },
@@ -39,13 +45,13 @@ export default function ServicesGallery() {
   const { t } = useTranslation("home");
   const params = useParams<{ locale?: string }>();
   const locale = params?.locale === "fr" ? "fr" : "en";
-  const rawServices = t("services.items", { returnObjects: true });
+  const rawServices = t("services.items", { returnObjects: true }) as ServiceItem[];
   
   // Map your translations to the dynamic widths, or use fallbacks
-  const services = Array.isArray(rawServices) && rawServices.length > 0 
-    ? rawServices.map((s: any, i) => ({
-        ...s,
-        widthClass: fallbackServices[i % fallbackServices.length].widthClass
+  const services: ServiceItem[] = Array.isArray(rawServices) && rawServices.length > 0 
+    ? rawServices.map((service, i) => ({
+        ...service,
+        widthClass: fallbackServices[i % fallbackServices.length].widthClass,
       }))
     : fallbackServices;
   
@@ -54,7 +60,7 @@ export default function ServicesGallery() {
   return (
     // Strictly white background
     <section className="w-full bg-white py-20 sm:py-32 font-sans selection:bg-[#FF8C00] selection:text-white">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <div className="mb-12 max-w-3xl">
@@ -73,7 +79,7 @@ export default function ServicesGallery() {
         {/* Horizontal Scrolling Track */}
         <div 
           ref={scrollContainerRef}
-          className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="scrollbar-none flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-4 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {services.map((service, index) => (
             <Link
@@ -83,7 +89,7 @@ export default function ServicesGallery() {
             
             >
               {/* Image Container */}
-              <div className="h-[280px] sm:h-[350px] lg:h-[420px] w-full overflow-hidden rounded-[1.5rem]">
+              <div className="h-70 w-full overflow-hidden rounded-3xl sm:h-87.5 lg:h-105">
                 <img 
                   src={service.image} 
                   alt={service.title} 

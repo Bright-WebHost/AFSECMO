@@ -65,7 +65,25 @@
   "sectorsGrid": {
     "eyebrow": "Découvrez AFSECMO",
     "description": "Nous sommes un partenaire industriel de premier plan qui soutient les infrastructures, l'énergie et la logistique à travers l'Afrique de l'Ouest et au-delà.",
-    "button": "Voir tous les secteurs"
+    "button": "Voir tous les secteurs",
+    "cards": {
+      "mining": {
+        "eyebrow": "Secteurs desservis",
+        "title": "Améliorer l’efficacité des opérations minières grâce à l’innovation."
+      },
+      "oilGas": {
+        "eyebrow": "Ce que nous faisons",
+        "title": "Soutenir les infrastructures avec des solutions pétrolières et gazières fiables."
+      },
+      "construction": {
+        "eyebrow": "Notre impact",
+        "title": "Bâtir le socle de la construction industrielle en Afrique de l’Ouest."
+      },
+      "logistics": {
+        "eyebrow": "Logistique",
+        "title": "Offrir l’excellence de la chaîne d’approvisionnement jusqu’à votre porte."
+      }
+    }
   },
   "method": {
     "hero": {
@@ -102,7 +120,7 @@
       "label": "Coordonnées",
       "title": "Contactez l’équipe AFSECMO.",
       "officeLabel": "Bureau",
-      "office": "21 Industrial Drive, London, UK",
+      "office": "Centre clarice, Zone 4, Abidjan, Côte D’ivoire.",
       "emailLabel": "Email",
       "phoneLabel": "Téléphone",
       "findUs": "Nous trouver",

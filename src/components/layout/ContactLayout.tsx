@@ -143,20 +143,6 @@ export default function ContactLayout() {
             transition={{ duration: 0.8, delay: 0.2, ease: easeExp }}
             className="space-y-8 border-t border-black/10 pt-10"
           >
-            <div>
-              <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
-                {details.findUs || "LOCATION"}
-              </p>
-              <div className="overflow-hidden rounded-xs border border-black/10 bg-[#e5e5e5]">
-                <iframe
-                  title={details.findUs || "Map"}
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.8816688840747!2d-0.12775868410239587!3d51.50735017963515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b34061f40e7%3A0x65abbc6bb393fa3f!2sLondon!5e0!3m2!1sen!2suk!4v1700000000000"
-                  className="h-64 w-full border-0 grayscale contrast-125"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
             <a
               href="https://wa.me/"
               target="_blank"
