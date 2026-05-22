@@ -128,3 +128,7 @@ export function CareersContent() {
     </main>
   );
 }
+
+export default function CareersPage() {
+  return null;
+}
