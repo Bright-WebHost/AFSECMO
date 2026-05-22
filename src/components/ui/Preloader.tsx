@@ -20,8 +20,8 @@ export default function Preloader() {
       setTimeout(() => {
         setIsLoading(false);
         document.body.style.overflow = "auto";
-      }, 900);
-    }, 1600);
+      }, 450);
+    }, 250);
 
     return () => {
       clearTimeout(exitTimer);
@@ -34,7 +34,7 @@ export default function Preloader() {
       {isLoading && (
         <motion.div
           key="preloader"
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#060A11]"
+          className="fixed inset-0 z-9999 flex flex-col items-center justify-center overflow-hidden bg-[#060A11]"
         >
           {/* Dot-grid texture */}
           <div
@@ -112,7 +112,7 @@ export default function Preloader() {
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1.4, ease: easeExpOut, delay: 0.5 }}
-            className="absolute bottom-[14%] left-1/2 z-10 h-px w-[min(280px,70vw)] -translate-x-1/2 origin-left bg-gradient-to-r from-[#FF6B00]/80 via-[#FF6B00]/30 to-transparent"
+            className="absolute bottom-[14%] left-1/2 z-10 h-px w-[min(280px,70vw)] -translate-x-1/2 origin-left bg-linear-to-r from-[#FF6B00]/80 via-[#FF6B00]/30 to-transparent"
           />
 
           {/* Corner metadata */}
@@ -139,13 +139,13 @@ export default function Preloader() {
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: easeExpOut, delay: 0.3 }}
-            className="absolute right-4 top-6 z-10 h-px w-16 origin-right bg-gradient-to-l from-[#FF6B00]/60 to-transparent sm:right-8 sm:top-8 sm:w-24"
+            className="absolute right-4 top-6 z-10 h-px w-16 origin-right bg-linear-to-l from-[#FF6B00]/60 to-transparent sm:right-8 sm:top-8 sm:w-24"
           />
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             animate={{ scaleY: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: easeExpOut, delay: 0.4 }}
-            className="absolute right-4 top-6 z-10 h-12 w-px origin-top bg-gradient-to-b from-[#FF6B00]/60 to-transparent sm:right-8 sm:top-8 sm:h-16"
+            className="absolute right-4 top-6 z-10 h-12 w-px origin-top bg-linear-to-b from-[#FF6B00]/60 to-transparent sm:right-8 sm:top-8 sm:h-16"
           />
 
         </motion.div>
