@@ -163,7 +163,7 @@ export default function Navbar() {
               {/* Mobile logo */}
               <div className="lg:hidden h-8 w-auto flex items-center">
                 <Image
-                  src="/logo.webp"
+                  src="/logo.png"
                   alt="Logo"
                   width={240}
                   height={60}
@@ -175,7 +175,7 @@ export default function Navbar() {
               {/* Desktop logo */}
               <div className="hidden lg:flex h-12 w-auto items-center">
                 <Image
-                  src="/logo.webp"
+                  src="/logo.png"
                   alt="Logo"
                   width={240}
                   height={60}
@@ -216,7 +216,7 @@ export default function Navbar() {
                 <Link href="/" onClick={() => setMobileOpen(false)}>
                   <div className="h-10 w-auto flex items-center">
                     <Image 
-                      src="/logo.webp" 
+                      src="/logo.png" 
                       alt="Logo" 
                       width={240}
                       height={60}
