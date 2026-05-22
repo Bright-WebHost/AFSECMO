@@ -91,7 +91,7 @@
       "description": "A curated view of AFSECMO project delivery across mining, infrastructure, procurement, maintenance and utilities."
     },
     "items": [
-      { "id": "01", "title": "Mining Logistics Support", "sector": "Mining & Quarry", "scope": "Heavy equipment mobilisation & supply chain.", "location": "Ivorian Sites", "image": "/01.png", "span": "lg:col-span-2" },
+      { "id": "01", "title": "Mining Logistics Support", "sector": "Mining & Quarry", "scope": "Heavy equipment mobilisation & supply chain.", "location": "Ivorian Sites", "image": "/mining.jpg", "span": "lg:col-span-2" },
       { "id": "02", "title": "Industrial Procurement", "sector": "Oil & Gas", "scope": "Centralised purchasing of process equipment.", "location": "Abidjan Hub", "image": "/02.jpg", "span": "lg:col-span-1" },
       { "id": "03", "title": "BTP Infrastructure", "sector": "Civil Engineering", "scope": "Steel, concrete supply, and heavy earthworks.", "location": "Koumassi", "image": "/construction.jpg", "span": "lg:col-span-1" },
       { "id": "04", "title": "Preventive Maintenance", "sector": "Industrial", "scope": "Rotating equipment overhaul & reporting.", "location": "National Facilities", "image": "/mach.jpg", "span": "lg:col-span-2" },

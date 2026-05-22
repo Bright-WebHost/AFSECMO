@@ -91,7 +91,7 @@
       "description": "Une vue sélectionnée des livraisons de projets AFSECMO dans les domaines minier, infrastructure, achats, maintenance et utilités."
     },
     "items": [
-      { "id": "01", "title": "Support logistique minier", "sector": "Mines & carrières", "scope": "Mobilisation d’équipements lourds et chaîne d’approvisionnement.", "location": "Sites ivoiriens", "image": "/01.png", "span": "lg:col-span-2" },
+      { "id": "01", "title": "Support logistique minier", "sector": "Mines & carrières", "scope": "Mobilisation d’équipements lourds et chaîne d’approvisionnement.", "location": "Sites ivoiriens", "image": "/mining.jpg", "span": "lg:col-span-2" },
       { "id": "02", "title": "Achats industriels", "sector": "Pétrole & gaz", "scope": "Achats centralisés d’équipements de process.", "location": "Abidjan Hub", "image": "/02.jpg", "span": "lg:col-span-1" },
       { "id": "03", "title": "Infrastructure BTP", "sector": "Génie civil", "scope": "Acier, béton et gros terrassements.", "location": "Koumassi", "image": "/construction.jpg", "span": "lg:col-span-1" },
       { "id": "04", "title": "Maintenance préventive", "sector": "Industrie", "scope": "Révision d’équipements rotatifs et reporting.", "location": "Installations nationales", "image": "/mach.jpg", "span": "lg:col-span-2" },
