@@ -141,3 +141,7 @@ export function ProjectsContent() {
     </main>
   );
 }
+
+export default function ProjectShowcase() {
+  return null;
+}
