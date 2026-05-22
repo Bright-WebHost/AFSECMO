@@ -144,7 +144,7 @@ export default function ContactLayout() {
             className="space-y-8 border-t border-black/10 pt-10"
           >
             <a
-              href="https://wa.me/"
+              href="https://wa.me/2250700070077"
               target="_blank"
               rel="noreferrer"
               className="group inline-flex w-fit items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#111] transition-colors duration-300 hover:text-[#FF6B00]"

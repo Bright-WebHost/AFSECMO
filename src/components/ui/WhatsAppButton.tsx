@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 export default function WhatsAppButton() {
-  const phoneNumber = "22507000700077";
+  const phoneNumber = "2250700070077";
   const { t } = useTranslation("common");
   const message = t("whatsapp.message");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
