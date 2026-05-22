@@ -56,7 +56,9 @@ export default function ContactLayout() {
     event.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData(event.currentTarget);
+    const currentForm = event.currentTarget;
+    const formData = new FormData(currentForm);
+    formData.set("form-name", "contact");
 
     try {
       const response = await fetch("/", {
@@ -67,7 +69,7 @@ export default function ContactLayout() {
 
       if (response.ok) {
         setSubmitStatus("success");
-        (event.target as HTMLFormElement).reset();
+        currentForm.reset();
       } else {
         setSubmitStatus("error");
       }
@@ -80,6 +82,16 @@ export default function ContactLayout() {
 
   return (
     <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-400 flex-col font-sans text-gray-900 lg:min-h-screen lg:flex-row">
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden aria-hidden="true">
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="text" name="bot-field" />
+        <input type="text" name="name" />
+        <input type="text" name="company" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <input type="text" name="service" />
+        <textarea name="message" />
+      </form>
       
       {/* ─── LEFT: Corporate Details (Pristine Light Theme) ─── */}
       <aside className="relative flex w-full flex-col bg-[#f4f4f4] px-6 py-12 sm:px-12 lg:w-1/2 lg:px-16 lg:py-24">
