@@ -86,16 +86,19 @@
   },
   "projects": {
     "hero": {
-      "titleLead": "Portefeuille",
-      "titleAccent": "opérationnel.",
-      "description": "Une vue sélectionnée des livraisons de projets AFSECMO dans les domaines minier, infrastructure, achats, maintenance et utilités."
+      "titleLead": "Capacités &",
+      "titleAccent": "appui projet.",
+      "description": "Une vue ciblée de l’appui AFSECMO dans les domaines minier, pétrole & gaz, construction, achats, logistique, maintenance et services d’installations."
     },
     "items": [
-      { "id": "01", "title": "Support logistique minier", "sector": "Mines & carrières", "scope": "Mobilisation d’équipements lourds et chaîne d’approvisionnement.", "location": "Sites ivoiriens", "image": "/mining.webp", "span": "lg:col-span-2" },
-      { "id": "02", "title": "Achats industriels", "sector": "Pétrole & gaz", "scope": "Achats centralisés d’équipements de process.", "location": "Abidjan Hub", "image": "/02.webp", "span": "lg:col-span-1" },
-      { "id": "03", "title": "Infrastructure BTP", "sector": "Génie civil", "scope": "Acier, béton et gros terrassements.", "location": "Koumassi", "image": "/construction.webp", "span": "lg:col-span-1" },
-      { "id": "04", "title": "Maintenance préventive", "sector": "Industrie", "scope": "Révision d’équipements rotatifs et reporting.", "location": "Installations nationales", "image": "/mach.webp", "span": "lg:col-span-2" },
-      { "id": "05", "title": "Utilités des installations", "sector": "Utilités", "scope": "Réseaux électriques et plomberie.", "location": "Camp Operations", "image": "/plumbing.webp", "span": "lg:col-span-3" }
+      { "id": "01", "title": "Support des sites miniers", "sector": "Opérations minières", "scope": "AFSECMO accompagne les exploitants miniers avec l’approvisionnement d’équipements, la logistique terrain, les fournitures opérationnelles, le support maintenance et les services techniques.", "location": "Sites miniers", "image": "/mining.webp", "span": "lg:col-span-2" },
+      { "id": "02", "title": "Services terrain pétrole & gaz", "sector": "Projets énergie", "scope": "Appui aux sociétés pétrolières et gazières via les achats, la location d’équipements, la maintenance industrielle, la logistique et la coordination opérationnelle.", "location": "Corridors énergie", "image": "/oil.webp", "span": "lg:col-span-1" },
+      { "id": "03", "title": "Achats industriels", "sector": "Chaîne d’approvisionnement", "scope": "Sourcing et fourniture d’équipements techniques, pièces détachées, outils, matériaux de construction, fournitures électriques, pièces mécaniques et équipements de sécurité.", "location": "Abidjan Hub", "image": "/06.webp", "span": "lg:col-span-1" },
+      { "id": "04", "title": "Support construction & BTP", "sector": "Travaux civils", "scope": "Travaux civils, préparation de site, support projet, fourniture de matériaux, coordination du personnel et services liés aux infrastructures.", "location": "Sites projets", "image": "/construction.webp", "span": "lg:col-span-2" },
+      { "id": "05", "title": "Location d’équipements & flotte", "sector": "Opérations de flotte", "scope": "Location et coordination d’équipements industriels, véhicules, machines et actifs de soutien de site.", "location": "Opérations terrain", "image": "/eq.webp", "span": "lg:col-span-3" },
+      { "id": "06", "title": "Maintenance industrielle", "sector": "Services techniques", "scope": "Support de maintenance mécanique, électrique, plomberie et technique pour les sites industriels, installations et bases opérationnelles.", "location": "Sites industriels", "image": "/mach2.webp", "span": "lg:col-span-1" },
+      { "id": "07", "title": "Logistique & mobilisation", "sector": "Transport", "scope": "Coordination du transport, livraison de site, assistance import/export et support chaîne d’approvisionnement pour les projets en Côte d’Ivoire et en Afrique.", "location": "Réseau régional", "image": "/logistic.webp", "span": "lg:col-span-2" },
+      { "id": "08", "title": "Support installations & opérations", "sector": "Services de site", "scope": "Services généraux de site, nettoyage, maintenance, support utilités, installations pour le personnel et assistance opérationnelle.", "location": "Bases opérationnelles", "image": "/fac.webp", "span": "lg:col-span-1" }
     ]
   },
   "method": {
@@ -127,12 +130,35 @@
       { "title": "Jalons projet", "category": "Transparence opérationnelle", "copy": "Communication régulière sur les délais, les contraintes, l’état des livraisons et les jalons projet. Vous connaissez toujours votre position opérationnelle." }
     ]
   },
+  "careers": {
+    "hero": {
+      "eyebrow": "Carrières",
+      "titleLead": "Rejoignez",
+      "titleAccent": "l’équipe AFSECMO en croissance.",
+      "description": "Développez votre carrière au sein d’une entreprise qui accompagne les projets miniers, pétrole & gaz, construction, logistique et services industriels en Afrique et sur les marchés internationaux."
+    },
+    "sections": {
+      "why": {
+        "title": "Pourquoi rejoindre AFSECMO",
+        "copy": "AFSECMO développe activement ses équipes opérationnelles, commerciales, achats et techniques pour soutenir les projets miniers, pétrole & gaz, construction, logistique et services industriels en Afrique et sur les marchés internationaux."
+      },
+      "standards": {
+        "title": "Standards de recrutement",
+        "copy": "AFSECMO ne demande à aucun stade du recrutement de paiement, de frais de recrutement ou de frais de traitement aux candidats."
+      },
+      "contact": {
+        "eyebrow": "Contact recrutement",
+        "title": "Utilisez la boîte de réception dédiée au recrutement pour les opportunités et le suivi.",
+        "email": "careers@afsecmo.com"
+      }
+    }
+  },
   "contact": {
     "details": {
       "label": "Coordonnées",
       "title": "Contactez l’équipe AFSECMO.",
       "officeLabel": "Bureau",
-      "office": "Centre clarice, Zone 4, Abidjan, Côte D’ivoire.",
+      "office": "Centre Clarice, Zone 4, Abidjan, Côte d’Ivoire",
       "emailLabel": "Email",
       "phoneLabel": "Téléphone",
       "findUs": "Nous trouver",

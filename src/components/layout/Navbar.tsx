@@ -121,37 +121,25 @@ export default function Navbar() {
           {/* Right: Language Switcher + Logo */}
           <div className="flex items-center gap-4 lg:gap-8 ml-auto shrink-0">
             
-            {/* Minimal Architectural Segmented Language Switcher */}
-            <div className="hidden sm:flex items-center bg-slate-900/40 p-1 rounded-lg border border-slate-700/60 backdrop-blur-md relative overflow-hidden h-9 w-22">
-              
-              {/* Sliding Highlight Layer */}
-              <motion.div
-                className="absolute top-1 bottom-1 rounded-[5px] bg-[#FF6B00]"
-                initial={false}
-                animate={{
-                  left: locale === "en" ? "4px" : "44px",
-                  right: locale === "en" ? "48px" : "4px"
-                }}
-                transition={{ type: "spring", stiffness: 450, damping: 32 }}
-              />
-
-              {/* EN Option */}
-              <button
+            {/* Simple Text Language Switcher */}
+            <div className="hidden sm:flex items-center gap-2 text-sm font-medium tracking-wide">
+              <motion.button
                 onClick={() => handleLanguageChange("en")}
-                className="relative z-10 w-10 h-full text-center text-[11px] font-mono font-bold tracking-wider transition-colors duration-200 focus:outline-none"
-                style={{ color: locale === "en" ? "#ffffff" : "rgba(255,255,255,0.4)" }}
+                style={{ color: locale === "en" ? headerTextColor : "rgba(255,255,255,0.4)" }}
+                className="hover:text-orange-400 transition-colors"
               >
                 EN
-              </button>
-
-              {/* FR Option */}
-              <button
+              </motion.button>
+              
+              <span className="text-white/20">|</span>
+              
+              <motion.button
                 onClick={() => handleLanguageChange("fr")}
-                className="relative z-10 w-10 h-full text-center text-[11px] font-mono font-bold tracking-wider transition-colors duration-200 focus:outline-none"
-                style={{ color: locale === "fr" ? "#ffffff" : "rgba(255,255,255,0.4)" }}
+                style={{ color: locale === "fr" ? headerTextColor : "rgba(255,255,255,0.4)" }}
+                className="hover:text-orange-400 transition-colors"
               >
                 FR
-              </button>
+              </motion.button>
             </div>
 
             {/* Logo Container */}

@@ -86,16 +86,19 @@
   },
   "projects": {
     "hero": {
-      "titleLead": "Operational",
-      "titleAccent": "Portfolio.",
-      "description": "A curated view of AFSECMO project delivery across mining, infrastructure, procurement, maintenance and utilities."
+      "titleLead": "Capabilities &",
+      "titleAccent": "Project Support.",
+      "description": "A focused view of AFSECMO support across mining, oil & gas, construction, procurement, logistics, maintenance, and facility operations."
     },
     "items": [
-      { "id": "01", "title": "Mining Logistics Support", "sector": "Mining & Quarry", "scope": "Heavy equipment mobilisation & supply chain.", "location": "Ivorian Sites", "image": "/mining.webp", "span": "lg:col-span-2" },
-      { "id": "02", "title": "Industrial Procurement", "sector": "Oil & Gas", "scope": "Centralised purchasing of process equipment.", "location": "Abidjan Hub", "image": "/02.webp", "span": "lg:col-span-1" },
-      { "id": "03", "title": "BTP Infrastructure", "sector": "Civil Engineering", "scope": "Steel, concrete supply, and heavy earthworks.", "location": "Koumassi", "image": "/construction.webp", "span": "lg:col-span-1" },
-      { "id": "04", "title": "Preventive Maintenance", "sector": "Industrial", "scope": "Rotating equipment overhaul & reporting.", "location": "National Facilities", "image": "/mach.webp", "span": "lg:col-span-2" },
-      { "id": "05", "title": "Facility Utilities", "sector": "Utilities", "scope": "Electrical distribution & plumbing networks.", "location": "Camp Operations", "image": "/plumbing.webp", "span": "lg:col-span-3" }
+      { "id": "01", "title": "Mining Site Support", "sector": "Mining Operations", "scope": "AFSECMO supports mining operators with equipment sourcing, field logistics, operational supplies, maintenance support, and technical services.", "location": "Mining Sites", "image": "/mining.webp", "span": "lg:col-span-2" },
+      { "id": "02", "title": "Oil & Gas Field Services", "sector": "Energy Projects", "scope": "Support for oil & gas companies through procurement, equipment rental, industrial maintenance, logistics, and operational coordination.", "location": "Energy Corridors", "image": "/oil.webp", "span": "lg:col-span-1" },
+      { "id": "03", "title": "Industrial Procurement", "sector": "Supply Chain", "scope": "Sourcing and supply of technical equipment, spare parts, tools, construction materials, electrical supplies, mechanical parts, and safety equipment.", "location": "Abidjan Hub", "image": "/06.webp", "span": "lg:col-span-1" },
+      { "id": "04", "title": "Construction & BTP Support", "sector": "Civil Works", "scope": "Civil works, site preparation, project support, materials supply, manpower coordination, and infrastructure-related services.", "location": "Project Sites", "image": "/construction.webp", "span": "lg:col-span-2" },
+      { "id": "05", "title": "Equipment Rental & Fleet Support", "sector": "Fleet Operations", "scope": "Rental and coordination of industrial equipment, vehicles, machinery, and site support assets.", "location": "Field Operations", "image": "/eq.webp", "span": "lg:col-span-3" },
+      { "id": "06", "title": "Industrial Maintenance", "sector": "Technical Services", "scope": "Mechanical, electrical, plumbing, and technical maintenance support for industrial sites, facilities, and operational bases.", "location": "Industrial Sites", "image": "/mach2.webp", "span": "lg:col-span-1" },
+      { "id": "07", "title": "Logistics & Mobilization", "sector": "Transport", "scope": "Transport coordination, site delivery, import/export assistance, and supply chain support for projects across Côte d’Ivoire and Africa.", "location": "Regional Network", "image": "/logistic.webp", "span": "lg:col-span-2" },
+      { "id": "08", "title": "Facility & Operational Support", "sector": "Site Services", "scope": "General site services, cleaning, maintenance, utilities support, workforce facilities, and operational assistance.", "location": "Operational Bases", "image": "/fac.webp", "span": "lg:col-span-1" }
     ]
   },
   "method": {
@@ -127,12 +130,35 @@
       { "title": "Project Milestones", "category": "Operational transparency", "copy": "Regular communication on timelines, constraints, delivery status, and project milestones. You always know your operational standing." }
     ]
   },
+  "careers": {
+    "hero": {
+      "eyebrow": "Careers",
+      "titleLead": "Join",
+      "titleAccent": "AFSECMO's growing team.",
+      "description": "Build your career with a company supporting mining, oil & gas, construction, logistics, and industrial service projects across Africa and international markets."
+    },
+    "sections": {
+      "why": {
+        "title": "Why join AFSECMO",
+        "copy": "AFSECMO is actively expanding its operational, commercial, procurement, and technical teams to support mining, oil & gas, construction, logistics, and industrial service projects across Africa and international markets."
+      },
+      "standards": {
+        "title": "Hiring standards",
+        "copy": "AFSECMO does not request payment, recruitment fees, or processing fees from applicants at any stage of the hiring process."
+      },
+      "contact": {
+        "eyebrow": "Recruitment contact",
+        "title": "Use the dedicated recruitment inbox for opportunities and follow-up.",
+        "email": "careers@afsecmo.com"
+      }
+    }
+  },
   "contact": {
     "details": {
       "label": "Contact Details",
       "title": "Reach the AFSECMO team.",
       "officeLabel": "Office",
-      "office": "Centre clarice, Zone 4, Abidjan, Côte D’ivoire.",
+      "office": "Centre Clarice, Zone 4, Abidjan, Côte d’Ivoire",
       "emailLabel": "Email",
       "phoneLabel": "Phone",
       "findUs": "Find us",
