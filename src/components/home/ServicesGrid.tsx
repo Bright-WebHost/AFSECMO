@@ -17,25 +17,25 @@ type ServiceItem = {
 const fallbackServices: ServiceItem[] = [
   {
     title: "Managing our emissions",
-    image: "/about1.png",
+    image: "/about1.webp",
     // Narrow / Portrait
     widthClass: "w-[240px] sm:w-[280px] lg:w-[320px]", 
   },
   {
     title: "The Manifa Story",
-    image: "/about2.jpg",
+    image: "/about2.webp",
     // Wide / Landscape
     widthClass: "w-[320px] sm:w-[480px] lg:w-[650px]", 
   },
   {
     title: "Serving society",
-    image: "/unsplash-1541888946425-d81bb19240f5.jpg",
+    image: "/unsplash-1541888946425-d81bb19240f5.webp",
     // Square-ish
     widthClass: "w-[280px] sm:w-[360px] lg:w-[400px]", 
   },
   {
     title: "Driving Logistics Forward", // Updated title for your context
-    image: "/unsplash-1494412574643-ff11b0a5c1c3.jpg",
+    image: "/unsplash-1494412574643-ff11b0a5c1c3.webp",
     // Medium Wide
     widthClass: "w-[300px] sm:w-[420px] lg:w-[500px]", 
   },

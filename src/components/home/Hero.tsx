@@ -12,25 +12,25 @@ const slides = [
     id: 1,
     category: "Mining Operations",
     title: "Driving extraction\nefficiency through\ninnovation.",
-    image: "/hero/hero1.png",
+    image: "/hero/hero1.webp",
   },
   {
     id: 2,
     category: "Oil & Gas",
     title: "Powering infrastructure\nwith reliable energy\nsolutions.",
-    image: "/hero/hero2.jpg",
+    image: "/hero/hero2.webp",
   },
   {
     id: 3,
     category: "Construction",
     title: "Building the backbone\nof West African\nindustry.",
-    image: "/hero/hero3.jpg",
+    image: "/hero/hero3.webp",
   },
   {
     id: 4,
     category: "Logistics",
     title: "Global supply chain\nexcellence at\nyour doorstep.",
-    image: "/hero/hero4.png",
+    image: "/hero/hero4.webp",
   },
 ];
 

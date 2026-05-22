@@ -16,7 +16,7 @@ export default function Footer() {
   return (
     // 1. Updated Background to Brand Blue and Border to translucent white
     <footer className="w-full bg-[#0F1B2E] text-white border-t border-white/10 pt-24 pb-12 font-sans">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-6 lg:px-10">
         
         {/* Main Grid Layout */}
         <div className="flex flex-col md:grid md:grid-cols-12 gap-12 pb-16 border-b border-white/10">
@@ -24,11 +24,10 @@ export default function Footer() {
           {/* Brand & Corporate Identity Column */}
           <div className="md:col-span-6 lg:col-span-6">
             <Link href={withLocalePath(locale, "/")} className="inline-block mb-8">
-              {/* 2. Increased logo size. Added brightness-0 invert to make a black logo white. Remove them if you have a full-color logo! */}
               <img 
-                src="/logo.png" 
+                src="/logo-desktop.webp" 
                 alt="AFSECMO" 
-                className="h-16 sm:h-20 w-auto object-contain brightness-0 invert" 
+                className="h-16 sm:h-20 w-auto object-contain" 
               />
             </Link>
             <h2 className="text-base font-semibold text-white mb-6 uppercase tracking-[0.15em]">

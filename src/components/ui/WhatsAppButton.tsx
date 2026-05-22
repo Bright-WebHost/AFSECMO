@@ -19,7 +19,7 @@ export default function WhatsAppButton() {
         aria-label={t("whatsapp.ariaLabel")}
         className="inline-flex items-center justify-center transition duration-200 active:scale-95"
       >
-        <Image src="/whatsapp.png" alt="WhatsApp" width={64} height={64} className="h-16 w-16 object-contain" />
+        <Image src="/whatsapp.webp" alt="WhatsApp" width={64} height={64} className="h-16 w-16 object-contain" />
       </Link>
     </div>
   );

@@ -12,7 +12,7 @@ const cards = [
     defaultEyebrow: "Sectors Served",
     titleKey: "sectorsGrid.cards.mining.title",
     defaultTitle: "Driving extraction efficiency through innovation in Mining.",
-    image: "/about1.png",
+    image: "/about1.webp",
   },
   {
     id: "oil-gas",
@@ -20,7 +20,7 @@ const cards = [
     defaultEyebrow: "What We Do",
     titleKey: "sectorsGrid.cards.oilGas.title",
     defaultTitle: "Powering infrastructure with reliable Oil & Gas solutions.",
-    image: "/about2.jpg",
+    image: "/about2.webp",
   },
   {
     id: "construction",
@@ -28,7 +28,7 @@ const cards = [
     defaultEyebrow: "Our Impact",
     titleKey: "sectorsGrid.cards.construction.title",
     defaultTitle: "Building the backbone of West African industrial construction.",
-    image: "/about3.jpg",
+    image: "/about3.webp",
   },
   {
     id: "logistics",
@@ -36,7 +36,7 @@ const cards = [
     defaultEyebrow: "Logistics",
     titleKey: "sectorsGrid.cards.logistics.title",
     defaultTitle: "Delivering global supply chain excellence to your doorstep.",
-    image: "/about4.png",
+    image: "/about4.webp",
   },
 ];
 

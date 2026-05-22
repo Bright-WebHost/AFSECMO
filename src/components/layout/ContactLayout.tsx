@@ -117,8 +117,8 @@ export default function ContactLayout() {
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
                   {details.emailLabel || "EMAIL"}
                 </p>
-                <a href="mailto:contact@afsecmo.com" className="mt-2 block text-lg font-light text-[#111] transition-colors hover:text-[#FF6B00]">
-                  contact@afsecmo.com
+                <a href="mailto:info@afsecmo.com" className="mt-2 block text-lg font-light text-[#111] transition-colors hover:text-[#FF6B00]">
+                  info@afsecmo.com
                 </a>
               </div>
               <div>

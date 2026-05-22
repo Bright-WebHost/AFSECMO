@@ -29,21 +29,21 @@ export function ServicesContent() {
     <div className="min-h-screen bg-[#f8f9fa] font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white pt-24">
 
       {/* ─── 1. Contained Hero Card ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
+        <div className="relative h-[60vh] min-h-115 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           <div className="absolute inset-0 z-0">
             <img
-              src="/service.png"
+              src="/service.webp"
               alt={hero.eyebrow || "What We Do"}
               className="h-full w-full object-cover opacity-85"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
           </div>
 
           <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-12 md:p-16">
             <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
               <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
-              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-3" />
               <span className="text-white">What we do</span>
             </div>
 
@@ -60,8 +60,8 @@ export function ServicesContent() {
       </section>
 
       {/* ─── 2. Corrected Borderless 3-Column Grid ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-        {/* Strict 3-column setup. Spacing matches the clean spacing in image_d6be0f.jpg */}
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        {/* Strict 3-column setup. Spacing matches the clean spacing in the updated webp assets */}
         <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((svc, index) => (
             <Link
@@ -101,7 +101,7 @@ export function ServicesContent() {
 
       {/* ─── 3. Minimalist Footer CTA ─── */}
       <section className="w-full bg-white border-t border-gray-200 py-16 lg:py-24">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-2xl">
               <h2 className="text-2xl font-light tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">

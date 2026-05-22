@@ -33,9 +33,9 @@ export function ProjectsContent() {
         <div className="relative min-h-115 h-[60vh] w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           
           <div className="absolute inset-0 z-0">
-            {/* Using your local /port.jpg as the hero background */}
+            {/* Using your local /port.webp as the hero background */}
             <img
-              src="/port.jpg"
+              src="/port.webp"
               alt="Operational Portfolio Banner"
               className="h-full w-full object-cover opacity-85"
             />

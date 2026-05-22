@@ -36,7 +36,7 @@ export function AboutContent() {
           {/* Background Image inside the rounded card */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/about-hero.png"
+              src="/about-hero.webp"
               alt={hero.imageAlt || "About Banner"}
               className="h-full w-full object-cover opacity-85"
             />

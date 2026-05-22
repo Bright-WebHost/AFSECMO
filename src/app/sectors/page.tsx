@@ -25,14 +25,14 @@ export function SectorsContent() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white pt-24">
 
-      {/* ─── 1. Architectural Rounded Hero Card Banner (image_d6c58b.jpg) ─── */}
+      {/* ─── 1. Architectural Rounded Hero Card Banner (webp hero asset) ─── */}
       <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
         <div className="relative h-[60vh] min-h-115 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           
           <div className="absolute inset-0 z-0">
-            {/* Hero background explicitly set to /01.png */}
+            {/* Hero background explicitly set to /01.webp */}
             <img
-              src="/01.png"
+              src="/01.webp"
               alt={sectors?.[0]?.title || "Hero Banner"}
               className="h-full w-full object-cover opacity-85"
             />
@@ -60,7 +60,7 @@ export function SectorsContent() {
         </div>
       </section>
 
-      {/* ─── 2. Professional Multi-Column Summary Descriptions (image_d6c590.jpg top) ─── */}
+      {/* ─── 2. Professional Multi-Column Summary Descriptions (webp gallery top) ─── */}
       {/* Real layout columns populated strictly from your parsed sector items array */}
       {Array.isArray(sectors) && sectors.length > 0 && (
         <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-b border-gray-100">
@@ -75,7 +75,7 @@ export function SectorsContent() {
         </section>
       )}
 
-      {/* ─── 3. Freestanding Content Grid Cluster (image_d6c590.jpg "In this section") ─── */}
+      {/* ─── 3. Freestanding Content Grid Cluster (webp gallery section) ─── */}
       <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         
         <div className="mb-12">

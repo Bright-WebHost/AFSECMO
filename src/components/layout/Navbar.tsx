@@ -163,7 +163,7 @@ export default function Navbar() {
               {/* Mobile logo */}
               <div className="lg:hidden h-8 w-auto flex items-center">
                 <Image
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt="Logo"
                   width={240}
                   height={60}
@@ -175,7 +175,7 @@ export default function Navbar() {
               {/* Desktop logo */}
               <div className="hidden lg:flex h-12 w-auto items-center">
                 <Image
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt="Logo"
                   width={240}
                   height={60}
@@ -216,7 +216,7 @@ export default function Navbar() {
                 <Link href="/" onClick={() => setMobileOpen(false)}>
                   <div className="h-10 w-auto flex items-center">
                     <Image 
-                      src="/logo.png" 
+                      src="/logo.webp" 
                       alt="Logo" 
                       width={240}
                       height={60}
@@ -256,13 +256,6 @@ export default function Navbar() {
                         }}
                       >
                         <span 
-                          className="h-1.5 w-1.5 shrink-0 rounded-full transition-transform" 
-                          style={{ 
-                            backgroundColor: active ? "#FF6B00" : "rgba(255,255,255,0.3)",
-                            transform: active ? "scale(1.3)" : "scale(1)"
-                          }} 
-                        />
-                        <span 
                           className="text-base font-semibold uppercase tracking-wide"
                           style={{ color: active ? "#FF6B00" : "rgba(255,255,255,0.9)" }}
                         >
@@ -274,12 +267,6 @@ export default function Navbar() {
                 })}
               </motion.nav>
 
-              {/* Footer info */}
-              <div className="relative border-t border-slate-700 px-6 py-6">
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                  Est. 2024 · Abidjan
-                </p>
-              </div>
             </motion.div>
           </>
         )}
