@@ -11,6 +11,7 @@ import { type Locale } from "@/i18n/locales";
 import { stripLocale, withLocalePath } from "@/i18n/routing";
 
 const navItems = [
+  { key: "home", href: "/" },
   { key: "about", href: "/about" },
   { key: "services", href: "/services" },
   { key: "sectors", href: "/sectors" },
@@ -121,7 +122,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4 lg:gap-8 ml-auto shrink-0">
             
             {/* Minimal Architectural Segmented Language Switcher */}
-            <div className="hidden sm:flex items-center bg-slate-900/40 p-1 rounded-lg border border-slate-700/60 backdrop-blur-md relative overflow-hidden h-9 w-[88px]">
+            <div className="hidden sm:flex items-center bg-slate-900/40 p-1 rounded-lg border border-slate-700/60 backdrop-blur-md relative overflow-hidden h-9 w-22">
               
               {/* Sliding Highlight Layer */}
               <motion.div
@@ -162,11 +163,11 @@ export default function Navbar() {
               {/* Mobile logo */}
               <div className="lg:hidden h-8 w-auto flex items-center">
                 <Image
-                  src="/logo.jpeg"
+                  src="/logo.png"
                   alt="Logo"
                   width={240}
                   height={60}
-                  className="h-full w-auto max-w-[120px] object-contain"
+                  className="h-full w-auto max-w-30 object-contain"
                   priority
                 />
               </div>
@@ -178,7 +179,7 @@ export default function Navbar() {
                   alt="Logo"
                   width={240}
                   height={60}
-                  className="h-full w-auto max-w-[180px] object-contain"
+                  className="h-full w-auto max-w-45 object-contain"
                   priority
                 />
               </div>
@@ -207,9 +208,9 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.45, ease: easeExp }}
-              className="fixed inset-y-0 right-0 z-50 flex w-[min(380px,90vw)] flex-col bg-gradient-to-b from-slate-800 to-slate-900 shadow-2xl"
+              className="fixed inset-y-0 right-0 z-50 flex w-[min(380px,90vw)] flex-col bg-linear-to-b from-slate-800 to-slate-900 shadow-2xl"
             >
-              <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-orange-500 to-transparent opacity-80" />
+              <div className="absolute left-0 top-0 h-full w-1 bg-linear-to-b from-orange-500 to-transparent opacity-80" />
 
               <div className="relative flex items-center justify-between border-b border-slate-700 px-6 py-6">
                 <Link href="/" onClick={() => setMobileOpen(false)}>
@@ -219,7 +220,7 @@ export default function Navbar() {
                       alt="Logo" 
                       width={240}
                       height={60}
-                      className="h-full w-auto max-w-[120px] object-contain"
+                      className="h-full w-auto max-w-30 object-contain"
                       priority 
                     />
                   </div>

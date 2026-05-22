@@ -130,8 +130,8 @@ export default function ContactLayout() {
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#777]">
                   {details.phoneLabel || "PHONE"}
                 </p>
-                <a href="tel:+441234567890" className="mt-2 block text-lg font-light text-[#111] transition-colors hover:text-[#FF6B00]">
-                  +44 1234 567 890
+                <a href="tel:+2250700070077" className="mt-2 block text-lg font-light text-[#111] transition-colors hover:text-[#FF6B00]">
+                  +225 07 00 07 00 77
                 </a>
               </div>
             </motion.div>

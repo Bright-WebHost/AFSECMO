@@ -229,7 +229,7 @@ export function CareersContent() {
                     {[
                       { label: "Full name", name: "fullName", placeholder: "Jordan Smith" },
                       { label: "Email", name: "email", placeholder: "jordan@example.com" },
-                      { label: "Phone", name: "phone", placeholder: "+44 1234 567 890" },
+                      { label: "Phone", name: "phone", placeholder: "+225 07 00 07 00 77" },
                     ].map((field) => (
                       <label key={field.name} className="block">
                         <span className="mb-3 block text-sm font-semibold text-white">{field.label}</span>
