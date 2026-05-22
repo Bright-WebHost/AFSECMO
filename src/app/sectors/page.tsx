@@ -26,17 +26,17 @@ export function SectorsContent() {
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white pt-24">
 
       {/* ─── 1. Architectural Rounded Hero Card Banner (image_d6c58b.jpg) ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
+        <div className="relative h-[60vh] min-h-115 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           
           <div className="absolute inset-0 z-0">
-            {/* Using the standard first asset image from your collection to stay authentic */}
+            {/* Hero background explicitly set to /01.png */}
             <img
-              src={sectors?.[0]?.image || "/08.png"}
+              src="/01.png"
               alt={sectors?.[0]?.title || "Hero Banner"}
               className="h-full w-full object-cover opacity-85"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
           </div>
 
           {/* Breadcrumbs & Dynamic Text Overlay */}
@@ -45,7 +45,7 @@ export function SectorsContent() {
             {/* Top-Aligned Navigation Path Track */}
             <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
               <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
-              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-3" />
               <span className="text-white">Sustainability & Sectors</span>
             </div>
 
@@ -63,7 +63,7 @@ export function SectorsContent() {
       {/* ─── 2. Professional Multi-Column Summary Descriptions (image_d6c590.jpg top) ─── */}
       {/* Real layout columns populated strictly from your parsed sector items array */}
       {Array.isArray(sectors) && sectors.length > 0 && (
-        <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-b border-gray-100">
+        <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-b border-gray-100">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-sm font-light leading-relaxed text-gray-600 lg:text-base lg:gap-12">
             {sectors.slice(0, 3).map((sector, idx) => (
               <div key={`summary-${sector.id}`} className="flex">
@@ -76,7 +76,7 @@ export function SectorsContent() {
       )}
 
       {/* ─── 3. Freestanding Content Grid Cluster (image_d6c590.jpg "In this section") ─── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         
         <div className="mb-12">
           <h2 className="text-2xl font-light tracking-tight text-gray-900 sm:text-3xl">

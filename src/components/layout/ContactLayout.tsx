@@ -52,31 +52,26 @@ export default function ContactLayout() {
     error?: string;
   };
 
-  // Web3Forms Submit Handler
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
-    
-    // IMPORTANT: Replace this with your actual Web3Forms Access Key
-    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.ok) {
         setSubmitStatus("success");
         (event.target as HTMLFormElement).reset();
       } else {
         setSubmitStatus("error");
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -170,11 +165,10 @@ export default function ContactLayout() {
           {/* Form Container */}
             <div className="rounded-lg border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] sm:p-10">
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" className="space-y-6">
               
-              {/* Web3Forms Subject Override (Optional, good for identifying emails) */}
-              <input type="hidden" name="subject" value="New Inquiry from AFSECMO Website" />
-              <input type="hidden" name="from_name" value="AFSECMO Website" />
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" className="hidden" />
 
               {/* Row 1: Name & Company */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

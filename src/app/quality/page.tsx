@@ -47,7 +47,7 @@ export function QualityContent() {
           
           <div className="absolute inset-0 z-0">
             <img
-              src="/08.png"
+              src="/quality.jpg"
               alt="Quality Standards Banner"
               className="h-full w-full object-cover opacity-85"
             />

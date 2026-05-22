@@ -66,8 +66,8 @@
       { "id": "04", "category": "Maintenance", "title": "Mechanical & Industrial Maintenance", "summary": "Practical mechanical support designed to keep industrial sites operational, productive and safe.", "tag": "Site Operations", "image": "/mach2.jpg" },
       { "id": "05", "category": "Utilities", "title": "Electrical, Plumbing & Utilities", "summary": "Technical installation and maintenance support for industrial facilities, camps, warehouses and operational buildings.", "tag": "Facility Ops", "image": "/plumbing.jpg" },
       { "id": "06", "category": "Procurement", "title": "Central Purchasing & Import-Export", "summary": "Professional sourcing and procurement coordination for companies that need reliable access to equipment, materials and suppliers.", "tag": "Global Supply", "image": "/06.png" },
-      { "id": "07", "category": "Fleet", "title": "Equipment Rental & Fleet Support", "summary": "Equipment solutions for sites that require fast mobilisation, flexible rental arrangements and reliable field support.", "tag": "Mobilisation", "image": "/07.png" },
-      { "id": "08", "category": "Logistics", "title": "Logistics & Project Mobilisation", "summary": "End-to-end coordination for moving equipment, materials and teams from suppliers to operational sites.", "tag": "Transport", "image": "/08.png" },
+      { "id": "07", "category": "Fleet", "title": "Equipment Rental & Fleet Support", "summary": "Equipment solutions for sites that require fast mobilisation, flexible rental arrangements and reliable field support.", "tag": "Mobilisation", "image": "/eq.jpg" },
+      { "id": "08", "category": "Logistics", "title": "Logistics & Project Mobilisation", "summary": "End-to-end coordination for moving equipment, materials and teams from suppliers to operational sites.", "tag": "Transport", "image": "/log.jpg" },
       { "id": "09", "category": "Asset Mgt", "title": "Facility & Asset Support", "summary": "Support for operational properties, camps, workshops and industrial facilities that require professional service management.", "tag": "Upkeep", "image": "/09.png" }
     ]
   },
