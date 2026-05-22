@@ -65,9 +65,10 @@ export function SectorsContent() {
       {Array.isArray(sectors) && sectors.length > 0 && (
         <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-b border-gray-100">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-sm font-light leading-relaxed text-gray-600 lg:text-base lg:gap-12">
-            {sectors.slice(0, 3).map((sector) => (
-              <div key={`summary-${sector.id}`}>
-                <p>{sector.desc}</p>
+            {sectors.slice(0, 3).map((sector, idx) => (
+              <div key={`summary-${sector.id}`} className="flex">
+                <span className="text-[#FF6B00] font-bold mr-3">{idx + 1}.</span>
+                <p className="flex-1">{sector.desc}</p>
               </div>
             ))}
           </div>

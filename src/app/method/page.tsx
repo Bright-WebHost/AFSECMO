@@ -30,7 +30,7 @@ export function MethodContent() {
           <div className="absolute inset-0 z-0">
             {/* High-res operational/methodology backdrop asset image */}
             <img
-              src={phases?.[0]?.image || "/unsplash-1541888946425-d81bb19240f5.jpg"}
+              src="/method.png"
               alt={hero.eyebrow || "Our Methodology"}
               className="h-full w-full object-cover opacity-85"
             />

@@ -11,6 +11,7 @@ type AboutStat = { label: string; value: string };
 
 export function AboutContent() {
   const { t } = useTranslation("content");
+  const { t: tc } = useTranslation("common");
   const activities = t("about.activities", { returnObjects: true }) as AboutActivity[];
   const stats = t("about.stats", { returnObjects: true }) as AboutStat[];
   const hero = t("about.hero", { returnObjects: true }) as {
@@ -48,15 +49,15 @@ export function AboutContent() {
             
             {/* Breadcrumbs matching your screenshot positioning */}
             <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
-              <span className="opacity-80 hover:underline cursor-pointer">a</span>
+              <span className="opacity-80 hover:underline cursor-pointer">{tc("nav.home")}</span>
               <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
-              <span className="text-white">About us</span>
+              <span className="text-white">{tc("nav.about")}</span>
             </div>
 
             {/* Title & Subtitle sitting firmly in the bottom left */}
             <div className="max-w-2xl text-left">
               <h1 className="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
-                About AFSECMO
+                {hero.titleLead} <span className="block text-[#FF6B00]">{hero.titleAccent}</span>
               </h1>
               <p className="mt-4 text-base font-light leading-relaxed text-gray-200 sm:text-lg">
                 {hero.description || "Energy security for a more sustainable world."}

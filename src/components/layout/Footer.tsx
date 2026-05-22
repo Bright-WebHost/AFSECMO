@@ -105,11 +105,7 @@ export default function Footer() {
             </p>
           </div>
           
-          <div>
-            <p className="text-[11px] font-light text-white/30 tracking-wide uppercase">
-              {t("footer.prepared")}
-            </p>
-          </div>
+          {/* Removed prepared-for line per request */}
         </div>
 
       </div>

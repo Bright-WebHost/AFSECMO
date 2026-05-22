@@ -3,20 +3,27 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import { ChevronRight, ArrowRight } from "lucide-react";
 
-// Strictly using your exact provided data and local image paths
-const PROJECTS = [
-  { id: "01", title: "Mining Logistics Support", sector: "Mining & Quarry", scope: "Heavy equipment mobilisation & supply chain.", location: "Ivorian Sites", image: "/01.png", span: "lg:col-span-2" },
-  { id: "02", title: "Industrial Procurement", sector: "Oil & Gas", scope: "Centralised purchasing of process equipment.", location: "Abidjan Hub", image: "/02.jpg", span: "lg:col-span-1" },
-  { id: "03", title: "BTP Infrastructure", sector: "Civil Engineering", scope: "Steel, concrete supply, and heavy earthworks.", location: "Koumassi", image: "/03.png", span: "lg:col-span-1" },
-  { id: "04", title: "Preventive Maintenance", sector: "Industrial", scope: "Rotating equipment overhaul & reporting.", location: "National Facilities", image: "/04.jpg", span: "lg:col-span-2" },
-  { id: "05", title: "Facility Utilities", sector: "Utilities", scope: "Electrical distribution & plumbing networks.", location: "Camp Operations", image: "/05.png", span: "lg:col-span-3" },
-];
+type ProjectItem = {
+  id: string;
+  title: string;
+  sector: string;
+  scope: string;
+  location: string;
+  image: string;
+  span: string;
+};
 
 const easeExp = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 export function ProjectsContent() {
+  const { t } = useTranslation("content");
+  const { t: tc } = useTranslation("common");
+  const projects = t("projects.items", { returnObjects: true }) as ProjectItem[];
+  const hero = t("projects.hero", { returnObjects: true }) as { titleLead: string; titleAccent: string; description: string };
+
   return (
     // Replaced dark background with the pristine off-white corporate canvas
     <main className="w-full bg-[#f8f9fa] pt-24 pb-32 font-sans text-gray-900 selection:bg-[#FF6B00] selection:text-white">
@@ -39,7 +46,7 @@ export function ProjectsContent() {
             <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-white/90">
               <span className="cursor-pointer opacity-80 hover:underline">AFSECMO</span>
               <ChevronRight className="h-3 w-3 stroke-3 text-white/50" />
-              <span className="text-white">Our Projects</span>
+              <span className="text-white">{tc("nav.projects")}</span>
             </div>
 
             <div className="max-w-3xl text-left">
@@ -49,8 +56,11 @@ export function ProjectsContent() {
                 transition={{ duration: 0.8, ease: easeExp }}
                 className="text-4xl font-medium leading-none tracking-tight text-white sm:text-5xl lg:text-7xl uppercase"
               >
-                Operational <span className="block text-[#FF6B00]">Portfolio.</span>
+                {hero.titleLead} <span className="block text-[#FF6B00]">{hero.titleAccent}</span>
               </motion.h1>
+              <p className="mt-4 max-w-2xl text-base font-light leading-relaxed text-gray-200 sm:text-lg">
+                {hero.description}
+              </p>
             </div>
           </div>
         </div>
@@ -59,7 +69,7 @@ export function ProjectsContent() {
       {/* ─── 2. ARCHITECTURAL PROJECT GRID ─── */}
       <section className="mx-auto max-w-350 px-4 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((proj, index) => (
+          {projects.map((proj, index) => (
             <motion.div
               key={proj.id}
               initial={{ opacity: 0, y: 30 }}
@@ -67,7 +77,7 @@ export function ProjectsContent() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: easeExp }}
               // Sharp rounded-xs corners for an industrial look, maintaining your specific spans
-              className={`group relative h-[450px] w-full cursor-pointer overflow-hidden rounded-xs bg-black ${proj.span}`}
+              className={`group relative h-112.5 w-full cursor-pointer overflow-hidden rounded-xs bg-black ${proj.span}`}
             >
               
               {/* Image with Grayscale to Color hover effect */}

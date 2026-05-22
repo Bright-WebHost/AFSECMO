@@ -4,7 +4,7 @@
       "eyebrow": "Corporate Profile",
       "titleLead": "Corporate",
       "titleAccent": "Profile.",
-      "description": "Société Africa Services & Equipements pour les Compagnies Minières, Oil & Gas. Dedicated to securing the supply chain and engineering infrastructure for West Africa's most demanding industrial environments.",
+      "description": "Africa Services & Equipment for Mining, Oil & Gas companies. Dedicated to securing the supply chain and engineering infrastructure for West Africa's most demanding industrial environments.",
       "imageAlt": "AFSECMO Industrial Operations"
     },
     "stats": [
@@ -18,7 +18,7 @@
     "activities": [
       { "title": "Central Purchasing & Trading", "copy": "Acting as a dedicated 'Centrale d'achat', we manage complex import-export logistics and global trading to secure the industrial supply chain.", "image": "/01.png" },
       { "title": "Construction & BTP", "copy": "Comprehensive civil engineering, general construction, and building renovation services specifically tailored for demanding operational sites.", "image": "/02.jpg" },
-      { "title": "Industrial Maintenance", "copy": "Heavy mechanical and industrial maintenance protocols designed to minimize downtime and protect vital operational lifecycles.", "image": "/03.png" },
+      { "title": "Industrial Maintenance", "copy": "Heavy mechanical and industrial maintenance protocols designed to minimize downtime and protect vital operational lifecycles.", "image": "/construction.jpg" },
       { "title": "General Contracting", "copy": "End-to-end site preparation and utility management, encompassing advanced electrical and plumbing engineering services.", "image": "/04.jpg" }
     ]
   },
@@ -32,9 +32,9 @@
     "items": [
       { "id": "mining", "num": "01", "category": "MINING", "tag": "Heavy Operations", "title": ["Mining & Quarry", "Support"], "desc": "Operational support for mining and quarry environments, from field mobilisation and heavy equipment coordination to materials supply.", "features": ["Heavy equipment & fleet coordination", "Spare parts, tools & consumables", "Preventive maintenance planning"], "image": "/01.png" },
       { "id": "energy", "num": "02", "category": "ENERGY", "tag": "Field Support", "title": ["Oil & Gas", "Services"], "desc": "Industrial services for energy and hydrocarbons projects, supporting field teams with technical procurement and utilities.", "features": ["Valves, fittings & process equipment", "Shutdown and turnaround assistance", "Industrial safety materials"], "image": "/02.jpg" },
-      { "id": "infrastructure", "num": "03", "category": "INFRASTRUCTURE", "tag": "Civil Works", "title": ["Engineering &", "Construction"], "desc": "Structured support for civil works, infrastructure delivery, industrial construction and site preparation requirements.", "features": ["Earthworks, drainage & road support", "Concrete, steel & building materials", "Subcontractor mobilisation"], "image": "/03.png" },
+      { "id": "infrastructure", "num": "03", "category": "INFRASTRUCTURE", "tag": "Civil Works", "title": ["Engineering &", "Construction"], "desc": "Structured support for civil works, infrastructure delivery, industrial construction and site preparation requirements.", "features": ["Earthworks, drainage & road support", "Concrete, steel & building materials", "Subcontractor mobilisation"], "image": "/engineer.jpg" },
       { "id": "maintenance", "num": "04", "category": "MAINTENANCE", "tag": "Site Operations", "title": ["Mechanical &", "Industrial"], "desc": "Practical mechanical support designed to keep industrial sites operational, productive and critically safe.", "features": ["Mechanical assemblies & repairs", "Welding, fabrication & fitting", "Conveyors & rotating equipment"], "image": "/04.jpg" },
-      { "id": "utilities", "num": "05", "category": "UTILITIES", "tag": "Facility Ops", "title": ["Electrical &", "Plumbing"], "desc": "Technical installation and maintenance support for industrial facilities, camps, warehouses and operational buildings.", "features": ["Industrial electrical distribution", "Generator, lighting & cable solutions", "Facility troubleshooting"], "image": "/05.png" },
+      { "id": "utilities", "num": "05", "category": "UTILITIES", "tag": "Facility Ops", "title": ["Electrical &", "Plumbing"], "desc": "Technical installation and maintenance support for industrial facilities, camps, warehouses and operational buildings.", "features": ["Industrial electrical distribution", "Generator, lighting & cable solutions", "Facility troubleshooting"], "image": "/plumbing.jpg" },
       { "id": "procurement", "num": "06", "category": "PROCUREMENT", "tag": "Global Supply", "title": ["Central", "Purchasing"], "desc": "Professional sourcing and procurement coordination for companies that need reliable access to equipment and materials.", "features": ["International supplier identification", "Commercial comparison & negotiation", "Customs & delivery follow-up"], "image": "/06.png" },
       { "id": "fleet", "num": "07", "category": "FLEET", "tag": "Mobilisation", "title": ["Equipment Rental", "& Fleet"], "desc": "Equipment solutions for sites that require fast mobilisation, flexible rental arrangements and reliable field support.", "features": ["Heavy machinery rental coordination", "Truck, vehicle & fleet support", "Equipment inspection & readiness"], "image": "/equipment.jpg" },
       { "id": "logistics", "num": "08", "category": "LOGISTICS", "tag": "Transport", "title": ["Logistics &", "Mobilisation"], "desc": "End-to-end coordination for moving equipment, materials and teams from suppliers to operational sites.", "features": ["Freight & local transport coordination", "Warehousing & staging support", "Last-mile site delivery"], "image": "/logistic.jpg" },
@@ -54,7 +54,7 @@
     "items": [
       { "id": "01", "prefix": "(I)", "title": "MINING &", "subtitle": "QUARRYING", "desc": "Heavy equipment, quarry materials, field logistics and technical supply solutions for extraction environments.", "tag": "Extraction", "image": "/01.png" },
       { "id": "02", "prefix": "(II)", "title": "OIL, GAS &", "subtitle": "ENERGY", "desc": "Industrial support for refinery, upstream, downstream and energy infrastructure requirements.", "tag": "Infrastructure", "image": "/02.jpg" },
-      { "id": "03", "prefix": "(III)", "title": "CONSTRUCTION &", "subtitle": "INFRASTRUCTURE", "desc": "Civil works, utilities, site preparation, BTP support and project mobilisation.", "tag": "Civil Works", "image": "/03.png" },
+      { "id": "03", "prefix": "(III)", "title": "CONSTRUCTION &", "subtitle": "INFRASTRUCTURE", "desc": "Civil works, utilities, site preparation, BTP support and project mobilisation.", "tag": "Civil Works", "image": "/construction.jpg" },
       { "id": "04", "prefix": "(IV)", "title": "INDUSTRIAL", "subtitle": "OPERATIONS", "desc": "Maintenance, mechanical, electrical and utility services for productive industrial facilities.", "tag": "Facility Ops", "image": "/04.jpg" },
       { "id": "05", "prefix": "(V)", "title": "TRADE &", "subtitle": "LOGISTICS", "desc": "Import-export, procurement, freight coordination and supply chain management.", "tag": "Supply Chain", "image": "/08.png" },
       { "id": "06", "prefix": "(VI)", "title": "FACILITIES &", "subtitle": "REAL ESTATE", "desc": "Operational property support, site services, camps, yards and commercial facility management.", "tag": "Asset Upkeep", "image": "/09.png" }
@@ -84,9 +84,22 @@
       }
     }
   },
+  "projects": {
+    "hero": {
+      "titleLead": "Operational",
+      "titleAccent": "Portfolio.",
+      "description": "A curated view of AFSECMO project delivery across mining, infrastructure, procurement, maintenance and utilities."
+    },
+    "items": [
+      { "id": "01", "title": "Mining Logistics Support", "sector": "Mining & Quarry", "scope": "Heavy equipment mobilisation & supply chain.", "location": "Ivorian Sites", "image": "/01.png", "span": "lg:col-span-2" },
+      { "id": "02", "title": "Industrial Procurement", "sector": "Oil & Gas", "scope": "Centralised purchasing of process equipment.", "location": "Abidjan Hub", "image": "/02.jpg", "span": "lg:col-span-1" },
+      { "id": "03", "title": "BTP Infrastructure", "sector": "Civil Engineering", "scope": "Steel, concrete supply, and heavy earthworks.", "location": "Koumassi", "image": "/construction.jpg", "span": "lg:col-span-1" },
+      { "id": "04", "title": "Preventive Maintenance", "sector": "Industrial", "scope": "Rotating equipment overhaul & reporting.", "location": "National Facilities", "image": "/04.jpg", "span": "lg:col-span-2" },
+      { "id": "05", "title": "Facility Utilities", "sector": "Utilities", "scope": "Electrical distribution & plumbing networks.", "location": "Camp Operations", "image": "/plumbing.jpg", "span": "lg:col-span-3" }
+    ]
+  },
   "method": {
     "hero": {
-      "eyebrow": "Animated Scroll Flow",
       "titleLead": "How we",
       "titleAccent": "deliver.",
       "subtitle": "// A clear process from request to site execution",

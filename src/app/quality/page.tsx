@@ -82,7 +82,7 @@ export function QualityContent() {
             transition={{ duration: 0.6, ease: easeExp }}
             className="md:col-span-4"
           >
-            <h2 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#FF6B00]">
+            <h2 className="text-xl md:text-2xl lg:text-[28px] font-bold uppercase tracking-[0.25em] text-[#FF6B00]">
               {hero.eyebrow || "OPERATIONAL METRICS"}
             </h2>
           </motion.div>

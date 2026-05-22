@@ -36,7 +36,7 @@ export default function Navbar() {
 
   const isHomePage = currentPath === "/";
 
-  // ─── Dynamic Scroll Transforms (Transparent on Hero, Dark Blue on Scroll) ───
+  // Dynamic Scroll Transforms (Transparent on Hero, Dark Blue on Scroll)
   const bgOpacity = useTransform(scrollY, [0, 100], ["rgba(15,23,42,0)", "rgba(15,23,42,0.95)"]);
   const borderOpacity = useTransform(scrollY, [0, 100], ["rgba(30,41,59,0)", "rgba(30,41,59,0.8)"]);
   const textColor = useTransform(scrollY, [0, 100], ["rgba(255,255,255,0.95)", "rgba(255,255,255,1)"]);
@@ -49,9 +49,9 @@ export default function Navbar() {
     return currentPath === href || currentPath.startsWith(`${href}/`);
   };
 
-  const handleLanguageToggle = () => {
-    const newLocale: Locale = locale === "en" ? "fr" : "en";
-    const newPath = withLocalePath(newLocale, currentPath);
+  const handleLanguageChange = (targetLocale: Locale) => {
+    if (locale === targetLocale) return;
+    const newPath = withLocalePath(targetLocale, currentPath);
     router.push(newPath);
   };
 
@@ -73,7 +73,7 @@ export default function Navbar() {
         style={{ background: headerBackground, borderBottomColor: headerBorderColor }}
         className="fixed inset-x-0 top-0 z-50 h-16 lg:h-20 border-b border-slate-700 backdrop-blur-sm transition-shadow duration-300"
       >
-        {/* Fixed height container - doesn't scale with content */}
+        {/* Fixed height container */}
         <div className="mx-auto h-full flex max-w-full items-center justify-between px-4 lg:px-12">
 
           {/* Mobile Menu Button - LEFT */}
@@ -118,49 +118,48 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Language Switcher + Logo */}
-          <div className="flex items-center gap-2 lg:gap-8 ml-auto shrink-0">
-            {/* Language Toggle Switch */}
-            <motion.button
-              onClick={handleLanguageToggle}
-              className="hidden sm:flex relative items-center h-10 w-16 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 shrink-0"
-              style={{
-                backgroundColor: locale === "en" ? "#FF6B00" : "#6B7280",
-              }}
-              aria-label="Toggle language"
-            >
-              {/* Animated toggle circle */}
+          <div className="flex items-center gap-4 lg:gap-8 ml-auto shrink-0">
+            
+            {/* Minimal Architectural Segmented Language Switcher */}
+            <div className="hidden sm:flex items-center bg-slate-900/40 p-1 rounded-lg border border-slate-700/60 backdrop-blur-md relative overflow-hidden h-9 w-[88px]">
+              
+              {/* Sliding Highlight Layer */}
               <motion.div
-                className="absolute w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center font-bold text-xs"
-                animate={{ x: locale === "en" ? 4 : 28 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                className="absolute top-1 bottom-1 rounded-[5px] bg-[#FF6B00]"
+                initial={false}
+                animate={{
+                  left: locale === "en" ? "4px" : "44px",
+                  right: locale === "en" ? "48px" : "4px"
+                }}
+                transition={{ type: "spring", stiffness: 450, damping: 32 }}
+              />
+
+              {/* EN Option */}
+              <button
+                onClick={() => handleLanguageChange("en")}
+                className="relative z-10 w-10 h-full text-center text-[11px] font-mono font-bold tracking-wider transition-colors duration-200 focus:outline-none"
+                style={{ color: locale === "en" ? "#ffffff" : "rgba(255,255,255,0.4)" }}
               >
-                {locale === "en" ? "EN" : "FR"}
-              </motion.div>
+                EN
+              </button>
 
-              {/* Labels */}
-              <div className="absolute inset-0 flex items-center justify-between px-3 pointer-events-none">
-                <span
-                  className="text-xs font-bold uppercase tracking-wider transition-opacity"
-                  style={{ opacity: locale === "en" ? 1 : 0.5, color: "white" }}
-                >
-                  EN
-                </span>
-                <span
-                  className="text-xs font-bold uppercase tracking-wider transition-opacity"
-                  style={{ opacity: locale === "fr" ? 1 : 0.5, color: "white" }}
-                >
-                  FR
-                </span>
-              </div>
-            </motion.button>
+              {/* FR Option */}
+              <button
+                onClick={() => handleLanguageChange("fr")}
+                className="relative z-10 w-10 h-full text-center text-[11px] font-mono font-bold tracking-wider transition-colors duration-200 focus:outline-none"
+                style={{ color: locale === "fr" ? "#ffffff" : "rgba(255,255,255,0.4)" }}
+              >
+                FR
+              </button>
+            </div>
 
-            {/* Logo Container - Fixed size, doesn't affect navbar height */}
+            {/* Logo Container */}
             <Link 
               href={withLocalePath(locale, "/")} 
               aria-label="Home" 
               className="relative z-10 shrink-0 flex items-center justify-center"
             >
-              {/* Mobile logo: smaller */}
+              {/* Mobile logo */}
               <div className="lg:hidden h-8 w-auto flex items-center">
                 <Image
                   src="/logo.jpeg"
@@ -172,7 +171,7 @@ export default function Navbar() {
                 />
               </div>
 
-              {/* Desktop logo: larger */}
+              {/* Desktop logo */}
               <div className="hidden lg:flex h-12 w-auto items-center">
                 <Image
                   src="/logo.png"
@@ -210,10 +209,8 @@ export default function Navbar() {
               transition={{ duration: 0.45, ease: easeExp }}
               className="fixed inset-y-0 right-0 z-50 flex w-[min(380px,90vw)] flex-col bg-gradient-to-b from-slate-800 to-slate-900 shadow-2xl"
             >
-              {/* Decorative accent line */}
               <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-orange-500 to-transparent opacity-80" />
 
-              {/* Header with logo and close button */}
               <div className="relative flex items-center justify-between border-b border-slate-700 px-6 py-6">
                 <Link href="/" onClick={() => setMobileOpen(false)}>
                   <div className="h-10 w-auto flex items-center">
