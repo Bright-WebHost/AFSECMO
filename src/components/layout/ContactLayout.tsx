@@ -180,7 +180,7 @@ export default function ContactLayout() {
             <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" className="space-y-6">
               
               <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="bot-field" className="hidden" />
+              <input type="text" name="bot-field" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
               {/* Row 1: Name & Company */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
