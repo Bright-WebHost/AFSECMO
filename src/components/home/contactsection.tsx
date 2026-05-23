@@ -4,9 +4,11 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { withLocalePath } from "@/i18n/routing";
 
 export default function ContactCTA() {
-  const { t } = useTranslation("home");
+  const { t, i18n } = useTranslation("home");
+  const locale = i18n.language === "fr" ? "fr" : "en";
   const contactCard = t("contact.cards.contact", { returnObjects: true }) as { title?: string; description?: string; cta?: string };
   const careersCard = t("contact.cards.careers", { returnObjects: true }) as { title?: string; description?: string; cta?: string };
 
@@ -79,7 +81,7 @@ export default function ContactCTA() {
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link 
-                href="/careers"
+                href={withLocalePath(locale, "/careers")}
                 className="group flex h-full flex-col justify-between rounded-xs border border-black/10 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-black/20 hover:shadow-md sm:h-56 sm:w-72"
               >
                 <div>
