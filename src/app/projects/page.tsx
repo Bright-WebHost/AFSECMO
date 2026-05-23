@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 type ProjectItem = {
   id: string;
@@ -122,14 +122,12 @@ export function ProjectsContent() {
                     {proj.scope}
                   </p>
 
-                  <div className="flex items-center justify-between border-t border-white/20 pt-5">
+                  <div className="flex items-center justify-start border-t border-white/20 pt-5">
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 transition-colors duration-300 group-hover:text-white">
                       {proj.location}
                     </span>
                     
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-transparent transition-all duration-500 group-hover:border-[#FF6B00] group-hover:bg-[rgba(255,107,0,0.15)]">
-                      <ArrowRight className="h-3.5 w-3.5 stroke-white transition-transform duration-500 group-hover:-rotate-45 group-hover:stroke-[#FF6B00]" strokeWidth={2} />
-                    </div>
+                  
                   </div>
                 </div>
               </motion.div>
