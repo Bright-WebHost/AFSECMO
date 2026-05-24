@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import BrandLogo from "@/components/layout/BrandLogo";
 import { type Locale } from "@/i18n/locales";
 import { stripLocale, withLocalePath } from "@/i18n/routing";
 
@@ -150,26 +150,12 @@ export default function Navbar() {
             >
               {/* Mobile logo */}
               <div className="lg:hidden h-8 w-auto flex items-center">
-                <Image
-                  src="/logo.png"
-                  alt="Logo"
-                  width={240}
-                  height={60}
-                  className="h-full w-auto max-w-30 object-contain"
-                  priority
-                />
+                <BrandLogo className="h-full w-auto max-w-30 object-contain" width={240} height={60} />
               </div>
 
               {/* Desktop logo */}
               <div className="hidden lg:flex h-12 w-auto items-center">
-                <Image
-                  src="/logo.png"
-                  alt="Logo"
-                  width={240}
-                  height={60}
-                  className="h-full w-auto max-w-45 object-contain"
-                  priority
-                />
+                <BrandLogo className="h-full w-auto max-w-45 object-contain" width={240} height={60} />
               </div>
             </Link>
           </div>
@@ -203,14 +189,7 @@ export default function Navbar() {
               <div className="relative flex items-center justify-between border-b border-slate-700 px-6 py-6">
                 <Link href="/" onClick={() => setMobileOpen(false)}>
                   <div className="h-10 w-auto flex items-center">
-                    <Image 
-                      src="/logo.png" 
-                      alt="Logo" 
-                      width={240}
-                      height={60}
-                      className="h-full w-auto max-w-30 object-contain"
-                      priority 
-                    />
+                    <BrandLogo className="h-full w-auto max-w-30 object-contain" width={240} height={60} />
                   </div>
                 </Link>
                 <button

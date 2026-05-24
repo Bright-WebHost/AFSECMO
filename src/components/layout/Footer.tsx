@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import BrandLogo from "@/components/layout/BrandLogo";
 import LanguageSwitcher from "@/components/i18n/LanguageSwitcher";
 import { type Locale } from "@/i18n/locales";
 import { withLocalePath } from "@/i18n/routing";
@@ -24,11 +25,7 @@ export default function Footer() {
           {/* Brand & Corporate Identity Column */}
           <div className="md:col-span-6 lg:col-span-6">
             <Link href={withLocalePath(locale, "/")} className="inline-block mb-8">
-              <img 
-                src="/logo-desktop.webp" 
-                alt="AFSECMO" 
-                className="h-16 sm:h-20 w-auto object-contain" 
-              />
+              <BrandLogo className="h-16 sm:h-20 w-auto object-contain" width={320} height={96} />
             </Link>
             <h2 className="text-base font-semibold text-white mb-6 uppercase tracking-[0.15em]">
               {t("footer.title")}
