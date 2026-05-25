@@ -99,13 +99,7 @@ function Card({ card }: { card: (typeof cards)[0] }) {
         </h3>
       </div>
 
-      {/* 5 — Arrow circle */}
-      <div className="absolute bottom-5 right-5 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-transparent transition-all duration-300 group-hover:border-white group-hover:bg-white/15">
-        <ArrowRight
-          className="h-4 w-4 stroke-white transition-transform duration-300 group-hover:translate-x-0.5"
-          strokeWidth={1.8}
-        />
-      </div>
+      {/* arrow removed per client request */}
     </div>
   );
 }
