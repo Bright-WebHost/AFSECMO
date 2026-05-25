@@ -30,7 +30,7 @@ export function ServicesContent() {
 
       {/* ─── 1. Contained Hero Card ─── */}
       <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
-        <div className="relative h-[60vh] min-h-115 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
+        <div className="relative h-auto md:h-[60vh] md:min-h-115 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           <div className="absolute inset-0 z-0">
             <img
               src="/service.webp"
