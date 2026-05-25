@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AFSECMO Group",
-  description: "Premium industrial brand experience built with AFSECMO Group.",
+  title: "Site Under Maintenance",
+  description: "We'll be back shortly.",
 };
 
 export default function RootLayout({
@@ -27,8 +27,20 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body suppressHydrationWarning className="min-h-screen bg-primary bg-[#0F1B2E] text-white">
-        {children}
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-black text-white"
+      >
+        <main className="flex min-h-screen items-center justify-center px-6 text-center">
+          <div className="max-w-xl space-y-4">
+            <h1 className="text-3xl font-medium tracking-[0.2em] uppercase sm:text-5xl">
+              Site Under Maintenance
+            </h1>
+            <p className="text-sm font-light tracking-[0.28em] text-white/70 sm:text-base">
+              We'll be back shortly.
+            </p>
+          </div>
+        </main>
       </body>
     </html>
   );
