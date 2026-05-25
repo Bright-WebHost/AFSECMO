@@ -35,7 +35,7 @@ const cards = [
     eyebrowKey: "sectorsGrid.cards.logistics.eyebrow",
     defaultEyebrow: "Logistics",
     titleKey: "sectorsGrid.cards.logistics.title",
-    defaultTitle: "Delivering global supply chain excellence to your doorstep.",
+    defaultTitle: "Delivering dependable supply chain support to your doorstep.",
     image: "/about4.webp",
   },
 ];
@@ -143,7 +143,7 @@ export default function ServicesGrid() {
             <p className="max-w-155 text-2xl font-light leading-[1.3] tracking-tight text-[#111] sm:text-3xl lg:text-[38px] lg:leading-[1.2]">
               {t(
                 "sectorsGrid.description",
-                "We are a leading industrial partner driving infrastructure, energy, and logistics across West Africa and beyond."
+                "We support infrastructure, energy and logistics operations with practical coordination, reliable sourcing and field execution."
               )}
             </p>
           </div>

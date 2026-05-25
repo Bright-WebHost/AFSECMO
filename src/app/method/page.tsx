@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 
-type Phase = { num: string; tag: string; title: string; desc: string; image: string };
+type Phase = { num: string; tag: string; title: string; desc: string; image: string; deliverables?: string[] };
 
 export function MethodContent() {
   const { t } = useTranslation("content");
@@ -128,6 +128,17 @@ export function MethodContent() {
                   <p className="text-base font-light leading-relaxed text-gray-600 max-w-xl">
                     {phase.desc}
                   </p>
+
+                  {Array.isArray(phase.deliverables) && phase.deliverables.length > 0 && (
+                    <ul className="mt-6 space-y-2 text-sm font-light leading-relaxed text-gray-600">
+                      {phase.deliverables.map((deliverable) => (
+                        <li key={deliverable} className="flex items-start gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B00]" />
+                          <span>{deliverable}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </motion.div>
             );

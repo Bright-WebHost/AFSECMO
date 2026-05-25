@@ -1,12 +1,15 @@
 {
   "metadata": {
-    "title": "AFSECMO Group | Industrial Services & Logistics",
-    "description": "AFSECMO Group delivers engineering, strategy, and delivery services for industrial clients - precision, safety, and operational excellence across mining, energy, construction and logistics."
+    "title": "AFSECMO Group | Industrial Project Support",
+    "description": "AFSECMO Group supports mining, oil & gas, construction, procurement, logistics and field operations from Abidjan across West Africa."
   },
   "hero": {
-    "headline": "AFSECMO Group",
-    "subtitle": "Africa Services & Equipements. Delivering central purchasing, industrial maintenance, and civil engineering (BTP) for demanding environments.",
-    "imageAlt": "Precision Machine",
+    "eyebrow": "Industrial Project Support",
+    "headline": "Industrial Project Support for West Africa's Critical Operations",
+    "subtitle": "AFSECMO supports mining, oil & gas, construction, logistics and industrial operations with procurement, import-export coordination, equipment mobilisation, maintenance support and field-ready project services from Abidjan.",
+    "primaryCta": "Request a quotation",
+    "secondaryCta": "Explore our services",
+    "imageAlt": "AFSECMO industrial operations",
     "stats": [
       { "label": "Established", "value": "2024" },
       { "label": "Headquarters", "value": "Abidjan" },
@@ -26,7 +29,7 @@
       },
       {
         "value": "360°",
-        "label": "End-to-end operations: from central purchasing to global supply chain."
+        "label": "End-to-end support from procurement and import-export to logistics, mobilisation, maintenance and site services."
       }
     ]
   },
@@ -58,29 +61,34 @@
     "titleLead": "Detailed industrial capabilities",
     "titleAccent": "for high-value projects.",
     "description": "AFSECMO brings together technical support, procurement, logistics, maintenance and construction coordination under one professional service platform.",
-    "cta": "Request Details",
+    "cta_label": "Request support",
+    "cta": {
+      "heading": "Ready to mobilise your next operation?",
+      "description": "Share your requirements with AFSECMO and our team will coordinate the right procurement, logistics, equipment, technical or field-support solution for your project.",
+      "button": "Request a quotation"
+    },
     "items": [
-      { "id": "01", "category": "Mining", "title": "Mining & Quarry Support", "summary": "Operational support for mining and quarry environments, from field mobilisation and heavy equipment coordination to materials supply and maintenance readiness.", "tag": "Heavy Operations", "image": "/01.webp" },
-      { "id": "02", "category": "Energy", "title": "Oil & Gas Services", "summary": "Industrial services for energy and hydrocarbons projects, supporting field teams with technical procurement, equipment, utilities and maintenance operations.", "tag": "Field Support", "image": "/02.webp" },
-      { "id": "03", "category": "Infrastructure", "title": "Engineering & Construction", "summary": "Structured support for civil works, infrastructure delivery, industrial construction and site preparation requirements.", "tag": "Civil Works", "image": "/construction.webp" },
-      { "id": "04", "category": "Maintenance", "title": "Mechanical & Industrial Maintenance", "summary": "Practical mechanical support designed to keep industrial sites operational, productive and safe.", "tag": "Site Operations", "image": "/mach2.webp" },
-      { "id": "05", "category": "Utilities", "title": "Electrical, Plumbing & Utilities", "summary": "Technical installation and maintenance support for industrial facilities, camps, warehouses and operational buildings.", "tag": "Facility Ops", "image": "/plumbing.webp" },
-      { "id": "06", "category": "Procurement", "title": "Central Purchasing & Import-Export", "summary": "Professional sourcing and procurement coordination for companies that need reliable access to equipment, materials and suppliers.", "tag": "Global Supply", "image": "/06.webp" },
-      { "id": "07", "category": "Fleet", "title": "Equipment Rental & Fleet Support", "summary": "Equipment solutions for sites that require fast mobilisation, flexible rental arrangements and reliable field support.", "tag": "Mobilisation", "image": "/eq.webp" },
-      { "id": "08", "category": "Logistics", "title": "Logistics & Project Mobilisation", "summary": "End-to-end coordination for moving equipment, materials and teams from suppliers to operational sites.", "tag": "Transport", "image": "/log.webp" },
-      { "id": "09", "category": "Asset Mgt", "title": "Facility & Asset Support", "summary": "Support for operational properties, camps, workshops and industrial facilities that require professional service management.", "tag": "Upkeep", "image": "/09.webp" }
+      { "id": "01", "category": "Mining", "title": "Driving operational reliability across mining and quarry sites.", "summary": "Operational support for mining and quarry sites, including equipment sourcing, spare parts, safety materials, aggregates, fleet coordination and field logistics. AFSECMO helps extraction teams reduce delays and keep production environments supplied.", "tag": "Heavy Operations", "image": "/01.webp" },
+      { "id": "02", "category": "Energy", "title": "Supporting oil, gas and energy infrastructure with technical procurement and site services.", "summary": "Technical procurement, equipment mobilisation and maintenance coordination for upstream, downstream, storage, energy and utility infrastructure. We support critical operations with vetted suppliers, site-ready materials and disciplined project follow-up.", "tag": "Field Support", "image": "/02.webp" },
+      { "id": "03", "category": "Infrastructure", "title": "Coordinating construction, civil works and industrial project support.", "summary": "Support for civil works, site preparation, industrial buildings, utilities, renovation projects and infrastructure delivery. AFSECMO coordinates materials, equipment, subcontractors and documentation to keep works moving safely and efficiently.", "tag": "Civil Works", "image": "/construction.webp" },
+      { "id": "04", "category": "Logistics", "title": "Moving equipment, materials and project supplies from source to site.", "summary": "End-to-end coordination for moving materials, equipment and teams from suppliers to operational sites. Our support includes transport planning, consolidation, import-export assistance, delivery tracking and site readiness.", "tag": "Site Operations", "image": "/log.webp" },
+      { "id": "05", "category": "Utilities", "title": "Electrical, Plumbing & Utilities", "summary": "Technical installation and maintenance support for facilities, camps, warehouses and operational buildings.", "tag": "Facility Ops", "image": "/plumbing.webp" },
+      { "id": "06", "category": "Procurement", "title": "Central Purchasing & Import-Export", "summary": "Reliable sourcing, purchasing coordination and import-export follow-up for equipment, materials and approved suppliers.", "tag": "Supply Chain", "image": "/06.webp" },
+      { "id": "07", "category": "Fleet", "title": "Equipment Rental & Fleet Support", "summary": "Fast mobilisation of machinery, vehicles and support assets for project sites and field operations.", "tag": "Mobilisation", "image": "/eq.webp" },
+      { "id": "08", "category": "Logistics", "title": "Logistics & Project Mobilisation", "summary": "Transport planning, warehousing coordination and site delivery support for equipment, materials and teams.", "tag": "Transport", "image": "/log.webp" },
+      { "id": "09", "category": "Asset Mgt", "title": "Facility & Asset Support", "summary": "Operational support for camps, workshops, site facilities and assets that need dependable service management.", "tag": "Upkeep", "image": "/09.webp" }
     ]
   },
   "contact": {
-    "eyebrow": "Global contacts",
-    "titleLead": "Partner with AFSECMO to engineer",
-    "titleAccent": "a better future for everyone.",
-    "description": "Whether you are looking for logistical solutions, energy partnerships, or industrial construction expertise across West Africa, our team is ready to assist.",
+    "eyebrow": "Partner with AFSECMO",
+    "titleLead": "Partner with AFSECMO for reliable industrial execution.",
+    "titleAccent": "",
+    "description": "From procurement and logistics to equipment mobilisation, construction support and industrial maintenance, our team helps operators move faster, reduce supply-chain friction and keep critical sites operational.",
     "cards": {
       "contact": {
         "title": "Get in touch",
-        "description": "Reach out to our Abidjan headquarters or global offices.",
-        "cta": "Launch inquiry"
+        "description": "Reach out to our Abidjan headquarters for a project discussion.",
+        "cta": "Speak with our team"
       },
       "careers": {
         "title": "Join our team",

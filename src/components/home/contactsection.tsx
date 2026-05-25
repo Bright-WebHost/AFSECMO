@@ -28,20 +28,20 @@ export default function ContactCTA() {
           >
             <div className="mb-6 flex items-center gap-3">
               <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-(--accent)">
-                {t("contact.eyebrow", "GLOBAL CONTACTS")}
+                {t("contact.eyebrow", "Connect with our team")}
               </span>
             </div>
 
             <h2 className="mb-6 text-3xl font-light leading-snug tracking-tight text-[#111] sm:text-4xl lg:text-5xl">
-              {t("contact.titleLead", "Partner with AFSECMO to engineer")}{" "}
+              {t("contact.titleLead", "Request support with AFSECMO to mobilise")}{" "}
               <br className="hidden md:block" />
               <span className="font-medium text-(--accent)">
-                {t("contact.titleAccent", "a better future for everyone.")}
+                {t("contact.titleAccent", "your next operation.")}
               </span>
             </h2>
 
             <p className="max-w-xl text-lg leading-relaxed text-[#555]">
-              {t("contact.description", "Whether you are looking for logistical solutions, energy partnerships, or industrial construction expertise across West Africa, our team is ready to assist.")}
+              {t("contact.description", "Whether you need procurement coordination, logistics planning, equipment mobilisation or field support, our team is ready to assist.")}
             </p>
           </motion.div>
 
@@ -61,11 +61,11 @@ export default function ContactCTA() {
               >
                 <div>
                   <h3 className="mb-2 text-xl font-light text-[#111]">{contactCard.title || "Get in touch"}</h3>
-                    <p className="text-sm text-[#777]">{contactCard.description || "Reach out to our Abidjan headquarters or global offices."}</p>
+                    <p className="text-sm text-[#777]">{contactCard.description || "Reach out to our Abidjan headquarters for a project discussion."}</p>
                 </div>
                 
                 <div className="mt-8 flex w-fit items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#111]">
-                  <span>{contactCard.cta || t("contact.cta", "Launch Inquiry")}</span>
+                  <span>{contactCard.cta || t("contact.cta", "Request a quotation")}</span>
                   <span className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 transition-all duration-300 group-hover:border-(--accent) group-hover:bg-[rgba(255,140,0,0.08)]">
                     <ArrowRight className="h-3.5 w-3.5 stroke-[#111] transition-colors duration-300 group-hover:stroke-(--accent)" strokeWidth={2} />
                   </span>

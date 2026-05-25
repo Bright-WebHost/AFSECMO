@@ -22,7 +22,7 @@ export function ServicesContent() {
   const { t } = useTranslation("content");
   const services = t("services.items", { returnObjects: true }) as ServiceItem[];
   const hero = t("services.hero", { returnObjects: true }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
-  const cta = t("services.cta", { returnObjects: true }) as { titleLead: string; titleAccent: string; button: string };
+  const cta = t("services.cta", { returnObjects: true }) as { heading: string; description: string; button: string };
 
   return (
     // Clean off-white baseline canvas to match the screenshots
@@ -90,7 +90,7 @@ export function ServicesContent() {
 
                 {/* Minimalist interactive link matching the custom request routing */}
                 <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#FF6B00] transition-colors group-hover:text-[#E65C00]">
-                  <span>{t("services.cta_label", "Inquire about sector")}</span>
+                  <span>{t("services.cta_label", "Request support")}</span>
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </div>
@@ -105,10 +105,10 @@ export function ServicesContent() {
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-2xl">
               <h2 className="text-2xl font-light tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
-                {cta.titleLead || "Our mega projects"}
+                {cta.heading || "Ready to mobilise your next operation?"}
               </h2>
-              <p className="mt-2 text-sm text-gray-500 font-light">
-                Discover how we are building scalable utility operations across sub-Saharan corridors.
+              <p className="mt-2 text-sm font-light text-gray-500">
+                {cta.description || "Share your requirements with AFSECMO and our team will coordinate the right procurement, logistics, equipment, technical or field-support solution for your project."}
               </p>
             </div>
             <div className="shrink-0">
@@ -116,7 +116,7 @@ export function ServicesContent() {
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
               >
-                {cta.button || "Explore operations framework"}
+                {cta.button || "Request a quotation"}
               </Link>
             </div>
           </div>

@@ -20,6 +20,7 @@ export function SectorsContent() {
   const { t } = useTranslation("content");
   const sectors = t("sectors.items", { returnObjects: true }) as SectorItem[];
   const hero = t("sectors.hero", { returnObjects: true }) as { titleLead: string; titleAccent: string };
+  const intro = t("sectors.intro", "AFSECMO supports companies operating in demanding industrial environments where procurement reliability, logistics coordination, technical support and field execution are critical to performance.") as string;
   const cta = t("sectors.cta") as string;
 
   return (
@@ -64,6 +65,9 @@ export function SectorsContent() {
       {/* Real layout columns populated strictly from your parsed sector items array */}
       {Array.isArray(sectors) && sectors.length > 0 && (
         <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-b border-gray-100">
+          <p className="mb-8 max-w-3xl text-base font-light leading-relaxed text-gray-600 lg:text-lg">
+            {intro}
+          </p>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-sm font-light leading-relaxed text-gray-600 lg:text-base lg:gap-12">
             {sectors.slice(0, 3).map((sector, idx) => (
               <div key={`summary-${sector.id}`} className="flex">
@@ -122,7 +126,7 @@ export function SectorsContent() {
 
                 {/* Dynamic Action Trigger directly pulling your core 'cta' parameter string */}
                 <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold tracking-wider text-[#FF6B00] transition-colors group-hover:text-[#E65C00]">
-                  <span className="uppercase tracking-widest">{cta}</span>
+                  <span className="uppercase tracking-widest">{cta || "Request support"}</span>
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </div>

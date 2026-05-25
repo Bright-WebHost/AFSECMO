@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 
-type AboutActivity = { title: string; copy: string; image: string };
+type AboutActivity = { title: string; copy: string; image: string; imageAlt?: string };
 type AboutStat = { label: string; value: string };
 
 export function AboutContent() {
@@ -116,7 +116,7 @@ export function AboutContent() {
                 <div className="h-80 w-full overflow-hidden rounded-2xl sm:h-96 lg:h-[450px] lg:w-1/2">
                   <img 
                     src={activity.image} 
-                    alt={activity.title} 
+                    alt={activity.imageAlt || activity.title} 
                     className="h-full w-full object-cover" 
                   />
                 </div>

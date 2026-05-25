@@ -16,6 +16,7 @@ export function CareersContent() {
     why: { title: string; copy: string };
     standards: { title: string; copy: string };
     contact: { eyebrow: string; title: string; email: string };
+    categories?: { title: string; copy: string }[];
   };
 
   return (
@@ -87,6 +88,27 @@ export function CareersContent() {
           </div>
         </div>
       </section>
+
+      {Array.isArray(sections.categories) && sections.categories.length > 0 && (
+        <section className="w-full bg-[#f8f9fa] py-20 sm:py-24">
+          <div className="mx-auto max-w-350 px-6 lg:px-10">
+            <div className="mb-10 max-w-3xl">
+              <h2 className="text-3xl font-light text-gray-900 sm:text-4xl">Career categories</h2>
+              <p className="mt-4 text-lg font-light leading-relaxed text-gray-600">
+                Explore the types of roles AFSECMO recruits for across field operations, procurement, technical services and support functions.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {sections.categories.map((category) => (
+                <div key={category.title} className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+                  <h3 className="text-xl font-medium text-gray-900">{category.title}</h3>
+                  <p className="mt-3 text-sm font-light leading-relaxed text-gray-600">{category.copy}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Recruitment Contact - Redesigned as a Premium CTA Block */}
       <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 pb-32">

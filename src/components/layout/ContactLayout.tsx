@@ -16,6 +16,7 @@ export default function ContactLayout() {
   const details = (t("contact.details", { returnObjects: true }) || {}) as {
     label: string;
     title: string;
+    description?: string;
     officeLabel: string;
     office: string;
     emailLabel: string;
@@ -34,20 +35,25 @@ export default function ContactLayout() {
     namePlaceholder: string;
     email: string;
     emailPlaceholder: string;
+    country: string;
+    countryPlaceholder: string;
     phoneLabel: string;
     phonePlaceholder: string;
-    projectType: string;
-    projectTypePlaceholder: string;
-    timeline: string;
-    timelinePlaceholder: string;
-    budget: string;
-    budgetPlaceholder: string;
-    message: string;
-    messagePlaceholder: string;
+    requiredDeliveryDate: string;
+    requiredDeliveryDatePlaceholder: string;
+    serviceRequired: string;
+    serviceRequiredPlaceholder: string;
+    urgencyLevel: string;
+    urgencyLevelPlaceholder: string;
+    fileUpload: string;
+    fileUploadHint: string;
+    projectBrief: string;
+    projectBriefPlaceholder: string;
     back: string;
     continue: string;
     submit: string;
     serviceOptions?: string[];
+    urgencyOptions?: string[];
     success?: string;
     error?: string;
   };
@@ -63,8 +69,7 @@ export default function ContactLayout() {
     try {
       const response = await fetch("/contact-form.html", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body: formData,
       });
 
       if (response.ok) {
@@ -82,14 +87,18 @@ export default function ContactLayout() {
 
   return (
     <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-400 flex-col font-sans text-gray-900 lg:min-h-screen lg:flex-row">
-      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden aria-hidden="true">
+      <form name="contact" method="POST" encType="multipart/form-data" data-netlify="true" data-netlify-honeypot="bot-field" hidden aria-hidden="true">
         <input type="hidden" name="form-name" value="contact" />
         <input type="text" name="bot-field" />
         <input type="text" name="name" />
         <input type="text" name="company" />
         <input type="email" name="email" />
+        <input type="text" name="country" />
         <input type="tel" name="phone" />
+        <input type="text" name="deliveryDate" />
         <input type="text" name="service" />
+        <input type="text" name="urgency" />
+        <input type="file" name="attachment" />
         <textarea name="message" />
       </form>
       
@@ -106,11 +115,14 @@ export default function ContactLayout() {
               className="space-y-4"
             >
               <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#FF6B00]">
-                {details.label || "GLOBAL CONTACTS"}
+                {details.label || "CONNECT WITH OUR TEAM"}
               </p>
               <h1 className="text-4xl font-light tracking-tight text-[#111] sm:text-5xl lg:text-6xl">
                 {details.title || "Let's build together."}
               </h1>
+              <p className="max-w-xl text-base leading-relaxed text-[#555]">
+                {details.description || "Send your project requirement, quotation request or operational-support inquiry. Our team will review your scope, location, timeline and technical needs before coordinating the appropriate procurement, logistics, equipment or field-support response."}
+              </p>
             </motion.div>
 
             <motion.div 
@@ -206,6 +218,30 @@ export default function ContactLayout() {
                 </label>
               </div>
 
+              {/* Row 2b: Country / Site location */}
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.country || "Country / Site location"}</span>
+                  <input
+                    type="text"
+                    name="country"
+                    placeholder={form.countryPlaceholder || "Côte d'Ivoire / Abidjan, Yopougon"}
+                    required
+                    className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  />
+                </label>
+
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.requiredDeliveryDate || "Required delivery date"}</span>
+                  <input
+                    type="date"
+                    name="deliveryDate"
+                    required
+                    className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  />
+                </label>
+              </div>
+
               {/* Row 2: Email & Phone */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <label className="block">
@@ -233,7 +269,7 @@ export default function ContactLayout() {
 
               {/* Row 3: Service Dropdown */}
               <label className="block">
-                <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.projectType || "Service needed"}</span>
+                <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.serviceRequired || "Service required"}</span>
                 <select
                   name="service"
                   required
@@ -241,15 +277,17 @@ export default function ContactLayout() {
                   className="w-full cursor-pointer appearance-none rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
                   style={{ backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 1rem top 50%", backgroundSize: "0.65rem auto" }}
                 >
-                  <option value="" disabled hidden>{form.projectTypePlaceholder || "Select a service"}</option>
+                  <option value="" disabled hidden>{form.serviceRequiredPlaceholder || "Select a service"}</option>
                   {(form.serviceOptions || [
-                    "Mining support",
-                    "Oil & gas / industrial services",
-                    "Construction / BTP",
-                    "Procurement / import-export",
-                    "Equipment rental / fleet support",
-                    "Maintenance / utilities",
-                    "Other",
+                    "Mining & Quarry Support",
+                    "Oil, Gas & Energy Support",
+                    "Construction & BTP",
+                    "Mechanical & Industrial Maintenance",
+                    "Electrical, Plumbing & Utilities",
+                    "Central Purchasing & Import-Export",
+                    "Equipment Rental & Fleet Support",
+                    "Logistics & Project Mobilisation",
+                    "Facility & Asset Support",
                   ]).map((option) => (
                     <option key={option} value={option}>
                       {option}
@@ -258,12 +296,42 @@ export default function ContactLayout() {
                 </select>
               </label>
 
-              {/* Row 4: Message */}
+              {/* Row 4: Urgency & file upload */}
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.urgencyLevel || "Urgency level"}</span>
+                  <select
+                    name="urgency"
+                    required
+                    defaultValue=""
+                    className="w-full cursor-pointer appearance-none rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                    style={{ backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 1rem top 50%", backgroundSize: "0.65rem auto" }}
+                  >
+                    <option value="" disabled hidden>{form.urgencyLevelPlaceholder || "Select urgency"}</option>
+                    {(form.urgencyOptions || ["Planning", "Standard", "High priority", "Urgent"]).map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.fileUpload || "File upload"}</span>
+                  <input
+                    type="file"
+                    name="attachment"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg"
+                    className="w-full cursor-pointer rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] outline-none transition-colors file:mr-4 file:rounded-md file:border-0 file:bg-gray-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-gray-700 hover:border-[#FF6B00] focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"
+                  />
+                  <p className="mt-2 text-xs text-gray-500">{form.fileUploadHint || "Attach a brief, spec sheet, BOQ or supporting document if available."}</p>
+                </label>
+              </div>
+
+              {/* Row 5: Message */}
               <label className="block">
-                <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.message || "Message"}</span>
+                <span className="mb-2 block text-[13px] font-bold text-[#1a2b49]">{form.projectBrief || "Project brief"}</span>
                 <textarea
                   name="message"
-                  placeholder={form.messagePlaceholder || "Tell us what you need, where the project is located, and the timeline."}
+                  placeholder={form.projectBriefPlaceholder || "Briefly describe the scope, location, delivery needs and any key requirements."}
                   rows={4}
                   required
                     className="w-full resize-none rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]"

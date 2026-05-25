@@ -105,7 +105,7 @@ export default function ServicesGallery() {
                 
                 {/* Arrow Link updated to AFSECMO brand orange (#FF8C00) and hovers to a slightly darker shade (#E67E00) */}
                 <div className="flex w-fit items-center gap-2 text-sm font-medium text-[#FF8C00] transition-colors group-hover:text-[#E67E00]">
-                  <span>{t("services.cta", "Learn more")}</span>
+                  <span>{t("services.cta_label", "Request support")}</span>
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </div>

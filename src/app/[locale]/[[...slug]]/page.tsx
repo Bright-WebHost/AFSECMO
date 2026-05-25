@@ -47,7 +47,45 @@ export async function generateMetadata({
     };
   }
 
-  return {};
+  const route = slug[0];
+  const { t } = await getT("content", { lng: locale as Locale });
+
+  const metadataByRoute: Record<string, Metadata> = {
+    about: {
+      title: t("about.metadata.title"),
+      description: t("about.metadata.description"),
+    },
+    services: {
+      title: t("services.metadata.title"),
+      description: t("services.metadata.description"),
+    },
+    sectors: {
+      title: t("sectors.metadata.title"),
+      description: t("sectors.metadata.description"),
+    },
+    method: {
+      title: `${t("method.hero.titleLead")} ${t("method.hero.titleAccent")} | AFSECMO Group`,
+      description: t("method.hero.description"),
+    },
+    quality: {
+      title: `${t("quality.hero.eyebrow")} | AFSECMO Group`,
+      description: t("quality.hero.description"),
+    },
+    projects: {
+      title: `${t("projects.hero.titleLead")} ${t("projects.hero.titleAccent")} | AFSECMO Group`,
+      description: t("projects.hero.description"),
+    },
+    careers: {
+      title: `${t("careers.hero.titleLead")} ${t("careers.hero.titleAccent")} | AFSECMO Group`,
+      description: t("careers.hero.description"),
+    },
+    contact: {
+      title: t("contact.metadata.title"),
+      description: t("contact.metadata.description"),
+    },
+  };
+
+  return metadataByRoute[route] ?? {};
 }
 
 export default async function LocaleSlugPage({

@@ -26,16 +26,16 @@ export function QualityContent() {
   
   // Data extraction with fallbacks
   const standards = (t("quality.standards", { returnObjects: true }) || [
-    { title: "Environmental Compliance", category: "Safety", copy: "Strict adherence to global ecological preservation protocols." },
-    { title: "Supply Chain Integrity", category: "Logistics", copy: "End-to-end verification of raw material sourcing and delivery." },
-    { title: "Operational Excellence", category: "Engineering", copy: "Maximizing uptime through rigorous preventative maintenance." }
+    { title: "HSE planning", category: "Safety control", copy: "Work planning is aligned with site access rules, protective equipment, permit requirements and field procedures so crews can operate safely." },
+    { title: "Supplier governance", category: "Procurement control", copy: "We review supplier capability, traceability, documentation and delivery reliability before any order is confirmed." },
+    { title: "Execution reporting", category: "Transparency", copy: "Quotes, delivery notes, service records and follow-up reports are maintained so clients can track progress clearly." }
   ]) as Standard[];
 
   const hero = (t("quality.hero", { returnObjects: true }) || {
-    eyebrow: "OPERATIONAL METRICS",
-    titleLead: "Unyielding commitment to",
-    titleAccent: "industrial excellence.",
-    description: "Our quality assurance frameworks are designed to exceed global compliance standards, ensuring reliability and safety across all African operations."
+    eyebrow: "QUALITY, HSE & OPERATIONAL CONTROL",
+    titleLead: "Quality, HSE &",
+    titleAccent: "Operational Control.",
+    description: "AFSECMO applies practical control systems across sourcing, logistics, site execution and project follow-up."
   }) as { eyebrow: string; titleLead: string; titleAccent: string; description: string };
 
   return (
@@ -59,7 +59,7 @@ export function QualityContent() {
             <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-white/90">
               <span className="cursor-pointer opacity-80 hover:underline">AFSECMO</span>
               <ChevronRight className="h-3 w-3 stroke-3 text-white/50" />
-              <span className="text-white">Quality & Compliance</span>
+              <span className="text-white">Quality, HSE & Operational Control</span>
             </div>
 
             <div className="max-w-3xl text-left">

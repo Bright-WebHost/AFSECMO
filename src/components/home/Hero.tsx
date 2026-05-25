@@ -29,7 +29,7 @@ const slides = [
   {
     id: 4,
     category: "Logistics",
-    title: "Global supply chain\nexcellence at\nyour doorstep.",
+    title: "Reliable supply chain\nsupport at\nyour doorstep.",
     image: "/hero/hero4.webp",
   },
 ];
@@ -90,6 +90,13 @@ export default function HeroSection() {
   const locale = params?.locale === "fr" ? "fr" : "en";
 
   const { t } = useTranslation("home");
+  const hero = t("hero", { returnObjects: true }) as {
+    eyebrow?: string;
+    headline?: string;
+    subtitle?: string;
+    primaryCta?: string;
+    secondaryCta?: string;
+  };
   const rawServices = t("services.items", { returnObjects: true }) as any[];
   const localizedSlides = slides.map((s, i) => ({
     ...s,
@@ -170,44 +177,41 @@ export default function HeroSection() {
             animate="show"
             exit="exit"
           >
-            {/* Category label */}
             <div className="mb-4 sm:mb-5 overflow-hidden">
               <motion.p
                 variants={maskReveal}
                 className="text-[9px] sm:text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.20em] md:tracking-[0.22em]"
                 style={{ color: "var(--accent)" }}
               >
-                {localizedSlides[index].category}
+                {hero.eyebrow || localizedSlides[index].category}
               </motion.p>
             </div>
 
-            {/* Headline - Split by line for staggered mask reveal */}
-            <h1 className="flex flex-col text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light leading-[1.15] sm:leading-[1.14] md:leading-[1.13] tracking-tight text-white antialiased">
-              {localizedSlides[index].title.split("\n").map((line: string, idx: number) => (
-                <span key={idx} className="overflow-hidden py-0.5 sm:py-1">
-                  <motion.span variants={maskReveal} className="block">
-                    {line}
-                  </motion.span>
-                </span>
-              ))}
+            <h1 className="max-w-4xl text-2xl font-light tracking-tight text-white antialiased sm:text-3xl md:text-5xl lg:text-6xl">
+              <motion.span variants={maskReveal} className="block">
+                {hero.headline || localizedSlides[index].title.replace(/\n/g, " ")}
+              </motion.span>
             </h1>
 
-            {/* CTA */}
-            <motion.div variants={fadeUp}>
+            <motion.p
+              variants={fadeUp}
+              className="mt-5 max-w-2xl text-sm font-light leading-relaxed text-white/80 sm:text-base md:text-lg"
+            >
+              {hero.subtitle || "AFSECMO supports industrial projects with practical procurement, logistics and field coordination."}
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mt-7 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href={withLocalePath(locale, "/contact")}
+                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-[#0F1B2E] transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                {hero.primaryCta || "Request a quotation"}
+              </Link>
               <Link
                 href={withLocalePath(locale, "/services")}
-                className="group mt-6 sm:mt-7 md:mt-9 flex w-fit items-center gap-3 sm:gap-4"
+                className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white/10"
               >
-                <span className="text-xs sm:text-sm md:text-[15px] font-normal tracking-wide text-white">
-                  Learn more
-                </span>
-                {/* Updated Tailwind sizes and var syntax */}
-                <span className="flex h-9 w-9 sm:h-10 sm:w-10 md:h-11.5 md:w-11.5 items-center justify-center rounded-full border border-white/50 transition-all duration-300 group-hover:border-(--accent) group-hover:bg-[rgba(255,140,0,0.08)]">
-                  <ArrowRight
-                    className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5 stroke-white transition-colors duration-300 group-hover:stroke-(--accent)"
-                    strokeWidth={1.8}
-                  />
-                </span>
+                {hero.secondaryCta || "Explore our services"}
               </Link>
             </motion.div>
           </motion.div>
