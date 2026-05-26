@@ -28,10 +28,10 @@ export function AboutContent() {
     <main className="w-full bg-white text-gray-900 font-sans selection:bg-[#FF6B00] selection:text-white pt-24">
       
       {/* ── Outer Layout Container (Creates the side margins) ── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
         
         {/* ── Inner Image Box with rounded corners matching the screenshot ── */}
-        <div className="relative h-[60vh] min-h-[480px] w-full overflow-hidden rounded-[2rem] bg-gray-900 shadow-sm">
+        <div className="relative min-h-130 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm sm:min-h-120 sm:h-[60vh]">
           
           {/* Background Image inside the rounded card */}
           <div className="absolute inset-0 z-0">
@@ -41,7 +41,7 @@ export function AboutContent() {
               className="h-full w-full object-cover opacity-85"
             />
             {/* Subtle dark overlay for text legibility */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
           </div>
 
           {/* Text and Breadcrumbs Content inside the image container */}
@@ -50,7 +50,7 @@ export function AboutContent() {
             {/* Breadcrumbs matching your screenshot positioning */}
             <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
               <span className="opacity-80 hover:underline cursor-pointer">{tc("nav.home")}</span>
-              <ChevronRight className="h-3 w-3 text-white/50 stroke-[3]" />
+              <ChevronRight className="h-3 w-3 text-white/50 stroke-3" />
               <span className="text-white">{tc("nav.about")}</span>
             </div>
 
@@ -72,7 +72,7 @@ export function AboutContent() {
 
       {/* ── Minimalist At A Glance Section (Directly underneath) ── */}
       <section className="w-full bg-white py-20">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <h2 className="text-2xl font-light text-gray-900 sm:text-3xl">At a glance</h2>
           </div>
@@ -94,7 +94,7 @@ export function AboutContent() {
       </section>
 
       {/* ── Activities Stream Section ── */}
-      <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16">
+      <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-20 text-left max-w-3xl">
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#FF6B00]">
             {section.eyebrow || "OUR CORE ACTIVITIES"}
@@ -115,7 +115,7 @@ export function AboutContent() {
                   isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
               >
-                <div className="h-80 w-full overflow-hidden rounded-2xl sm:h-96 lg:h-[450px] lg:w-1/2">
+                <div className="h-80 w-full overflow-hidden rounded-2xl sm:h-96 lg:h-112.5 lg:w-1/2">
                   <img 
                     src={activity.image} 
                     alt={activity.imageAlt || activity.title} 
