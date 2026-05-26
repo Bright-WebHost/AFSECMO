@@ -9,6 +9,7 @@ import { withLocalePath } from "@/i18n/routing";
 
 type ServiceItem = {
   title: string;
+  summary?: string;
   image: string;
   widthClass: string;
 };
@@ -102,6 +103,10 @@ export default function ServicesGallery() {
                 <h3 className="mb-3 text-lg font-medium leading-snug text-gray-900 transition-colors group-hover:text-gray-600">
                   {service.title}
                 </h3>
+
+                <p className="mb-4 text-sm leading-relaxed text-gray-600 line-clamp-3">
+                  {service.summary || "AFSECMO provides industrial project support tailored to operational requirements."}
+                </p>
                 
                 {/* Arrow Link updated to AFSECMO brand orange (#FF8C00) and hovers to a slightly darker shade (#E67E00) */}
                 <div className="flex w-fit items-center gap-2 text-sm font-medium text-[#FF8C00] transition-colors group-hover:text-[#E67E00]">

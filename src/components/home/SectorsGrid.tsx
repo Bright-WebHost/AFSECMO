@@ -142,15 +142,7 @@ export default function ServicesGrid() {
             </p>
           </div>
 
-          <button className="group mt-2 flex shrink-0 items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#777] transition-colors duration-200 hover:text-black">
-            {t("sectorsGrid.button", "View all sectors")}
-            <span className="flex h-8.5 w-8.5 items-center justify-center rounded-full border border-[#ccc] transition-all duration-300 group-hover:border-[#0055A4] group-hover:bg-[#0055A4]/10">
-              <ArrowRight
-                className="h-3.25 w-3.25 transition-colors duration-300 group-hover:stroke-[#0055A4]"
-                strokeWidth={2}
-              />
-            </span>
-          </button>
+          {/* 'View all sectors' button removed per request */}
         </div>
 
         {/* Thin divider */}

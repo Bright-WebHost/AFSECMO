@@ -47,7 +47,7 @@ export function SectorsContent() {
             <div className="flex items-center gap-2 text-xs font-semibold text-white/90 tracking-wide">
               <span className="opacity-80 hover:underline cursor-pointer">AFSECMO</span>
               <ChevronRight className="h-3 w-3 text-white/50 stroke-3" />
-              <span className="text-white">Sustainability & Sectors</span>
+              <span className="text-white">AFSECMO Strategic Sectors</span>
             </div>
 
             {/* Bottom-left Asymmetrical Main Header Display */}

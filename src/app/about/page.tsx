@@ -59,9 +59,11 @@ export function AboutContent() {
               <h1 className="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
                 {hero.titleLead} <span className="block text-[#FF6B00]">{hero.titleAccent}</span>
               </h1>
-              <p className="mt-4 text-base font-light leading-relaxed text-gray-200 sm:text-lg">
-                {hero.description || "Energy security for a more sustainable world."}
-              </p>
+              {((hero.description as string) || "Energy security for a more sustainable world.").split('\n\n').map((para, i) => (
+                <p key={i} className="mt-4 text-base font-light leading-relaxed text-gray-200 sm:text-lg">
+                  {para}
+                </p>
+              ))}
             </div>
 
           </div>

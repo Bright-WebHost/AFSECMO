@@ -163,7 +163,7 @@ export function QualityContent() {
 
                   {/* High-End Interactive CTA */}
                   <div className="mt-6 flex w-fit items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#111] transition-colors duration-300 group-hover:text-[#FF6B00]">
-                    <span>Learn More</span>
+                    <span>Discuss a requirement</span>
                     <span className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 transition-all duration-300 group-hover:border-[#FF6B00] group-hover:bg-[rgba(255,107,0,0.08)]">
                       <ArrowRight className="h-3 w-3 transition-colors duration-300 group-hover:stroke-[#FF6B00]" strokeWidth={2.5} />
                     </span>

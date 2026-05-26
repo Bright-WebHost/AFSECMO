@@ -1,14 +1,14 @@
 {
   "about": {
     "metadata": {
-      "title": "About AFSECMO | Industrial Services Partner in Cote d'Ivoire",
+      "title": "About AFSECMO | Industrial Services Partner in Côte d'Ivoire",
       "description": "Learn about AFSECMO Group, an Abidjan-based industrial services partner supporting mining, oil & gas, construction, procurement, logistics and field operations."
     },
     "hero": {
       "eyebrow": "Corporate Profile",
       "titleLead": "Corporate",
       "titleAccent": "Profile.",
-      "description": "AFSECMO Group is an Abidjan-based industrial services partner supporting mining, oil & gas, construction, procurement, import-export, equipment mobilisation, logistics and field operations across Cote d'Ivoire and West Africa.",
+      "description": "AFSECMO Group is an Abidjan-based industrial services partner supporting mining, oil & gas, construction, procurement, import-export, equipment mobilisation, logistics and field operations across Côte d'Ivoire and West Africa.\n\nWe help operators secure critical materials, coordinate reliable suppliers, mobilise equipment, support technical works and maintain productive industrial sites through disciplined execution, responsive communication and HSE-focused project coordination.",
       "imageAlt": "AFSECMO Industrial Operations"
     },
     "stats": [
@@ -202,7 +202,7 @@
   "projects": {
     "hero": {
       "titleLead": "Capabilities &",
-      "titleAccent": "Project Support.",
+      "titleAccent": "Project Support",
       "description": "A focused view of how AFSECMO supports mining, oil & gas, construction, procurement, logistics, maintenance and facility operations through practical field coordination, reliable sourcing and project-ready mobilisation."
     },
     "items": [
@@ -212,7 +212,7 @@
       { "id": "04", "title": "Construction & BTP Support", "sector": "Civil Works", "scope": "Civil works, site preparation, materials supply, manpower coordination, utilities support and project execution assistance.", "location": "Project Sites", "image": "/construction.webp", "span": "lg:col-span-2" },
       { "id": "05", "title": "Equipment Rental & Fleet Support", "sector": "Fleet Operations", "scope": "Rental coordination and mobilisation of industrial equipment, vehicles, machinery and site-support assets for project operations.", "location": "Field Operations", "image": "/eq.webp", "span": "lg:col-span-3" },
       { "id": "06", "title": "Industrial Maintenance", "sector": "Technical Services", "scope": "Mechanical, electrical, plumbing and technical maintenance support for industrial sites, facilities, workshops and operational bases.", "location": "Industrial Sites", "image": "/mach2.webp", "span": "lg:col-span-1" },
-      { "id": "07", "title": "Logistics & Mobilization", "sector": "Transport", "scope": "Transport coordination, site delivery, import-export assistance and supply-chain support for projects across Cote d'Ivoire and West Africa.", "location": "Regional Network", "image": "/logistic.webp", "span": "lg:col-span-2" },
+      { "id": "07", "title": "Logistics & Mobilisation", "sector": "Transport", "scope": "Transport coordination, site delivery, import-export assistance and supply-chain support for projects across Côte d'Ivoire and West Africa.", "location": "Regional Network", "image": "/logistic.webp", "span": "lg:col-span-2" },
       { "id": "08", "title": "Facility & Operational Support", "sector": "Site Services", "scope": "General site services, cleaning, maintenance, utilities support, workforce facilities and operational assistance for camps, yards, offices and warehouses.", "location": "Operational Bases", "image": "/fac.webp", "span": "lg:col-span-1" }
     ]
   },
@@ -225,7 +225,7 @@
     },
     "phases": [
       { "num": "01", "tag": "Requirement Review", "title": "Requirement review", "desc": "We define the client need, operating context, timeframe, specifications and required documentation through rigorous collaborative assessment.", "deliverables": ["Technical brief", "Scope clarification", "Timeline", "Site constraints", "Documentation checklist"], "image": "/method1.webp" },
-      { "num": "02", "tag": "Technical Sourcing", "title": "Sourcing & technical validation", "desc": "We compare suppliers, equipment options, delivery constraints, quality requirements and commercial conditions to minimize risk.", "deliverables": ["Supplier comparison", "Quotation review", "Technical validation", "Availability confirmation"], "image": "/method2.webp" },
+      { "num": "02", "tag": "Technical Sourcing", "title": "Sourcing & technical validation", "desc": "We compare suppliers, equipment options, delivery constraints, quality requirements and commercial conditions to minimise risk.", "deliverables": ["Supplier comparison", "Quotation review", "Technical validation", "Availability confirmation"], "image": "/method2.webp" },
       { "num": "03", "tag": "Logistics Readiness", "title": "Mobilisation planning", "desc": "We coordinate personnel, equipment, transport, site access, safety preparation and logistics readiness for seamless deployments.", "deliverables": ["Mobilisation plan", "Transport coordination", "Site access requirements", "Delivery schedule"], "image": "/method3.webp" },
       { "num": "04", "tag": "Field Operations", "title": "Execution & reporting", "desc": "We support field delivery with proactive follow-up, issue resolution, documentation and continuous status communication.", "deliverables": ["Execution follow-up", "Progress updates", "Issue resolution", "Service records"], "image": "/method4.webp" },
       { "num": "05", "tag": "Lifecycle Operations", "title": "After-service support", "desc": "We assist with long-term maintenance needs, reorders, supplier warranties and recurring operational requirements post-completion.", "deliverables": ["Maintenance planning", "Reorders", "Warranty follow-up", "Supplier after-service coordination"], "image": "/method5.webp" }
@@ -292,7 +292,7 @@
       "whatsapp": "Message us on WhatsApp"
     },
     "formFields": [
-      { "label": "Company/Organization", "name": "company", "placeholder": "AFSECMO Group", "type": "text" },
+      { "label": "Company/Organisation", "name": "company", "placeholder": "AFSECMO Group", "type": "text" },
       { "label": "Full name", "name": "name", "placeholder": "Jordan Smith", "type": "text" },
       { "label": "Business email", "name": "email", "placeholder": "hello@afsecmo.com", "type": "email" }
     ],
@@ -305,7 +305,7 @@
       "label": "Inquiry form",
       "title": "Multi-step project inquiry.",
       "step": "Step {{step}} of 3",
-      "company": "Company/Organization",
+      "company": "Company/Organisation",
       "companyPlaceholder": "AFSECMO Group",
       "name": "Full name",
       "namePlaceholder": "Jordan Smith",
