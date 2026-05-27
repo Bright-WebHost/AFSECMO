@@ -26,7 +26,7 @@ export function CareersContent() {
         <div className="relative h-[60vh] min-h-120 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           <div className="absolute inset-0 z-0">
             <img
-              src="/career.jpg"
+              src="/career.webp"
               alt="AFSECMO careers banner"
               className="h-full w-full object-cover opacity-85"
             />

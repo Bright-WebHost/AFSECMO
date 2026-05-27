@@ -16,23 +16,23 @@
         { "label": "Secteurs clés", "value": "Extraction minière, pétrole & gaz" }
     ]
   },
-    "stats": {
-      "title": "En un coup d'œil",
-      "items": [
-        {
-          "value": "Abidjan",
-          "label": "Siège stratégique basé en Côte d'Ivoire, desservant l'Afrique de l'Ouest."
-        },
-        {
-          "value": "4",
-          "label": "Secteurs industriels clés : Mines, Pétrole & Gaz, BTP et Logistique."
-        },
-        {
-          "value": "360°",
-          "label": "Support de bout en bout : de l'approvisionnement et de l'import-export à la logistique, la mobilisation, la maintenance et les services de site."
-        }
-      ]
-    },
+   "stats": {
+    "title": "En un coup d'œil",
+    "items": [
+      {
+        "value": "Abidjan",
+        "label": "Siège stratégique basé en Côte d'Ivoire, desservant l'Afrique de l'Ouest."
+      },
+      {
+        "value": "6",
+        "label": "6 secteurs stratégiques desservis : Mines et Carrières, Pétrole, Gaz et Énergie, Construction et Infrastructures, Opérations Industrielles, Commerce et Logistique, et Support aux Installations et Actifs."
+      },
+      {
+        "value": "360°",
+        "label": "Un accompagnement de bout en bout, de l'approvisionnement et l'import-export à la logistique, la mobilisation, la maintenance et les services sur site."
+      }
+    ]
+   },
   "methodology": {
     "eyebrow": "Profil de l’entreprise",
     "titleLead": "Une exécution fiable,",

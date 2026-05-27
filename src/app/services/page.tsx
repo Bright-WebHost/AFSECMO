@@ -34,7 +34,7 @@ export function ServicesContent() {
           <div className="absolute inset-0 z-0">
             <img
               src="/service.webp"
-              alt={hero.eyebrow || "What We Do"}
+              alt={hero.eyebrow || "Industrial project support for energy, logistics and field operations"}
               className="h-full w-full object-cover opacity-85"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
