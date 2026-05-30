@@ -91,14 +91,14 @@ export default function Navbar() {
           </button>
 
           {/* Left: Desktop Nav links */}
-          <nav className="hidden items-center gap-8 lg:flex flex-1">
+          <nav className="hidden items-center gap-6 xl:gap-8 lg:flex flex-1">
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
                 <Link
                   key={item.key}
                   href={withLocalePath(locale, item.href)}
-                  className="group relative text-sm font-medium uppercase tracking-wide transition-colors duration-200"
+                  className="group relative whitespace-nowrap text-[12px] xl:text-[13px] 2xl:text-sm font-medium uppercase tracking-normal transition-colors duration-200 shrink-0"
                 >
                   <motion.span 
                     style={{ color: headerTextColor }}
@@ -119,10 +119,10 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Language Switcher + Logo */}
-          <div className="flex items-center gap-4 lg:gap-8 ml-auto shrink-0">
+          <div className="flex items-center gap-2 lg:gap-3 xl:gap-4 ml-4 shrink-0">
             
             {/* Simple Text Language Switcher */}
-            <div className="hidden sm:flex items-center gap-2 text-sm font-medium tracking-wide">
+            <div className="hidden sm:flex items-center gap-1 text-[11px] xl:text-xs font-medium whitespace-nowrap shrink-0">
               <motion.button
                 onClick={() => handleLanguageChange("en")}
                 style={{ color: locale === "en" ? headerTextColor : "rgba(255,255,255,0.4)" }}
