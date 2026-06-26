@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 type Phase = { num: string; tag: string; title: string; desc: string; image: string; deliverables?: string[] };
 
@@ -29,10 +30,13 @@ export function MethodContent() {
           
           <div className="absolute inset-0 z-0">
             {/* High-res operational/methodology backdrop asset image */}
-            <img
+            <Image
               src="/method.webp"
               alt={hero.eyebrow || "Our Methodology"}
-              className="h-full w-full object-cover opacity-85"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-85"
             />
             {/* Linear dark gradient layer for crisp type legibility layout parameters */}
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
@@ -98,11 +102,13 @@ export function MethodContent() {
                 }`}
               >
                 {/* Asymmetric Media Container Block - Pure, un-tinted and vivid */}
-                <div className="h-80 w-full overflow-hidden rounded-2xl bg-gray-100 shadow-xs sm:h-96 lg:h-120 lg:w-1/2">
-                  <img
+                <div className="relative h-80 w-full overflow-hidden rounded-2xl bg-gray-100 shadow-xs sm:h-96 lg:h-120 lg:w-1/2">
+                  <Image
                     src={phase.image}
                     alt={phase.title}
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-102"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 hover:scale-102"
                   />
                 </div>
 

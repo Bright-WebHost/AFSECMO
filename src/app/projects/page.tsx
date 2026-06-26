@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 type ProjectItem = {
   id: string;
@@ -32,10 +33,13 @@ export function ProjectsContent() {
         <div className="relative min-h-115 h-[60vh] w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/port.webp"
               alt="Operational Portfolio Banner"
-              className="h-full w-full object-cover opacity-85"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-85"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-black/10" />
           </div>
@@ -89,11 +93,12 @@ export function ProjectsContent() {
                 
                 {/* Image Container */}
                 <div className="absolute inset-0 z-0">
-                  <img
+                  <Image
                     src={proj.image}
                     alt={proj.title}
-                    className="h-full w-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
                 </div>

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type Standard = { title: string; category: string; copy: string };
 
@@ -46,10 +47,13 @@ export function QualityContent() {
         <div className="relative min-h-115 h-[60vh] w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/quality.webp"
               alt="Quality Standards Banner"
-              className="h-full w-full object-cover opacity-85"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-85"
             />
             {/* Updated to bg-linear-to-t per Tailwind v4 standards */}
             <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/20 to-transparent" />
@@ -131,11 +135,12 @@ export function QualityContent() {
               >
                 {/* Image Block: Sharp corners, grayscale hover effect */}
                 <div className="relative h-70 w-full overflow-hidden rounded-xs bg-black sm:h-80 lg:h-95">
-                  <img
+                  <Image
                     src={images[index % images.length]}
                     alt={standard.title}
-                    className="h-full w-full object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-80"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-80"
                   />
                 </div>
 

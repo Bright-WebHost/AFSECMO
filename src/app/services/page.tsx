@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type ServiceItem = {
   id: string;
@@ -32,10 +33,13 @@ export function ServicesContent() {
       <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
         <div className="relative h-auto md:h-[60vh] md:min-h-115 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/service.webp"
               alt={hero.eyebrow || "Industrial project support for energy, logistics and field operations"}
-              className="h-full w-full object-cover opacity-85"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-85"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
           </div>
@@ -70,11 +74,13 @@ export function ServicesContent() {
               className="group flex flex-col cursor-pointer"
             >
               {/* Image box only - Completely borderless, no wrapper card background */}
-              <div className="h-52 w-full overflow-hidden rounded-2xl bg-gray-200 sm:h-60 md:h-64">
-                <img
+              <div className="relative h-52 w-full overflow-hidden rounded-2xl bg-gray-200 sm:h-60 md:h-64">
+                <Image
                   src={svc.image}
                   alt={svc.title[0]}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
                 />
               </div>
 

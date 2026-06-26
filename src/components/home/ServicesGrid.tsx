@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react"; // Ensure lucide-react is installed
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { withLocalePath } from "@/i18n/routing";
 
@@ -90,11 +91,13 @@ export default function ServicesGallery() {
             
             >
               {/* Image Container */}
-              <div className="h-70 w-full overflow-hidden rounded-3xl sm:h-87.5 lg:h-105">
-                <img 
+              <div className="relative h-70 w-full overflow-hidden rounded-3xl sm:h-87.5 lg:h-105">
+                <Image 
                   src={service.image} 
                   alt={service.title} 
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>
               

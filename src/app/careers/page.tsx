@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronRight, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 export function CareersContent() {
   const { t } = useTranslation("content");
@@ -25,10 +26,13 @@ export function CareersContent() {
       <section className="mx-auto max-w-350 px-4 sm:px-6 lg:px-8">
         <div className="relative h-[60vh] min-h-120 w-full overflow-hidden rounded-4xl bg-gray-900 shadow-sm">
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/career.webp"
               alt="AFSECMO careers banner"
-              className="h-full w-full object-cover opacity-85"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-85"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
           </div>

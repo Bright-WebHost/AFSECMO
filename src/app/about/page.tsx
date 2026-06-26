@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 type AboutActivity = { title: string; copy: string; image: string; imageAlt?: string };
 type AboutStat = { label: string; value: string };
@@ -35,10 +36,13 @@ export function AboutContent() {
           
           {/* Background Image inside the rounded card */}
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/about-hero.webp"
               alt={hero.imageAlt || "About Banner"}
-              className="h-full w-full object-cover opacity-85"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-85"
             />
             {/* Subtle dark overlay for text legibility */}
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
@@ -115,11 +119,13 @@ export function AboutContent() {
                   isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
               >
-                <div className="h-80 w-full overflow-hidden rounded-2xl sm:h-96 lg:h-112.5 lg:w-1/2">
-                  <img 
+                <div className="relative h-80 w-full overflow-hidden rounded-2xl sm:h-96 lg:h-112.5 lg:w-1/2">
+                  <Image 
                     src={activity.image} 
                     alt={activity.imageAlt || activity.title} 
-                    className="h-full w-full object-cover" 
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover" 
                   />
                 </div>
 

@@ -4,6 +4,7 @@ import { MouseEvent, useState, UIEvent } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 const cards = [
   {
@@ -67,11 +68,12 @@ function Card({ card }: { card: (typeof cards)[0] }) {
       className="group relative h-95 w-full cursor-pointer overflow-hidden rounded-2xl bg-black sm:h-110"
     >
       {/* 1 — Background image */}
-      <img
+      <Image
         src={card.image}
         alt={t(card.titleKey, card.defaultTitle)}
-        className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.05]"
-        loading="lazy"
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="absolute inset-0 z-0 object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.05]"
       />
 
       {/* 2 — Permanent dark gradient */}

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type SectorItem = {
   id: string;
@@ -32,10 +33,13 @@ export function SectorsContent() {
           
           <div className="absolute inset-0 z-0">
             {/* Hero background explicitly set to /01.webp */}
-            <img
+            <Image
               src="/01.webp"
               alt={sectors?.[0]?.title || "Hero Banner"}
-              className="h-full w-full object-cover opacity-85"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-85"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
           </div>
@@ -97,11 +101,13 @@ export function SectorsContent() {
               className="group flex flex-col cursor-pointer text-left"
             >
               {/* Media Container Box */}
-              <div className="h-52 w-full overflow-hidden rounded-2xl bg-gray-100 sm:h-56 md:h-60">
-                <img
+              <div className="relative h-52 w-full overflow-hidden rounded-2xl bg-gray-100 sm:h-56 md:h-60">
+                <Image
                   src={sector.image}
                   alt={sector.title}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
                 />
               </div>
 
